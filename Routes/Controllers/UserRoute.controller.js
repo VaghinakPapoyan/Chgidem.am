@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import User from "../../Models/User.js";
+import {User} from "../../Models/User.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import sendMail from "../../moduls/sendMail.js"
@@ -58,8 +58,9 @@ export async function registration(req,res){
     if (code !== verificationCode) {
       return res.status(200).json({ error: "Code is incorrect" });
     }
-    
+    console.log(user);
     await user.save();
+    console.log("user");
     return res.status(200).json( { ok: true, message: 'User Created' } )
   }
   catch(e)
