@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const HeaderComponent = styled.div`
     display: flex;
@@ -220,8 +222,9 @@ const MenuButtonLine = styled.div`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 
-export default function Header({auth}) {
-    const [ menuActive, setMenuActive ] = useState(false) 
+export default  function Header({auth}) {
+    const [ menuActive, setMenuActive ] = useState(false)
+    const user = useSelector(state=>state.user) 
     if(auth)
     {
         return (
@@ -247,7 +250,7 @@ export default function Header({auth}) {
                 </MenuButton>
                 <Buttons>
                     <User active={menuActive} to="#">
-                        <p>Vaghinak</p>
+                        <p>{user.username}</p>
                         <img src={userImg} alt="User"/>
                     </User>
                 </Buttons>
