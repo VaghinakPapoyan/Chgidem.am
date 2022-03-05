@@ -8,7 +8,7 @@ UserRoute.post(
     '/register',
     [
         check('email','Email is incorrect').isEmail(),
-        check('username','minimum length of name was 8').isLength(8),
+        check('username','minimum length of name was 6').isLength(6),
         check('password','minimum length of password was 8').isLength(8)
     ],
     register

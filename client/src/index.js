@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import "reset-css"
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 const theme = 
 {
@@ -36,9 +38,11 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+   <ThemeProvider theme={theme}>
+   <Provider store={store}> 
       <GlobalStyle/>
       <App />
+   </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

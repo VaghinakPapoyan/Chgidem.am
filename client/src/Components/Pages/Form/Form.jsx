@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header, { Button, ButtonInnerText } from '../../Main-Components/Header'
-import { sendForm } from '../../../hooks/useUser'
+import { sendForm, sendLogin } from '../../../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const Title = styled.h2`
     font-size: 36px;
@@ -77,6 +79,8 @@ export default function Form({login})
     const [error, setError] = useState("")
     const [next, setNext] = useState(false)
     console.log(error);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const changeForm = e => 
     {
         setForm(form => ({...form, [e.target.name]: e.target.value }))
@@ -111,7 +115,7 @@ export default function Form({login})
         return (
             <Container>
                 <Header />
-                <FormComponent>
+                <FormComponent onSubmit={e=>sendLogin(e)(form,setError,navigate,dispatch)}>
                     <Title>Log In</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email or username</Label>
@@ -119,8 +123,9 @@ export default function Form({login})
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
+                    <Error>{ error }</Error>
                     <ThisButton>Sign up</ThisButton>
                 </FormComponent>
             </Container>

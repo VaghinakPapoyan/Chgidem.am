@@ -6,18 +6,19 @@ import { Home } from "./Pages/noAuth/Home";
 
 
 export default function route(isAuth){
-    if(isAuth){
+    if(!isAuth){
         return(
             <Routes>
                 <Route path='/' element={<Home/>} />
+                <Route path="/account/registration" element={<Form />}/>
+                <Route path="/account/log-in" element={<Form login />}/>
             </Routes>
         )
     }
     return(
         <Routes>
             <Route path="/" element={<AuthHome/>}/>
-            <Route path="/account/registration" element={<Form />}/>
-            <Route path="/account/log-in" element={<Form login />}/>
+           
         </Routes>
     )
 }

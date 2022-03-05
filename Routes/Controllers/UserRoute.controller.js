@@ -44,16 +44,16 @@ export async function register(req,res){
 export async function login(req,res){
     try
     {
-        const {name,password} = req.body
+        const {email,password} = req.body
 
         // validation
         const errors =  validationResult(req);
         if (!errors.isEmpty()) {
-          return res.status(200).json({ error: errors.array() });
+          return res.status(200).json({ error: errors.array()[0].msg });
         }
 
         //find user
-        const data = await User.findOne({name})
+        const data = await User.findOne({email})
         if( !data ){
             return res.status(200).json({
                 error:"user not found"
@@ -72,7 +72,8 @@ export async function login(req,res){
         //create token
         const token = await jwt.sign( { userId:data._id},process.env.secret,{  expiresIn: '10m', } )
         return res.status(200).json({
-            token
+            token,
+            ok:true
         })
 
     }

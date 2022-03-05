@@ -260,10 +260,10 @@ export default function Header({auth}) {
             <HeaderComponent>
                 <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
                 <Buttons>
-                    <Button to="#">
+                    <Button to="/account/registration">
                         <ButtonInnerText>Registation</ButtonInnerText>
                     </Button>
-                    <Button to="#"><ButtonInnerText>Log In</ButtonInnerText></Button>
+                    <Button to="/account/log-in"><ButtonInnerText>Log In</ButtonInnerText></Button>
                 </Buttons>
             </HeaderComponent>
         )
