@@ -276,7 +276,7 @@ export default  function Header({auth}) {
                 </MenuButton>
                 <Buttons>
                     <User active={menuActive} to="#" onClick={() => setMenuDropdownActive(state => !state)}>
-                        <p>{user.username}Vaghinak</p>
+                        <p>{user.username}</p>
                         <img src={userImg} alt="User"/>
                         <UserDropdown active={menuDropdownActive}>
                             <UserDropdownElement>

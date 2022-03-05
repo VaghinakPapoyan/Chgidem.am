@@ -11,13 +11,14 @@ function App() {
     const localtoken =  localStorage.getItem('User')
     if(localtoken){
       const data = await axios.get(`/api/getUser/${localtoken}`)
+      const info = data.data
       console.log(data)
       dispatch({
         type:'changeToken',
         token:localtoken,
         user:{
-          username:data.username,
-          email:data.email
+          username:info.username,
+          email:info.email
         }
       })
     }
