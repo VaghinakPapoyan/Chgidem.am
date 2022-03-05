@@ -35,7 +35,6 @@ export const sendLogin = e => {
             if(res.data.ok)
             {
                 setError("")
-                localStorage.setItem('User',res.data.token)
                 dispatch({
                     type:'changeToken',
                     token:res.data.token
@@ -54,7 +53,7 @@ export const sendLogin = e => {
 export const registration = e => 
 {
     e.preventDefault();
-    return async (code, setError) => 
+    return async (code, setError,dispatch,navigate) => 
     {
         try
         {
@@ -63,6 +62,11 @@ export const registration = e =>
             if(res.data.ok)
             {
                 console.log("sad");
+                dispatch({
+                    type:'changeToken',
+                    token:res.data.token
+                })
+                navigate('/')
                 setError("")
             }
             else if(res.status === 200)

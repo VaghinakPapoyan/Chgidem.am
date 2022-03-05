@@ -92,7 +92,7 @@ export default function Form({login})
     const Submit = e => 
     {
         if(next)
-            registration(e)(code, setError)
+            registration(e)(code, setError,dispatch,navigate)
         else
             sendForm(e)(form, setError, setNext)
     }
