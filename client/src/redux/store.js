@@ -9,6 +9,8 @@ export const store = createStore((state={token:'',user:{
         case "changeToken":
             localStorage.setItem('User',action.token)
             return {...state,token:action.token}
+        case "changeUser":
+            return {...state,user:action.user}
         default:
             return state
     }

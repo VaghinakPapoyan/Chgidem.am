@@ -12,10 +12,9 @@ function App() {
     if(localtoken){
       const data = await axios.get(`/api/getUser/${localtoken}`)
       const info = data.data
-      console.log(data)
+      console.log(info)
       dispatch({
-        type:'changeToken',
-        token:localtoken,
+        type:'changeUser',
         user:{
           username:info.username,
           email:info.email
