@@ -16,6 +16,7 @@ function App() {
     }
    
   },[])
+  console.log('s')
   const token = useSelector(state=>state.token)
   const router = route(!!token)
   return (
