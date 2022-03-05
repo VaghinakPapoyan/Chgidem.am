@@ -147,6 +147,7 @@ const Left = styled.div`
 `
 const User = styled.div`
     border-radius: 6px !important;
+    position: relative;
     cursor: pointer;
     padding: 8px 21px;
     padding-right: 10.5px;
@@ -219,11 +220,36 @@ const MenuButtonLine = styled.div`
         ${({ active }) => active ? "transform: rotate(-45deg) translateY(3.5px);" : null}
     }
 `
+const UserDropdown = styled.div` 
+    position: absolute;
+    left: 50%;
+    top: 0;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.4s;
+    transform: translate(-50%, 15px);
+    width: 100%;
+    border-radius: 6px;
+    background-color: ${({ theme }) => theme.colors.secondColor};
+    ${({active}) => active ? "opacity: 1; top: 100%;" : null}
+`
+const UserDropdownElement = styled.p` 
+    color: ${({ theme }) => theme.colors.secondTextColor};
+    font-size: 0.75rem !important;
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.mainColor};
+    &:first-child
+    {
+        margin-top: 0;
+    }
+`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 
 export default  function Header({auth}) {
     const [ menuActive, setMenuActive ] = useState(false)
+    const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
     if(auth)
     {
@@ -249,9 +275,17 @@ export default  function Header({auth}) {
                     <MenuButtonLine active={menuActive} />
                 </MenuButton>
                 <Buttons>
-                    <User active={menuActive} to="#">
-                        <p>{user.username}</p>
+                    <User active={menuActive} to="#" onClick={() => setMenuDropdownActive(state => !state)}>
+                        <p>{user.username}Vaghinak</p>
                         <img src={userImg} alt="User"/>
+                        <UserDropdown active={menuDropdownActive}>
+                            <UserDropdownElement>
+                                Your Quizes
+                            </UserDropdownElement>
+                            <UserDropdownElement>
+                                Logout
+                            </UserDropdownElement>
+                        </UserDropdown>
                     </User>
                 </Buttons>
             </HeaderComponent>
