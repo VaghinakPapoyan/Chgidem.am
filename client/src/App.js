@@ -8,17 +8,16 @@ import route from "./Components/Route";
 function App() {
   const dispatch = useDispatch()
   useEffect(async ()=>{
-    const localtoken = await localStorage.getItem('User')
+    const localtoken =  localStorage.getItem('User')
     if(localtoken){
       const data = await axios.get(`/api/getUser/${localtoken}`)
-      const result = JSON.parse(data)
-      console.log(result)
+      console.log(data)
       dispatch({
         type:'changeToken',
         token:localtoken,
         user:{
-          username:result.username,
-          email:result.email
+          username:data.username,
+          email:data.email
         }
       })
     }

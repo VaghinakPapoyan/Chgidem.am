@@ -115,8 +115,10 @@ export async function login(req,res){
 export async function getUser(req,res){
     try{
         const {token} = req.params;
-        const userid = jwt.verify(token,procces.env.secret)
-        const data = User.findById({userid})
+        const userid = await jwt.verify(token,procces.env.secret)
+        console.log('asd')
+        const data = User.findOne({_id:userid})
+        console.log(data)
         return res.json({username:data.username,email:data.email})
     }catch(e){
         res.json ({error:e})
