@@ -10,8 +10,8 @@ const transporter = nodemailer.createTransport(
     secure: true, // true for 465, false for other ports
     auth: 
     {
-        user: "ararat.armenia.02@mail.ru", // Sender mail
-        pass: "XBw4QTkhe81RTdbjRbZ8" // Sender mail password
+        user: "boris.alexeev.98@mail.ru", // Sender mail
+        pass: "F9ziZBjr94rtJCfQnwDN" // Sender mail password
     }
 })
 
@@ -26,7 +26,7 @@ export default async function mailer(senderUsername, receiverUsername, messageTi
     // Settings
     let meassageOptions = 
     {
-        from: senderUsername + "<ararat.armenia.02@mail.ru>", // sender address
+        from: senderUsername + "<boris.alexeev.98@mail.ru>", // sender address
         to: receiverUsername, // list of receivers
         subject: messageTitle, // Subject line
         text: messageText || "", // plain text body
