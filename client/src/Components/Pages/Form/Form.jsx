@@ -144,7 +144,7 @@ export default function Form({login})
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input type='password'  name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
                     <Error>{ error }</Error>
                     <ThisButton>Sign up</ThisButton>
