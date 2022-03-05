@@ -1,11 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"
+import UserRoute from "./Routes/userroute/UserRoute.js";
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || process.env.myPort || 5000;
 
+app.use(express.json({ extended: true }))
+
+app.use('/api',UserRoute)
 async function server()
 {
     try
