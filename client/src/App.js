@@ -1,10 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
+import route from "./Components/Route";
 
 function App() {
+  const router = route(false)
   return (
-    <div className="App">
-    
-    </div>
-  );
+    <BrowserRouter>
+      {router}
+    </BrowserRouter>
+    );
 }
 
 export default App;
