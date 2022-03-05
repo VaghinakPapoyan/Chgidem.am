@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from "react-router-dom"
 
 const HeaderComponent = styled.div`
