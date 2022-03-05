@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 
 export const store = createStore((state={token:'',user:{
-    name:'',
+    username:'',
     email:''
 }},action)=>{
     switch(action.type){

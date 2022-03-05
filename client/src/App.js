@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -6,12 +7,19 @@ import route from "./Components/Route";
 
 function App() {
   const dispatch = useDispatch()
-  useEffect(()=>{
-    const localtoken = localStorage.getItem('User')
+  useEffect(async ()=>{
+    const localtoken = await localStorage.getItem('User')
     if(localtoken){
+      const data = await axios.get(`/api/getUser/${localtoken}`)
+      const result = JSON.parse(data)
+      console.log(result)
       dispatch({
         type:'changeToken',
-        token:localtoken
+        token:localtoken,
+        user:{
+          username:result.username,
+          email:result.email
+        }
       })
     }
    

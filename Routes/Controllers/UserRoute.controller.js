@@ -111,3 +111,14 @@ export async function login(req,res){
         return res.json( { error:e } );
     }
 }
+
+export async function getUser(req,res){
+    try{
+        const {token} = req.params;
+        const userid = jwt.verify(token,procces.env.secret)
+        const data = User.findById({userid})
+        return res.json({username:data.username,email:data.email})
+    }catch(e){
+        res.json ({error:e})
+    }
+}

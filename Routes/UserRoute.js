@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { login, registration, dataCheck } from "./Controllers/UserRoute.controller.js";
+import { login, registration, dataCheck, getUser } from "./Controllers/UserRoute.controller.js";
 
 const UserRoute = Router()
 
@@ -28,4 +28,5 @@ UserRoute.post(
     login
 )
 
+UserRoute.get('/getUser/:token',getUser )
 export default UserRoute
