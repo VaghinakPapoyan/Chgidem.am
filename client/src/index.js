@@ -4,14 +4,6 @@ import App from './App';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import "reset-css"
 
-const GlobalStyle = createGlobalStyle`
-  *
-  {
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif !important;
-  }
-`
-
 const theme = 
 {
   colors: 
@@ -24,6 +16,23 @@ const theme =
     thirdTextColor: "#FFCD28"
   }
 }
+
+const GlobalStyle = createGlobalStyle`
+  *
+  {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif !important;
+  }
+  body
+  {
+    background-color: ${theme.colors.mainColor};
+  }
+  ::selection 
+  {
+    color: ${theme.colors.secondTextColor};
+    background: ${theme.colors.secondColor};
+  } 
+`
 
 ReactDOM.render(
   <React.StrictMode>
