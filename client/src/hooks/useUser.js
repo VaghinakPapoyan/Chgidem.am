@@ -9,7 +9,7 @@ export const sendForm = e =>
     {
         try
         {
-            const res = await axios.post('/api/register', {...form})
+            const res = await axios.post('/api/dataCheck', {...form})
             if(res.data.ok)
             {
                 setNext(true);

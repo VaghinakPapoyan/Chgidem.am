@@ -5,7 +5,7 @@ import { login, registration, dataCheck } from "./Controllers/UserRoute.controll
 const UserRoute = Router()
 
 UserRoute.post(
-    '/data-check',
+    '/dataCheck',
     [
         check('email','Email is incorrect').isEmail(),
         check('username','minimum length of name was 8').isLength(8),
