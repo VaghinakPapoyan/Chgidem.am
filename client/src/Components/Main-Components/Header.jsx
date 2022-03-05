@@ -218,11 +218,11 @@ const MenuButtonLine = styled.div`
     }
 `
 
-
 const userImg = process.env.PUBLIC_URL + "images/user.png";
+
 export default function Header({auth}) {
     const [ menuActive, setMenuActive ] = useState(false) 
-    if(!auth)
+    if(auth)
     {
         return (
             <HeaderComponent>

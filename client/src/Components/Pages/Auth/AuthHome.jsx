@@ -1,5 +1,12 @@
+import Header from "../../Main-Components/Header";
+import { Container } from "../../../styles/styles.js"
+
+const HomeContainer = Container;
+
 export function AuthHome(){
     return(
-        <div>hello</div>
+        <HomeContainer>
+            <Header auth />
+        </HomeContainer>
     )
 }
