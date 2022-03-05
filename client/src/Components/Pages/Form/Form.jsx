@@ -59,6 +59,9 @@ const ThisButton = styled.button`
     cursor: pointer;
     color: ${({ theme }) => theme.colors.secondTextColor};
 `
+const ValidationInput = styled(Input)`
+    border-color: ${({ theme }) => theme.colors.thirdColor};
+`
 const InputDiv = styled.div` 
 
 `
