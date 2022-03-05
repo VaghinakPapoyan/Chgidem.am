@@ -13,7 +13,7 @@ export const sendForm = e =>
             if(res.data.ok)
             {
                 setNext(true);
-                setError("")
+                setError("d")
             }
             else if(res.status === 200)
             {
