@@ -11,13 +11,11 @@ export async function register(req,res){
     if (!errors.isEmpty()) {
       return res.status(200).json({ error: errors.array() });
     }
-
     //search data
     const data = await User.findOne({name})
     if( data ){
         return res.status(200).json( { error:'this name already taken' } )
     }
-
     //create user
     const HashPassword = await bcrypt.hash( password, 7 )
     await User.create( { name,password:HashPassword } )
