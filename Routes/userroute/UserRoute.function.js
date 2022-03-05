@@ -5,46 +5,54 @@ import jwt from 'jsonwebtoken';
 
 export async function register(req,res){
   try{
-    const {name,password} = req.body
+    const { name, password } = req.body
+    //validation
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: errors.array() });
+      return res.status(200).json({ error: errors.array() });
     }
+
+    //search data
     const data = await User.findOne({name})
-    if(data){
-        return res.status(400).json({error:'this name already taken'})
+    if( data ){
+        return res.status(200).json( { error:'this name already taken' } )
     }
-    const HashPassword = await bcrypt.hash(password,7)
-    await User.create({name,password:HashPassword})
-    return res.status(200).json({message:'user was created'})
+
+    //create user
+    const HashPassword = await bcrypt.hash( password, 7 )
+    await User.create( { name,password:HashPassword } )
+    return res.status(200).json( { message:'user was created' } )
   }catch(e){
-      return res.json({error:e})
+      return res.json( { error:e} )
   }
 }
 
 export async function login(req,res){
     try{
         const {name,password} = req.body
-        const errors = await validationResult(req);
+        //validation
+        const errors =  validationResult(req);
         if (!errors.isEmpty()) {
-          return res.status(400).json({ error: errors.array() });
+          return res.status(200).json({ error: errors.array() });
         }
-        const data = User.findOne({name})
-        if(!data){
-            return res.status(400).json({
+        //find user
+        const data = await User.findOne({name})
+        if( !data ){
+            return res.status(200).json({
                 error:"user not found"
             })
         }
-        
-        const hash = data._id;
-        console.log(hash)
-        const CheckPassword =await  bcrypt.compare(password,hash)
-        if(!CheckPassword){
-            return res.status(400).json({
+        //check password
+        const hash = data.password;
+        const CheckPassword =await  bcrypt.compare( password,hash )
+        if( !CheckPassword ){
+            return res.status(200).json({
                 error:"user not found"
             })
         }
-        const token =   await  jwt.sign({userId:data._id},process.env.secret,{  expiresIn: '10m',})
+
+        //create token
+        const token = await jwt.sign( { userId:data._id},process.env.secret,{  expiresIn: '10m', } )
         return res.status(200).json({
             token
         })
