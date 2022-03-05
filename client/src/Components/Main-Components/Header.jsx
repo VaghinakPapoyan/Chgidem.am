@@ -67,19 +67,46 @@ const ButtonInnerText = styled.p`
     color: ${props => props.theme.colors.secondTextColor};
     z-index: 3;
 `
+const HeaderNavigation = styled.ul `
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`
+const HeaderNavigate = styled.ul `
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`
 
 
 export default function Header(auth) {
 
-    return (
-        <HeaderComponent>
-            <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
-            <Buttons>
-                <Button>
-                    <ButtonInnerText>Registation</ButtonInnerText>
-                </Button>
-                <Button><ButtonInnerText>Log In</ButtonInnerText></Button>
-            </Buttons>
-        </HeaderComponent>
-    )
+    if(auth)
+    {
+        return (
+            <HeaderComponent>
+                <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
+
+                <Buttons>
+                    <Button><ButtonInnerText>Exit</ButtonInnerText></Button>
+                </Buttons>
+            </HeaderComponent>
+        )
+    }
+    else
+    {
+        return (
+            <HeaderComponent>
+                <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
+                <Buttons>
+                    <Button>
+                        <ButtonInnerText>Registation</ButtonInnerText>
+                    </Button>
+                    <Button><ButtonInnerText>Log In</ButtonInnerText></Button>
+                </Buttons>
+            </HeaderComponent>
+        )
+    }
 }
