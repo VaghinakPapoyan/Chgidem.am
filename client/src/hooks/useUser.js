@@ -50,3 +50,29 @@ export const sendLogin = e => {
         }
     }
 }
+
+export const registration = e => 
+{
+    e.preventDefault();
+    return async (code, setError) => 
+    {
+        try
+        {
+            const res = await axios.post('/api/registration', {code})
+            console.log(res);
+            if(res.data.ok)
+            {
+                console.log("sad");
+                setError("")
+            }
+            else if(res.status === 200)
+            {
+                setError(res.data.error)
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+}

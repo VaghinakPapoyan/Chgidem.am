@@ -2,10 +2,12 @@ import { validationResult } from "express-validator";
 import User from "../../Models/User.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
+import sendMail from "../../moduls/sendMail.js"
 
 let user = {};
+let verificationCode = null;
 
-export async function register(req,res){
+export async function dataCheck(req,res){
   try
   {
     const { username, password, email } = req.body
@@ -33,7 +35,33 @@ export async function register(req,res){
     const HashPassword = await bcrypt.hash( password, 7 )
 
     user = await new User({ username, email, password: HashPassword })
+    
+    verificationCode = String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10));
+
+    await sendMail("Chgidem.am", email, "Verification Code", String(verificationCode), String(verificationCode))
     return res.status(200).json( { ok: true, message: 'Data is correct' } )
+  }
+  catch(e)
+  {
+      return res.json( { error:e } )
+  }
+}
+
+export async function registration(req,res){
+  try
+  {
+    const { code } = req.body
+
+    console.log(verificationCode, code);
+
+    //validation
+    if (code !== verificationCode) {
+      return res.status(200).json({ error: "Code is incorrect" });
+    }
+    console.log(user);
+    await user.save();
+    console.log("user");
+    return res.status(200).json( { ok: true, message: 'User Created' } )
   }
   catch(e)
   {

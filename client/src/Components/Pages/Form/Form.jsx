@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header, { Button, ButtonInnerText } from '../../Main-Components/Header'
-import { sendForm, sendLogin } from '../../../hooks/useUser'
+import { sendForm, sendLogin, registration } from '../../../hooks/useUser'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -77,6 +77,7 @@ export default function Form({login})
         password: ""
     })
     const [error, setError] = useState("")
+    const [code, setCode] = useState(0);
     const [next, setNext] = useState(false)
     console.log(error);
     const navigate = useNavigate()
@@ -85,12 +86,20 @@ export default function Form({login})
     {
         setForm(form => ({...form, [e.target.name]: e.target.value }))
     }
+    const Submit = e => 
+    {
+        if(next)
+            registration(e)(code, setError)
+        else
+            sendForm(e)(form, setError, setNext)
+    }
     if(!login)
     {
         return (
             <Container>
                 <Header />
-                <FormComponent onSubmit={e => sendForm(e)(form, setError, setNext)}>
+                <FormComponent 
+                    onSubmit={e => Submit(e)}>
                     <Title>Registration</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email</Label>
@@ -102,8 +111,17 @@ export default function Form({login})
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input type="password" name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
+                    { 
+                        next 
+                        ?
+                        <InputDiv>
+                            <Label htmlFor='validataion-code'>We send code in your email</Label>
+                            <ValidationInput onChange={e => setCode(e.target.value)} value={code} type="password" name="validataion-code" id='validataion-code' placeholder='Write your validation code.' />
+                        </InputDiv> 
+                        : null 
+                    }
                     <Error>{ error }</Error>
                     <ThisButton>Sign in</ThisButton>
                 </FormComponent>

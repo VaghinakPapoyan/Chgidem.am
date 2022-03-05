@@ -1,18 +1,23 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { login, register } from "./Controllers/UserRoute.controller.js";
+import { login, registration, dataCheck } from "./Controllers/UserRoute.controller.js";
 
 const UserRoute = Router()
 
 UserRoute.post(
-    '/register',
+    '/data-check',
     [
         check('email','Email is incorrect').isEmail(),
-        check('username','minimum length of name was 6').isLength(6),
+        check('username','minimum length of name was 8').isLength(8),
         check('password','minimum length of password was 8').isLength(8)
     ],
-    register
-    )
+    dataCheck
+)
+
+UserRoute.post(
+    '/registration',
+    registration
+)
 
 UserRoute.post(
     '/login',
