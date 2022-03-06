@@ -4,7 +4,7 @@ export async function AddQuests(req,res){
     try{
         const {testId,title,quest,ansvers,trueAnsver} = req.body
 
-        const Quest = new Questions({TestId:testId,title,quest,ansvers,trueAnsver})
+        const Quest = new Questions({testId:testId,title,quest,ansvers,trueAnsver})
 
         await Quest.save()
         
@@ -21,7 +21,7 @@ export async function AddQuests(req,res){
 
 export async function GetQuests(req,res){
     const {testId} = req.body
-    const quests = Questions.find({testId})
+    const quests = await Questions.find({testId})
     res.json({
         quests
     })
