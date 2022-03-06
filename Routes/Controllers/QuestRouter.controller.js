@@ -1,10 +1,14 @@
 import { Questions } from "../../Models/Questions.js"
+import { newTest } from "./TestRouter.controller.js"
 
 export async function AddQuests(req,res){
     try{
-        const {testId,title,quest,ansvers,trueAnsver} = req.body
+        const test = newTest
+        console.log(test)
+        test.save()
+        const {title,quest,ansvers,trueAnsver} = req.body
 
-        const Quest = new Questions({testId:testId,title,quest,ansvers,trueAnsver})
+        const Quest = new Questions({testId:test._id,title,quest,ansvers,trueAnsver})
 
         await Quest.save()
         
