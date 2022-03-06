@@ -107,7 +107,7 @@ export default function Form({login})
                     <Title>Registration</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email</Label>
-                        <Input autoComplete="off" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email.'/>
+                        <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email.'/>
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='username'>Username</Label>
@@ -141,7 +141,7 @@ export default function Form({login})
                     <Title>Log In</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email or username</Label>
-                        <Input autoComplete="off" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
+                        <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
