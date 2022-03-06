@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { logout } from '../../hooks/useUser.js'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const HeaderComponent = styled.div`
     display: flex;
@@ -252,6 +254,8 @@ export default  function Header({auth, page}) {
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     if(auth)
     {
         return (
@@ -283,7 +287,7 @@ export default  function Header({auth, page}) {
                             <UserDropdownElement>
                                 Your Quizes
                             </UserDropdownElement>
-                            <UserDropdownElement onClick={logout}>
+                            <UserDropdownElement onClick={()=>logout(dispatch,navigate)}>
                                 Logout
                             </UserDropdownElement>
                         </UserDropdown>
