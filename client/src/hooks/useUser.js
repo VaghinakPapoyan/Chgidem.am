@@ -87,5 +87,12 @@ export const logout = (dispatch,navigate) =>
         type:'changeToken',
         token:''
     })
+    dispatch({
+        type:'changeUser',
+        user:{
+            username:'',
+            email:''
+        }
+    })
     navigate('/')
 }
