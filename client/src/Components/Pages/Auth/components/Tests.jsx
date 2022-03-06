@@ -9,8 +9,7 @@ const TestsComponent = styled.div`
     & > div
     {
         display: flex;
-        padding: 30px 0px;
-        padding-top: 0;
+        padding-bottom: 40px;
         padding-bottom: 50px;
         justify-content: center;
         align-items: center;
@@ -18,8 +17,8 @@ const TestsComponent = styled.div`
     }
 `
 const NewTitle = styled(TitleComponent)`
-  padding-top: 30px;
-  padding-bottom: 15px;
+  padding-top: 40px;
+  padding-bottom: 20px;
 `
 
 export default function Tests() {
