@@ -8,10 +8,12 @@ import { useEffect, useState, useRef } from "react"
 function App() {
   const token = useSelector(state=>state.token)
   const dispatch = useDispatch()
-  console.log(token)
   let [bool, setBool] = useState(false);
-  loading(dispatch,token).then(res=>{setBool(res)})
+  useEffect(()=>{
+    loading(dispatch,token).then(res=>{setBool(res)})
+  },[token])
   const router = route(bool)
+  console.log(bool)
   return (
     <BrowserRouter>
       {router}
