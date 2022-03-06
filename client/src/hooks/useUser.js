@@ -80,8 +80,13 @@ export const registration = e =>
     }
 }
 
-export const logout = setState => 
+export const logout = (setState,navigate,dispatch) => 
 {
     localStorage.removeItem("User")
+    dispatch({
+        type:'changeToken',
+        token:''
+    })
+    navigate('/')
     setState(state => !state)
 }

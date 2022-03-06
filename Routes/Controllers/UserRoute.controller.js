@@ -39,7 +39,7 @@ export async function dataCheck(req,res){
     verificationCode = String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10));
 
     await sendMail("Chgidem.am", email, "Verification Code", String(verificationCode), String(verificationCode))
-    
+
     return res.status(200).json( { ok: true, message: 'Data is correct' } )
   }
   catch(e)
@@ -118,7 +118,6 @@ export async function getUser(req,res){
     {
         const { token } = req.params;
         const userid = await jwt.verify(token,process.env.secret)
-        console.log(userid);
         const data = await User.findOne({_id:userid.userId})
         return res.json({username:data.username,email:data.email})
     }catch(e)
