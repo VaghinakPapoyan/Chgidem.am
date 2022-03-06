@@ -10,6 +10,7 @@ function App() {
   const token = useSelector(state=>state.token)
   const dispatch = useDispatch()
   const bool = loading(dispatch,token)
+  console.log(bool)
   const router = route(bool)
   return (
     <BrowserRouter>
