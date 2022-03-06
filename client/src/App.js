@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { loading } from "./Components/loading";
 import route from "./Components/Route";
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
   const token = useSelector(state=>state.token)
@@ -11,9 +11,9 @@ function App() {
   let [bool, setBool] = useState(false);
   useEffect(()=>{
     loading(dispatch,token).then(res=>{setBool(res)})
-  },[token])
+  },[token, dispatch])
   const router = route(bool)
-  console.log(bool)
+
   return (
     <BrowserRouter>
       {router}

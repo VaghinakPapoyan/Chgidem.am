@@ -1,4 +1,5 @@
 import axios from "axios";
+import { logout } from "../hooks/useUser";
 
 
 export async function loading(dispatch,token){
@@ -7,8 +8,7 @@ export async function loading(dispatch,token){
         const data = await axios.get(`/api/getUser/${localtoken}`)
         if(data?.data?.error?.message === "jwt expired")
         {
-          localStorage.removeItem('User')
-          localStorage.removeItem('token')
+          logout();
         }
         const info = data.data
         dispatch({

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
-import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { logout } from '../../hooks/useUser.js'
 import { useDispatch } from 'react-redux'
