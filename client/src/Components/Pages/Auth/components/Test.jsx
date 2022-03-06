@@ -37,6 +37,7 @@ export const MyButton = styled(Button)`
     margin-top: 15px;
     display: inline-block;
     left: 50%;
+    font-size: 14px;
     font-weight: 600;
     transform: translateX(-50%);
 `
@@ -45,7 +46,7 @@ export default function Test({ title, subTitle }) {
     <TestComponent>
         <Title>{ title }</Title>
         <SubTitle>{ subTitle }</SubTitle>
-        <MyButton to="#">Go Test</MyButton>
+        <MyButton to="#">Start Test</MyButton>
     </TestComponent>
   )
 }

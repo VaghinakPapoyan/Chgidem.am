@@ -10,16 +10,15 @@ export const TestsComponent = styled.div`
     & > div
     {
         display: flex;
-        padding-bottom: 40px;
-        padding-bottom: 50px;
+        padding-bottom: 60px;
         justify-content: center;
-        align-items: center;
+        align-items: start;
         flex-wrap: wrap;
     }
 `
-export const NewTitle = styled(TitleComponent)`
-  padding-top: 40px;
-  padding-bottom: 20px;
+const NewTitle = styled(TitleComponent)`
+  padding-top: 45px;
+  padding-bottom: 30px;
 `
 
 export default function Tests() {

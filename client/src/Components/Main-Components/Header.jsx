@@ -234,14 +234,29 @@ const UserDropdown = styled.div`
     transform: translate(-50%, 15px);
     width: 100%;
     border-radius: 6px;
+    pointer-events: none;
     background-color: ${({ theme }) => theme.colors.secondColor};
-    ${({active}) => active ? "opacity: 1; top: 100%;" : null}
+    ${({active}) => active ? "opacity: 1; top: 100%; pointer-events: auto;" : null}
 `
 const UserDropdownElement = styled.p` 
     color: ${({ theme }) => theme.colors.secondTextColor};
     font-size: 0.75rem !important;
     text-align: center;
     padding: 12px 0;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.mainColor};
+    &:first-child
+    {
+        margin-top: 0;
+    }
+`
+const UserDropdownLink = styled(Link)` 
+    color: ${({ theme }) => theme.colors.secondTextColor} !important;
+    font-size: 0.75rem !important;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: 600;
+    display: block;
+    text-decoration: none;
     border-bottom: 2px solid ${({ theme }) => theme.colors.mainColor};
     &:first-child
     {
@@ -285,6 +300,9 @@ export default  function Header({auth, page}) {
                         <p>{user.username}</p>
                         <img src={userImg} alt="User"/>
                         <UserDropdown active={menuDropdownActive}>
+                            <UserDropdownLink to="/edit-profile">
+                                Edit Profile
+                            </UserDropdownLink>
                             <UserDropdownElement>
                                 Your Quizes
                             </UserDropdownElement>
