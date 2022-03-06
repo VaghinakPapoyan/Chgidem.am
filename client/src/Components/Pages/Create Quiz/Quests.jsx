@@ -18,11 +18,14 @@ export function Quests(){
         })
     }
    useEffect(()=>{
-    if(quests.length !== 0){
+    if(quests.length == 0){
+        setDisplay(false)
+    }else{
         setDisplay(true)
     }
-   })
-   console.log(quests)
+
+})
+   console.log(display)
 
     return (
        <TestsComponent displayI={display?"block":"none"}>
