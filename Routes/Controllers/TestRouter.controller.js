@@ -11,6 +11,7 @@ export async function Add(req,res){
         }
 
         newTest =  new Test({title,text:about})
+        newTest.save()
         return res.json({
             message: newTest._id
         })

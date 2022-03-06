@@ -10,7 +10,6 @@ export async function AddQuests(req,res){
             return res.status(200).json({ error: errors.array()[0].msg });
         }
         const test = newTest
-        test.save()
         const {title,quest,ansvers,trueAnsver} = req.body
         const Quest = new Questions({testId:test._id,title,quest,ansvers,trueAnsver})
 
