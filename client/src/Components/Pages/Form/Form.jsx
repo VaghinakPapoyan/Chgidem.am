@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
-import Header, { Button, ButtonInnerText } from '../../Main-Components/Header'
+import Header from '../../Main-Components/Header'
 import { sendForm, sendLogin, registration } from '../../../hooks/useUser'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -79,10 +79,11 @@ export default function Form({login})
         username: "",
         password: ""
     })
+    
     const [error, setError] = useState("")
     const [code, setCode] = useState(0);
     const [next, setNext] = useState(false)
-    console.log(error);
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const changeForm = e => 
@@ -106,22 +107,22 @@ export default function Form({login})
                     <Title>Registration</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email</Label>
-                        <Input name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email.'/>
+                        <Input autoComplete="off" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email.'/>
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='username'>Username</Label>
-                        <Input name="username" onChange={e => changeForm(e)} id='username' placeholder='Write your username.' />
+                        <Input autoComplete="off" name="username" onChange={e => changeForm(e)} id='username' placeholder='Write your username.' />
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input type="password" name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input autoComplete="off" type="password" name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
                     { 
                         next 
                         ?
                         <InputDiv>
                             <Label htmlFor='validataion-code'>We send code in your email</Label>
-                            <ValidationInput onChange={e => setCode(e.target.value)} value={code} type="password" name="validataion-code" id='validataion-code' placeholder='Write your validation code.' />
+                            <ValidationInput autoComplete="off" onChange={e => setCode(e.target.value)} value={code} type="password" name="validataion-code" id='validataion-code' placeholder='Write your validation code.' />
                         </InputDiv> 
                         : null 
                     }
@@ -140,11 +141,11 @@ export default function Form({login})
                     <Title>Log In</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email or username</Label>
-                        <Input name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
+                        <Input autoComplete="off" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input type='password'  name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input autoComplete="off" type='password'  name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
                     <Error>{ error }</Error>
                     <ThisButton>Sign up</ThisButton>
