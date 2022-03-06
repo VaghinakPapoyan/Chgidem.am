@@ -113,12 +113,15 @@ export async function login(req,res){
 }
 
 export async function getUser(req,res){
-    try{
-        const {token} = req.params;
+    try
+    {
+        const { token } = req.params;
         const userid = await jwt.verify(token,process.env.secret)
-        const data =await User.findOne({_id:userid.userId})
+        console.log(userid);
+        const data = await User.findOne({_id:userid.userId})
         return res.json({username:data.username,email:data.email})
-    }catch(e){
-        console.log(e)
+    }catch(e)
+    {
+        res.json({ error: e })
     }
 }
