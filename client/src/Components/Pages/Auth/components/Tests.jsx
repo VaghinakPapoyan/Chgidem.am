@@ -4,8 +4,9 @@ import { Container } from '../../../../styles/styles'
 import Test from './Test'
 import { TitleComponent } from './Title.jsx'
 
-const TestsComponent = styled.div` 
+export const TestsComponent = styled.div` 
     background-color: ${({ theme }) => theme.colors.secondColor};
+    display:${props=>props.displayI?props.displayI:"block"};
     & > div
     {
         display: flex;
@@ -16,7 +17,7 @@ const TestsComponent = styled.div`
         flex-wrap: wrap;
     }
 `
-const NewTitle = styled(TitleComponent)`
+export const NewTitle = styled(TitleComponent)`
   padding-top: 40px;
   padding-bottom: 20px;
 `

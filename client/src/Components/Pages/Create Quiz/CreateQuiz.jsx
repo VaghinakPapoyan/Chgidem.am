@@ -48,6 +48,14 @@ const Form = styled.form`
         color:${({ theme }) => theme.colors.mainColor};
     }
  `
+ const Error = styled.div`
+    width:100%;
+    text-align:start;
+    font-size:16px;
+    color:${({ theme }) => theme.colors.thirdColor};
+    opacity:0.8;
+    margin:10px 0px;
+ `
 export default function CreateQuiz() {
     const [info,setInfo] = useState({
         title:'',
@@ -68,7 +76,7 @@ export default function CreateQuiz() {
                       <TitleForm>Create Test</TitleForm>
                       <Input mb='10px' placeholder='Enter test name' name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter about test' name='about' onChange={(e)=>HandClick(e)}/>
-                      {error}
+                        <Error> {error}</Error>
                       <ButtonForm>Create</ButtonForm>
                    </Form>
                 </FormsDiv>

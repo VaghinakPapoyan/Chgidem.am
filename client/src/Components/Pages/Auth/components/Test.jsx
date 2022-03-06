@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../../../Main-Components/Header'
 
-const TestComponent = styled.div` 
+export const TestComponent = styled.div` 
     background-color: ${({ theme }) => theme.colors.mainColor};
     border-bottom: 5px solid ${({ theme }) => theme.colors.thirdColor};
     -webkit-box-shadow: 0px 0px 17px 0px rgba(255, 255, 255, 0.17);
@@ -16,21 +16,22 @@ const TestComponent = styled.div`
     margin: 0px 1%;
     margin-top: 20px;
 `
-const Title = styled.h4`
+export const Title = styled.h4`
     font-size: 1.35rem;
     font-weight: 800;
     text-align: center;
     line-height: 1.2;
     color: ${({ theme }) => theme.colors.mainTextColor};
 `
-const SubTitle = styled.p`
+export const SubTitle = styled.p`
     font-size: 0.9rem;
     font-weight: 400;
     margin-top: 10px;
-    text-align: center;
+    text-align:${props=>props.text?'start':'center'};
+    margin-bottom:${props=>props.mb?"15px":"0px"};
     color: ${({ theme }) => theme.colors.mainTextColor};
 `
-const MyButton = styled(Button)` 
+export const MyButton = styled(Button)` 
     color: white !important;
     position: relative;
     margin-top: 15px;
@@ -39,7 +40,6 @@ const MyButton = styled(Button)`
     font-weight: 600;
     transform: translateX(-50%);
 `
-
 export default function Test({ title, subTitle }) {
   return (
     <TestComponent>
