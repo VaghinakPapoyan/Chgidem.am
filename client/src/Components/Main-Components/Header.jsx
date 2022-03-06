@@ -152,6 +152,7 @@ const Left = styled.div`
 const User = styled.div`
     border-radius: 6px !important;
     position: relative;
+    z-index: 2;
     cursor: pointer;
     padding: 8px 21px;
     padding-right: 10.5px;
@@ -229,7 +230,6 @@ const UserDropdown = styled.div`
     left: 50%;
     top: 0;
     opacity: 0;
-    z-index: -1;
     transition: 0.4s;
     transform: translate(-50%, 15px);
     width: 100%;
@@ -271,7 +271,7 @@ export default  function Header({auth, page}) {
                             <NavigateText active={page === "create-quiz" ? "true" : "false"} to="/create-quiz">Create Quiz</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText active={page === "about" ? "true" : "false"} to="#">About</NavigateText>
+                            <NavigateText active={page === "about" ? "true" : "false"} to="#">About us</NavigateText>
                         </HeaderNavigate>
                     </HeaderNavigation>
                 </Left>

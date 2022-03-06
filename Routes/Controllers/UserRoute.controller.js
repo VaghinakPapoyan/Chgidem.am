@@ -61,7 +61,7 @@ export async function registration(req,res){
 
     await user.save();
 
-    const token = await jwt.sign( { userId:user._id},process.env.secret,{  expiresIn: '10m', } )
+    const token = await jwt.sign( { userId:user._id},process.env.secret,{  expiresIn: '10d', } )
 
     return res.status(200).json( { ok: true, message: 'User Created',token } )
   }
