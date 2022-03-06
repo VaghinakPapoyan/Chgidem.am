@@ -21,7 +21,7 @@ export default function route(isAuth){
         <Routes>
             <Route path="/" element={<AuthHome setState/>}/>
             <Route path="/create-quiz" element={<CreateQuiz />}/>
-            <Route path="/create-quiz/questions" element={<Questions />}/>
+            <Route path="/questions" element={<Questions />}/>
         </Routes>
     )
 }

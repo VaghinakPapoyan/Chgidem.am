@@ -1,7 +1,7 @@
 import { validationResult } from "express-validator";
 import { Test } from "../../Models/Test.js";
 
-export const newTest = {}
+export let newTest = {}
 export async function Add(req,res){
     try{
         const { title,about } = req.body
@@ -10,9 +10,9 @@ export async function Add(req,res){
             return res.status(200).json({ error: errors.array()[0].msg });
         }
 
-        const newTest =  new Test({title,text:about})
+        newTest =  new Test({title,text:about})
         return res.json({
-            message: newTusk._id
+            message: newTest._id
         })
     }catch(e){
         res.json({

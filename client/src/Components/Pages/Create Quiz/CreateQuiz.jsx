@@ -64,7 +64,7 @@ export default function CreateQuiz() {
             <Container>
                 <Header page="create-quiz" auth />
                 <FormsDiv>
-                  <Form  onSubmit={(e)=>createTest(e,info,navigate,setError)}>
+                  <Form  onSubmit={(e)=>createTest(e)(info,navigate,setError)}>
                       <TitleForm>Create Test</TitleForm>
                       <Input mb='10px' placeholder='Enter test name' name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter about test' name='about' onChange={(e)=>HandClick(e)}/>
