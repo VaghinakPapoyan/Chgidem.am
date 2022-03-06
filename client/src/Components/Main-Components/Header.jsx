@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import { logout } from '../../hooks/useUser.js'
 
 const HeaderComponent = styled.div`
     display: flex;
@@ -247,7 +248,7 @@ const UserDropdownElement = styled.p`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 
-export default  function Header({auth}) {
+export default  function Header({auth, page}) {
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
@@ -259,13 +260,13 @@ export default  function Header({auth}) {
                     <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
                     <HeaderNavigation active={menuActive}>
                         <HeaderNavigate>
-                            <NavigateText to="#">Home</NavigateText>
+                            <NavigateText active={page === "home" ? true : false} to="#">Home</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText to="#">Create Quiz</NavigateText>
+                            <NavigateText active={page === "create-quiz" ? true : false} to="#">Create Quiz</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText to="#">About</NavigateText>
+                            <NavigateText active={page === "about" ? true : false} to="#">About</NavigateText>
                         </HeaderNavigate>
                     </HeaderNavigation>
                 </Left>
@@ -282,7 +283,7 @@ export default  function Header({auth}) {
                             <UserDropdownElement>
                                 Your Quizes
                             </UserDropdownElement>
-                            <UserDropdownElement>
+                            <UserDropdownElement onClick={logout}>
                                 Logout
                             </UserDropdownElement>
                         </UserDropdown>

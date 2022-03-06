@@ -6,7 +6,7 @@ const HomeContainer = Container;
 export function AuthHome(){
     return(
         <HomeContainer>
-            <Header auth />
+            <Header auth page="home" />
         </HomeContainer>
     )
 }

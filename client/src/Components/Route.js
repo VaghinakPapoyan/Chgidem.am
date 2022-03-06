@@ -17,7 +17,7 @@ export default function route(isAuth){
     }
     return(
         <Routes>
-            <Route path="/" element={<AuthHome/>}/>
+            <Route path="/" element={<AuthHome setState/>}/>
            
         </Routes>
     )

@@ -6,7 +6,7 @@ const HomeContainer = Container;
 export function Home(){
     return(
         <HomeContainer>
-            <Header />
+            <Header page="home" />
         </HomeContainer>
     )
 }

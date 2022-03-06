@@ -67,7 +67,6 @@ export const registration = e =>
                     token:res.data.token
                 })
                 navigate('/')
-                setError("")
             }
             else if(res.status === 200)
             {
@@ -79,4 +78,10 @@ export const registration = e =>
             console.log(err);
         }
     }
+}
+
+export const logout = setState => 
+{
+    localStorage.removeItem("User")
+    setState(state => !state)
 }
