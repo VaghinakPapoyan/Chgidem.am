@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const QuestionsScheme  = new Schema({
-    AskId:String,
+    testId:String,
     title:String,
     quest:String,
     ansvers:Array,

@@ -17,7 +17,7 @@ export async function Add(req,res){
 
 export async function GetAll(req,res){
     try {
-        const TestArray = Test.find()
+        const TestArray = await Test.find()
         res.json({
             TestArray
         })

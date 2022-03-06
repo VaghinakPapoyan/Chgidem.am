@@ -5,6 +5,6 @@ const TestRouter = Router()
 
 TestRouter.post('/add/test',Add)
 
-TestRouter.post('/add/getTest',GetAll)
+TestRouter.post('/getTest',GetAll)
 
 export default TestRouter
