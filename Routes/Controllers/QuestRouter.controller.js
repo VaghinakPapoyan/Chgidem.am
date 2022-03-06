@@ -18,3 +18,8 @@ export async function AddQuests(req,res){
         })
     }
 }
+
+export async function GetQuests(req,res){
+    const {testId} = req.body
+    
+}

@@ -14,3 +14,16 @@ export async function Add(req,res){
         })
     }
 }
+
+export async function GetAll(req,res){
+    try {
+        const TestArray = Test.find()
+        res.json({
+            TestArray
+        })
+    } catch(e) {
+        res.json({
+            error:e
+        })
+    }
+}

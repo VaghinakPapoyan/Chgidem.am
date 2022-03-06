@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { Add } from "./Controllers/TestRouter.controller.js";
+import { Add, GetAll } from "./Controllers/TestRouter.controller.js";
 
 const TestRouter = Router()
 
 TestRouter.post('/add/test',Add)
+
+TestRouter.post('/add/getTest',GetAll)
 
 export default TestRouter
