@@ -1,9 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { createTest } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
 
@@ -48,31 +45,39 @@ const Form = styled.form`
         color:${({ theme }) => theme.colors.mainColor};
     }
  `
-export default function CreateQuiz() {
+export default function Questions() {
     const [info,setInfo] = useState({
         title:'',
-        about:''
+        quest:'',
+        ansvers:[],
+        trueAnsver:''
     })
-    const [error,setError] = useState()
-    const navigate = useNavigate()
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
     }
-    
+    const ChangeAnsver = (e) =>{
+        let newAnsver = info.ansvers
+        return (i) => {
+            newAnsver[i] = {ansver:e.target.value}
+            setInfo({...info,ansvers:newAnsver})
+        }
+    }
+    console.log(info.ansvers)
     return (
-        <div>
             <Container>
                 <Header page="create-quiz" auth />
                 <FormsDiv>
-                  <Form  onSubmit={(e)=>createTest(e,info,navigate,setError)}>
+                  <Form>
                       <TitleForm>Create Test</TitleForm>
-                      <Input mb='10px' placeholder='Enter test name' name='title' onChange={(e)=>HandClick(e)}/>
-                      <Input mb='10px' placeholder='Enter about test' name='about' onChange={(e)=>HandClick(e)}/>
-                      {error}
+                      <Input mb='10px' placeholder='Enter quest title' name='title' onChange={(e)=>HandClick(e)}/>
+                      <Input mb='10px' placeholder='Enter quest ' name='quest' onChange={(e)=>HandClick(e)}/>
+                      <Input mb='10px' placeholder='Enter ansver 1'   onChange={(e)=>ChangeAnsver(e)(0)}/>
+                      <Input mb='10px' placeholder='Enter ansver 2' onChange={(e)=>ChangeAnsver(e)(1)}/>
+                      <Input mb='10px' placeholder='Enter ansver 3' onChange={(e)=>ChangeAnsver(e)(2)}/>
+                      <Input mb='10px' placeholder='Enter true Ansver ' name='trueAnsver' onChange={(e)=>HandClick(e)}/>
                       <ButtonForm>Create</ButtonForm>
                    </Form>
                 </FormsDiv>
             </Container>
-        </div>
     )
 }

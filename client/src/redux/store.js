@@ -13,5 +13,6 @@ export const store = createStore((state={token:'',user:{
             return {...state,user:action.user}
         default:
             return state
+      
     }
 })
