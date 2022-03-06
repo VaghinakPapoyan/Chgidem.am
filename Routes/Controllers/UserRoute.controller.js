@@ -100,7 +100,7 @@ export async function login(req,res){
         }
 
         //create token
-        const token = await jwt.sign( { userId:data._id},process.env.secret,{  expiresIn: '10m', } )
+        const token = await jwt.sign( { userId:data._id},process.env.secret,{  expiresIn: '10d', } )
         return res.status(200).json({
             token,
             ok:true

@@ -6,9 +6,11 @@ const HomeContainer = Container;
 
 export function AuthHome(){
     return(
-        <HomeContainer>
-            <Header auth page="home" />
+        <>
+            <HomeContainer>
+                <Header auth page="home" />
+            </HomeContainer>
             <Tests />
-        </HomeContainer>
+        </>
     )
 }

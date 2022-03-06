@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { logout } from '../../hooks/useUser.js'
@@ -28,7 +28,7 @@ const Buttons = styled.div`
     justify-content: flex-end;
     align-items: center;
 `
-const Button = styled(Link)` 
+export const Button = styled(Link)` 
     padding: 12px 27px;
     border-radius: 6px;
     border: none;
