@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator"
 import { Questions } from "../../Models/Questions.js"
 import { newTest } from "./TestRouter.controller.js"
 
@@ -6,6 +7,10 @@ export async function AddQuests(req,res){
         const test = newTest
         console.log(test)
         test.save()
+        const errors = await validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(200).json({ error: errors.array()[0].msg });
+        }
         const {title,quest,ansvers,trueAnsver} = req.body
 
         const Quest = new Questions({testId:test._id,title,quest,ansvers,trueAnsver})

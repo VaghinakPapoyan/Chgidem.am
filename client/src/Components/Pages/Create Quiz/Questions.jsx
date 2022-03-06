@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
+import { addQuest } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
 
@@ -52,6 +53,7 @@ export default function Questions() {
         ansvers:[],
         trueAnsver:''
     })
+    const {error,setError} = useState()
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
     }
@@ -67,7 +69,7 @@ export default function Questions() {
             <Container>
                 <Header page="create-quiz" auth />
                 <FormsDiv>
-                  <Form>
+                  <Form onSubmit={(e)=>addQuest(e,info,setInfo,setError)}>
                       <TitleForm>Create Test</TitleForm>
                       <Input mb='10px' placeholder='Enter quest title' name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter quest ' name='quest' onChange={(e)=>HandClick(e)}/>
@@ -75,6 +77,7 @@ export default function Questions() {
                       <Input mb='10px' placeholder='Enter ansver 2' onChange={(e)=>ChangeAnsver(e)(1)}/>
                       <Input mb='10px' placeholder='Enter ansver 3' onChange={(e)=>ChangeAnsver(e)(2)}/>
                       <Input mb='10px' placeholder='Enter true Ansver ' name='trueAnsver' onChange={(e)=>HandClick(e)}/>
+                      {error}
                       <ButtonForm>Create</ButtonForm>
                    </Form>
                 </FormsDiv>
