@@ -1,11 +1,34 @@
 import axios from "axios"
 
-export const createTest = async (e,info,navigate,setError)=>{
+export const createTest = (e)=>{
     e.preventDefault()
-    const data = await axios.post('/api/add/test',{...info})
-    if(data.data.error){
-        setError(data.data.error)
+    return async (info,navigate,setError)=>{
+        const data = await axios.post('/api/add/test',{...info})
+        if(data.data.error){
+            setError(data.data.error)
+        }else{
+            console.log('a')
+            setError('')
+            navigate('/questions')
+        }
     }
-    setError('')
-    navigate('/create-quiz/questions')
+}
+
+export const questAdd = (e) => {
+    e.preventDefault()
+   return async (info,setInfo,setErrors) =>{
+    const data = await axios.post('/api/add/quest',{...info})
+    if(data.data.error){
+        setErrors(data.data.error)
+    }else{
+        setErrors('Your quest created')
+        setInfo({
+            title:'',
+            quest:'',
+            ansvers:[{ansver:''},{ansver:''},{ansver:''}],
+            trueAnsver:''
+        })
+    }
+   }
+
 }
