@@ -30,7 +30,7 @@ export default function Tests() {
             <Test title="Question about armenia" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
             <Test title="Best Question" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
             <Test title="Fast fizik Text" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Test your soft skills" subTitle="Simply dummy text of the printing and typesettings."></Test>
+            <Test title="Test your soft skills" subTitle="Simply dummy text of the printing and type settings."></Test>
             <Test title="Programer Test" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
             <Test title="Testing your mathemathiks" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
             <Test title="Question About Biology" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>

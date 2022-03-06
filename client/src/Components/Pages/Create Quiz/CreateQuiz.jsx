@@ -39,7 +39,7 @@ const Form = styled.form`
     flex-direction:column;
     align-items:center;
  `
- const ButtonForm = styled.button`
+ export const ButtonForm = styled.button`
     padding:10px 15px;
     font-size: 1rem;
     border-radius: 6px;

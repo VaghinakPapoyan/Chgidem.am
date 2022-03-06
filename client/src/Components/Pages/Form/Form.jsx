@@ -6,7 +6,7 @@ import { sendForm, sendLogin, registration } from '../../../hooks/useUser'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-const Title = styled.h2`
+export const Title = styled.h2`
     font-size: 36px;
     margin-top: 100px;
     text-align: center;
@@ -21,7 +21,7 @@ const FormComponent = styled.form`
     display: inline-block;
     transform: translateX(-50%);
 `
-const Input = styled.input`
+export const Input = styled.input`
     display: block;
     color: ${({ theme }) => theme.colors.mainTextColor};
     width: 100%;
@@ -32,7 +32,7 @@ const Input = styled.input`
     border-bottom: 2px solid ${({ theme }) => theme.colors.secondColor};
 
 `
-const Label = styled.label` 
+export const Label = styled.label` 
     font-size: 1.1rem;
     display: block;
     color: ${({ theme }) => theme.colors.mainTextColor};
@@ -62,7 +62,7 @@ const ThisButton = styled.button`
 const ValidationInput = styled(Input)`
     border-color: ${({ theme }) => theme.colors.thirdColor};
 `
-const InputDiv = styled.div` 
+export const InputDiv = styled.div` 
 
 `
 const Error = styled.div` 
