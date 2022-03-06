@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import styled from 'styled-components'
+import { createTest } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
 
@@ -48,9 +49,9 @@ const Form = styled.form`
  `
 export default function CreateQuiz() {
     const [info,setInfo] = useState({
-        titleTest:'',
-        hidden:true
+        titleTest:''
     })
+    const [displayAlign,setDisplayAlign] = useState(true)
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
     }
@@ -60,7 +61,7 @@ export default function CreateQuiz() {
             <Container>
                 <Header page="create-quiz" auth />
                 <FormsDiv>
-                  <Form display={info.hidden}>
+                  <Form display={displayAlign} onSubmit={(e)=>createTest(e,info.titleTest,setDisplayAlign)}>
                       <TitleForm>Create Test</TitleForm>
                       <Input mb='10px' placeholder='Enter test name' name='titleTest' onChange={(e)=>HandClick(e)}/>
                       <ButtonForm>Create</ButtonForm>
