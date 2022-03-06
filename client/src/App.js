@@ -8,30 +8,9 @@ import { useEffect, useState, useRef } from "react"
 function App() {
   const token = useSelector(state=>state.token)
   const dispatch = useDispatch()
-
+  console.log(token)
   let [bool, setBool] = useState(false);
-  const isComponentMounted = useRef(true);
-  useEffect(() => 
-  {
-    if (isComponentMounted.current) 
-    {
-      (async () => {
-        try 
-        {
-          loading(dispatch,token).then(res => setBool(res))
-        } 
-        catch (err) 
-        {
-          console.log(err);
-        } 
-      })();
-    }
-    
-    return () => {
-      isComponentMounted.current = false;
-    };
-  }, [])
-  
+  loading(dispatch,token).then(res=>{setBool(res)})
   const router = route(bool)
   return (
     <BrowserRouter>
