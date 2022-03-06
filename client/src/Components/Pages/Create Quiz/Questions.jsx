@@ -10,12 +10,16 @@ import { Quests } from './Quests'
 
 const Input = styled.input`
     display:block;
-    padding:8px 15px;
+    padding: 8px 0px;
     width:300px;
     border-radius:3px;
-    border:1px solid ${({ theme }) => theme.colors.secondColor};
+    font-weight: 500;
+    border: none;
+    outline: none !important;
+    border-radius: 0;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.secondColor};
     color: ${({ theme }) => theme.colors.mainTextColor};
-    font-size:18px;
+    font-size: 1rem;
     margin-bottom:${params=>params.mb?params.mb:'0px'};
 `
 const Form = styled.form`
@@ -23,11 +27,12 @@ const Form = styled.form`
     margin-bottom:30px;
  `
  const TitleForm = styled.div`
-    text-align:start;
-    width:100%;
-    font-size:20px;
-    color:d ${({ theme }) => theme.colors.secondColor};
-    margin-bottom:10px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 50px;
+    color: ${({ theme }) => theme.colors.secondColor};
+    margin-bottom: 25px;
  `
  const FormsDiv = styled.div`
     margin-top:10px;
@@ -37,11 +42,13 @@ const Form = styled.form`
     align-items:center;
  `
  const ButtonForm = styled.button`
-    padding:10px 35px;
-    font-size:14px;
-    border-radius:3px;
+    padding:10px 15px;
+    font-size: 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 15px;
     background:inherit;
-    border:1px solid ${({ theme }) => theme.colors.secondColor};
+    border: 1px solid ${({ theme }) => theme.colors.secondColor};
     cursor:pointer;
     transition:0.3s;
     &:hover{
@@ -82,13 +89,13 @@ export default function Questions() {
             setErrors('title minimum length was 4')
         }else if(info.quest.length<8){
             setErrors('quest minimum length was 8')
-        }else if(info.ansvers[0].ansver == '' && info.ansvers[1].ansver==''){
+        }else if(info.ansvers[0].ansver === '' && info.ansvers[1].ansver===''){
             setErrors('minimum ansvers was 2')
-        }else if(info.ansvers[1].ansver == '' && info.ansvers[2].ansver==''){
+        }else if(info.ansvers[1].ansver === '' && info.ansvers[2].ansver===''){
             setErrors('minimum ansvers was 2')
-        }else if(info.ansvers[0].ansver == '' && info.ansvers[2].ansver==''){
+        }else if(info.ansvers[0].ansver == '' && info.ansvers[2].ansver===''){
             setErrors('minimum ansvers was 2')
-        }else if(info.trueAnsver==''){
+        }else if(info.trueAnsver===''){
             setErrors("True Ansver was not been empty")
         }else if(info.trueAnsver!==info.ansvers[0].ansver && info.trueAnsver!==info.ansvers[1].ansver && info.trueAnsver!==info.ansvers[2].ansver){
             setErrors("True Ansver was not true")
@@ -113,9 +120,9 @@ export default function Questions() {
                 <Header page="create-quiz" auth />
                 <FormsDiv>
                   <Form onSubmit={(e)=>AddQuest(e)}>
-                      <TitleForm>Create Test</TitleForm>
+                      <TitleForm>Add Questions</TitleForm>
                       <Input mb='10px' placeholder='Enter quest title' value={info.title} name='title' onChange={(e)=>HandClick(e)}/>
-                      <Input mb='10px' placeholder='Enter quest ' value={info.quest} name='quest' onChange={(e)=>HandClick(e)}/>
+                      <Input mb='10px' placeholder='Enter quest' value={info.quest} name='quest' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/>
                       <Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/>
                       <Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/>

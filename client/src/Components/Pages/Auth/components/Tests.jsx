@@ -16,9 +16,9 @@ export const TestsComponent = styled.div`
         flex-wrap: wrap;
     }
 `
-const NewTitle = styled(TitleComponent)`
+export const NewTitle = styled(TitleComponent)`
   padding-top: 45px;
-  padding-bottom: 30px;
+  padding-bottom: 25px;
 `
 
 export default function Tests() {

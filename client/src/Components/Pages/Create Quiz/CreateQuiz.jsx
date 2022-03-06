@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { createTest } from '../../../hooks/useTest'
@@ -10,37 +9,44 @@ import Header from '../../Main-Components/Header'
 
 const Input = styled.input`
     display:block;
-    padding:8px 15px;
+    padding: 8px 0px;
     width:300px;
     border-radius:3px;
-    border:1px solid ${({ theme }) => theme.colors.secondColor};
+    font-weight: 500;
+    border: none;
+    outline: none !important;
+    border-radius: 0;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.secondColor};
     color: ${({ theme }) => theme.colors.mainTextColor};
-    font-size:18px;
+    font-size: 1rem;
     margin-bottom:${params=>params.mb?params.mb:'0px'};
 `
 const Form = styled.form`
     text-align:center;
  `
  const TitleForm = styled.div`
-    text-align:start;
-    width:100%;
-    font-size:20px;
-    color:d ${({ theme }) => theme.colors.secondColor};
-    margin-bottom:10px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 50px;
+    color: ${({ theme }) => theme.colors.secondColor};
+    margin-bottom: 25px;
  `
  const FormsDiv = styled.div`
     margin-top:10px;
-    width:100%;
+    width: 100%;
     display:flex;
     flex-direction:column;
     align-items:center;
  `
  const ButtonForm = styled.button`
     padding:10px 15px;
-    font-size:14px;
-    border-radius:3px;
+    font-size: 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 15px;
     background:inherit;
-    border:1px solid ${({ theme }) => theme.colors.secondColor};
+    border: 1px solid ${({ theme }) => theme.colors.secondColor};
     cursor:pointer;
     transition:0.3s;
     &:hover{
@@ -54,7 +60,7 @@ const Form = styled.form`
     font-size:16px;
     color:${({ theme }) => theme.colors.thirdColor};
     opacity:0.8;
-    margin:10px 0px;
+    margin-top: 13px;
  `
 export default function CreateQuiz() {
     const [info,setInfo] = useState({
@@ -73,9 +79,9 @@ export default function CreateQuiz() {
                 <Header page="create-quiz" auth />
                 <FormsDiv>
                   <Form  onSubmit={(e)=>createTest(e)(info,navigate,setError)}>
-                      <TitleForm>Create Test</TitleForm>
-                      <Input mb='10px' placeholder='Enter test name' name='title' onChange={(e)=>HandClick(e)}/>
-                      <Input mb='10px' placeholder='Enter about test' name='about' onChange={(e)=>HandClick(e)}/>
+                      <TitleForm>Creating Test</TitleForm>
+                      <Input mb='10px' placeholder='Enter test title pls.' name='title' onChange={(e)=>HandClick(e)}/>
+                      <Input mb='10px' placeholder='Enter test description pls.' name='about' onChange={(e)=>HandClick(e)}/>
                         <Error> {error}</Error>
                       <ButtonForm>Create</ButtonForm>
                    </Form>

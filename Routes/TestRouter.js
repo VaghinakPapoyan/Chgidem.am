@@ -7,8 +7,8 @@ const TestRouter = Router()
 TestRouter.post(
     '/add/test',
     [
-        check('title','minimum length of title was 8').isLength(8),
-        check('about','minimum length of text was 12').isLength(12)
+        check('title','minimum length of title was 4').isLength(4),
+        check('about','minimum length of text was 10').isLength(10)
     ],
     Add)
 
