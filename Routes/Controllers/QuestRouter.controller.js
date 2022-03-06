@@ -1,0 +1,20 @@
+import { Questions } from "../../Models/Questions.js"
+
+export async function AddQuests(req,res){
+    try{
+        const {testId,title,quest,ansvers,trueAnsver} = req.body
+
+        const Quest = new Questions({TestId:testId,title,quest,ansvers,trueAnsver})
+
+        await Quest.save()
+        
+        return res.json({
+            message:'true'
+        })
+
+    }catch(e){
+        return res.json({
+            error:e
+        })
+    }
+}

@@ -14,7 +14,6 @@ function App() {
   {
     loading(dispatch,token).then(res => setBool(res))
   }, [])
-
   const router = route(bool)
   return (
     <BrowserRouter>

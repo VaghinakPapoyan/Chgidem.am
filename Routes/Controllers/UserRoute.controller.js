@@ -39,6 +39,7 @@ export async function dataCheck(req,res){
     verificationCode = String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10));
 
     await sendMail("Chgidem.am", email, "Verification Code", String(verificationCode), String(verificationCode))
+    
     return res.status(200).json( { ok: true, message: 'Data is correct' } )
   }
   catch(e)
@@ -52,16 +53,16 @@ export async function registration(req,res){
   {
     const { code } = req.body
 
-    console.log(verificationCode, code);
 
     //validation
     if (code !== verificationCode) {
       return res.status(200).json({ error: "Code is incorrect" });
     }
-    console.log(user);
+
     await user.save();
-    console.log("user");
+
     const token = await jwt.sign( { userId:user._id},process.env.secret,{  expiresIn: '10m', } )
+
     return res.status(200).json( { ok: true, message: 'User Created',token } )
   }
   catch(e)
