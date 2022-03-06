@@ -80,7 +80,7 @@ export const registration = e =>
     }
 }
 
-export const logout = (setState,navigate,dispatch) => 
+export const logout = (dispatch,navigate) => 
 {
     localStorage.removeItem("User")
     dispatch({
@@ -88,5 +88,4 @@ export const logout = (setState,navigate,dispatch) =>
         token:''
     })
     navigate('/')
-    setState(state => !state)
 }
