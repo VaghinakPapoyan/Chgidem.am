@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { logout } from '../../hooks/useUser.js'
@@ -137,6 +137,7 @@ const NavigateText = styled(Link)`
     color: ${({ theme }) => theme.colors.mainTextColor};
     letter-spacing: -0.5px;
     cursor: pointer;
+    ${({active, theme}) => active ? css`color: ${theme.colors.thirdTextColor}` : null}
     &:hover
     {
         color: ${({ theme }) => theme.colors.thirdTextColor};
@@ -263,13 +264,13 @@ export default  function Header({auth, page}) {
                     <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
                     <HeaderNavigation active={menuActive}>
                         <HeaderNavigate>
-                            <NavigateText active={page === "home" ? true : false} to="#">Home</NavigateText>
+                            <NavigateText active={page === "home" ? "true" : "false"} to="#">Home</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText active={page === "create-quiz" ? true : false} to="#">Create Quiz</NavigateText>
+                            <NavigateText active={page === "create-quiz" ? "true" : "false"} to="#">Create Quiz</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText active={page === "about" ? true : false} to="#">About</NavigateText>
+                            <NavigateText active={page === "about" ? "true" : "false"} to="#">About</NavigateText>
                         </HeaderNavigate>
                     </HeaderNavigation>
                 </Left>
