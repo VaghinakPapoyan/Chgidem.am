@@ -22,7 +22,7 @@ export async function AddQuests(req,res){
 export async function GetQuests(req,res){
     const {testId} = req.body
     const quests = await Questions.find({testId})
-    res.json({
+    res.statue(200).json({
         quests
     })
 }
