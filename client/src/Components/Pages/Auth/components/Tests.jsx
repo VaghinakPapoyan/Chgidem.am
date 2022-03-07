@@ -15,6 +15,7 @@ export const TestsComponent = styled.div`
         align-items: start;
         flex-wrap: wrap;
     }
+    border-radius:${props=>props.br?"20px":"0px"};
 `
 export const NewTitle = styled(TitleComponent)`
   padding-top: 45px;

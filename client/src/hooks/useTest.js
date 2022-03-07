@@ -29,5 +29,6 @@ export const questAdd =  async(quests,dispatch,navigate) => {
 
 export  const GetQuests = async (testId) =>{
     const quests = await axios.post('/api/getQuest',{testId})
+    console.log(testId)
     return quests
 }

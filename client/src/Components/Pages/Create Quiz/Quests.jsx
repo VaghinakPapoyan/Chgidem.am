@@ -7,8 +7,6 @@ import { createTest, questAdd } from "../../../hooks/useTest";
 import { Container } from "../../../styles/styles";
 import { MyButton, SubTitle, TestComponent } from "../Auth/components/Test";
 import { NewTitle, TestsComponent } from "../Auth/components/Tests";
-import Title from "../Auth/components/Title";
-import { ButtonForm, TitleForm } from "./Questions";
 
 
 const ButtonAdd = styled.button`

@@ -5,10 +5,8 @@ import { newTest } from "./TestRouter.controller.js"
 export async function AddQuests(req,res){
     try{      
         const test = newTest
-        console.log(test)
         const {quests} = req.body
         for(let i  = 0;i<quests.length;i++){
-            console.log(quests[i])
             await Questions.create({testId:test._id,title:quests[i].title,quest:quests[i].quest,ansvers:quests[i].ansvers,trueAnsver:quests[i].trueAnsver})
         }
         await test.save()

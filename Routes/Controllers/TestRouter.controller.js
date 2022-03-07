@@ -40,7 +40,6 @@ export async function GetAll(req,res){
 
 
 export async function GetTest(req,res){
-    console.log(req.body)
     const {localtoken} = req.body
     const {userId} =  jwt.verify(localtoken,process.env.secret)
     const result  = await Test.find({userId})

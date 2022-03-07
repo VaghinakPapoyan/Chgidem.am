@@ -7,6 +7,6 @@ const QuestRouter = Router()
 QuestRouter.post(
     '/add/quest',AddQuests)
 
-QuestRouter.post('/getQuest',   GetQuests)
+QuestRouter.post('/getQuest',GetQuests)
 
 export default QuestRouter
