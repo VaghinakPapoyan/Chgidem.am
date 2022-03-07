@@ -303,9 +303,9 @@ export default  function Header({auth, page}) {
                             <UserDropdownLink to="/edit-profile">
                                 Edit Profile
                             </UserDropdownLink>
-                            <UserDropdownElement>
+                            <UserDropdownLink to='/quizes'>
                                 Your Quizes
-                            </UserDropdownElement>
+                            </UserDropdownLink>
                             <UserDropdownElement onClick={()=>logout(dispatch,navigate)}>
                                 Logout
                             </UserDropdownElement>
