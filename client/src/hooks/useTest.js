@@ -15,21 +15,11 @@ export const createTest = (e)=>{
     }
 }
 
-export const questAdd = (e) => {
-    e.preventDefault()
-   return async (info,setInfo,setErrors) =>{
-    const data = await axios.post('/api/add/quest',{...info})
-    if(data.data.error){
-        setErrors(data.data.error)
-    }else{
-        setErrors('Your quest created')
-        setInfo({
-            title:'',
-            quest:'',
-            ansvers:[{ansver:''},{ansver:''},{ansver:''}],
-            trueAnsver:''
-        })
-    }
-   }
 
+export const questAdd =  async(quests,dispatch,navigate) => {
+    await axios.post('/api/add/quest',{quests})
+    dispatch({
+        type:'refreshQuest'
+    })
+   navigate('#')
 }

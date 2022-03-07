@@ -26,7 +26,7 @@ const Form = styled.form`
     text-align:center;
     margin-bottom:30px;
  `
- const TitleForm = styled.div`
+export  const TitleForm = styled.div`
     text-align: center;
     font-size: 32px;
     font-weight: 600;
@@ -41,7 +41,7 @@ const Form = styled.form`
     flex-direction:column;
     align-items:center;
  `
- const ButtonForm = styled.button`
+ export const ButtonForm = styled.button`
     padding:10px 15px;
     font-size: 1rem;
     border-radius: 6px;
@@ -71,24 +71,31 @@ const Form = styled.form`
  `
  const InputChekc = styled.input`
     margin-left:-20px;
-    margin-top:-10px;
+    margin-top:-15px;
  `
 export default function Questions() {
     const [info,setInfo] = useState({
         title:'',
         quest:'',
-        ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}]
+        ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
+        trueAnsver:1,
+        writed:0
     })
     const dispatch = useDispatch()
     const [error,setErrors] = useState('')
+    
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
     }
     
     const ChangeAnsver = (e) =>{
         let newAnsver = info.ansvers
+        setInfo({...info,writed:info.writed++})
         return (i) => {
             newAnsver[i] = {ansver:e.target.value,checked:newAnsver[i].checked}
+            if(newAnsver[i].checked === true){
+                setInfo({...info,trueAnsver:newAnsver[i].ansver})
+            }
             setInfo({...info,ansvers:newAnsver})
         }
     }
@@ -101,21 +108,16 @@ export default function Questions() {
         }
         return (i)=>{
             newAnsver[i] = {ansver:newAnsver[i].ansver,checked:e.target.checked}
-            return setInfo({...info,ansvers:newAnsver})
+            return setInfo({...info,ansvers:newAnsver}),setInfo({...info,trueAnsver : i})
         }
     }
-    
     const AddQuest = (e)=>{
         e.preventDefault()
         if(info.title.length<4){
             setErrors('title minimum length was 4')
         }else if(info.quest.length<8){
             setErrors('quest minimum length was 8')
-        }else if(info.ansvers[0].ansver === '' && info.ansvers[1].ansver===''){
-            setErrors('minimum ansvers was 2')
-        }else if(info.ansvers[1].ansver === '' && info.ansvers[2].ansver===''){
-            setErrors('minimum ansvers was 2')
-        }else if(info.ansvers[0].ansver == '' && info.ansvers[2].ansver===''){
+        }else if(info.writed<2){
             setErrors('minimum ansvers was 2')
         }else{
             dispatch({
@@ -126,7 +128,7 @@ export default function Questions() {
                 title:'',
                 quest:'',
                 ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
-                trueAnsver:''
+                trueAnsver:info.trueAnsver
             })
             setErrors('')
         }

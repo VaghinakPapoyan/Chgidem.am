@@ -14,9 +14,6 @@ export async function Add(req,res){
 
         const id =   jwt.verify(token,process.env.secret)
         newTest =  new Test({userId:id.userId,title,text:about})
-        console.log(newTest)
-        newTest.save()
-
         return res.json({
             message: newTest._id
         })

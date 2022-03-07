@@ -3,17 +3,15 @@ import { Questions } from "../../Models/Questions.js"
 import { newTest } from "./TestRouter.controller.js"
 
 export async function AddQuests(req,res){
-    try{
-      
-        const errors = await validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(200).json({ error: errors.array()[0].msg });
-        }
+    try{      
         const test = newTest
-        const {title,quest,ansvers,trueAnsver} = req.body
-        const Quest = new Questions({testId:test._id,title,quest,ansvers,trueAnsver})
-
-        await Quest.save()
+        console.log(test)
+        const {quests} = req.body
+        for(let i  = 0;i<quests.length;i++){
+            console.log(quests[i])
+            await Questions.create({testId:test._id,title:quests[i].title,quest:quests[i].quest,ansvers:quests[i].ansvers,trueAnsver:quests[i].trueAnsver})
+        }
+        test.save()
         
         return res.json({
             message:'true'

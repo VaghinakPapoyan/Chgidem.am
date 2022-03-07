@@ -15,6 +15,8 @@ export const store = createStore((state={token:'',quests:[],user:{
             let newQuest = state.quests
             newQuest.push(action.quest)
             return {...state,quests:newQuest}
+        case "refreshQuest":
+            return {...state,quests:[]}
         case "deletequest":
            
             return {...state,quests:state.quests.filter(quest=>state.quests.findIndex(i=>i==quest)!==action.id)}
