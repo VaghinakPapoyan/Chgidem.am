@@ -5,6 +5,7 @@ import Header from '../../Main-Components/Header'
 import { Input, Label, InputDiv, Title, Error } from '../Form/Form'
 import { ButtonForm } from '../Create Quiz/CreateQuiz'
 import { useSelector } from "react-redux"
+import { ChangeImg } from '../../../hooks/useUser.js'
 import { updateData } from '../../../hooks/useUser.js'
 
 const EditProfileComponent = styled.div`
@@ -76,7 +77,18 @@ const NewError = styled(Error)`
 const Message = styled(NewError)` 
     color: ${({ theme }) => theme.colors.mainTextColor};
 `
-
+const FileInput = styled.input`
+    opacity: 0;
+    display: block;
+    position: absolute;
+    left: 50%;
+    border-radius: 50%;
+    top: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 const camera = process.env.PUBLIC_URL + "images/camera.png";
@@ -116,6 +128,7 @@ export default function EditProfile() {
                 <UserImgDiv>
                     <Camera src={camera} />
                     <UserImg src={userImg} />
+                    <FileInput type="file" onChange={e => ChangeImg(e)(setMessage)}/>
                 </UserImgDiv>
             </EditProfileComponent>
         </Container>

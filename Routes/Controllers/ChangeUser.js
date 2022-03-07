@@ -31,4 +31,19 @@ export async function ChangeUser(req,res){
     {
         return res.json( { error:e } )
     }
-  }
+}
+
+export async function ChangeUserImage(req,res){
+    try
+    {
+        const { image } = req.body
+
+        console.log(image);
+
+        return res.status(200).json( { ok: true, message: 'Image updated.' } )
+    }
+    catch(e)
+    {
+        return res.json( { error:e } )
+    }
+}
