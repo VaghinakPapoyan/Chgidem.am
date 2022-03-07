@@ -24,6 +24,7 @@ export const Title = styled.h4`
     color: ${({ theme }) => theme.colors.mainTextColor};
 `
 export const SubTitle = styled.p`
+    white-space:nowrap;
     font-size: 0.9rem;
     font-weight: 400;
     margin-top: 10px;

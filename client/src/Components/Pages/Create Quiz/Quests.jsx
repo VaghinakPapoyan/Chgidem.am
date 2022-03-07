@@ -66,7 +66,7 @@ export function Quests(){
                         {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
                         <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
                         <MyButton to='/questions' onClick={()=>clickQuest(quests.findIndex(i=>i===e))}>Delete Quest</MyButton>
-                    </TestComponent>
+        </TestComponent>
                 )
             })}
         </Container>
