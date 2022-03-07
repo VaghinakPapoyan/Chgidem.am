@@ -25,3 +25,9 @@ export const questAdd =  async(quests,dispatch,navigate) => {
     GetTests(dispatch)
    navigate('/quizes')
 }
+
+
+export  const GetQuests = async (testId) =>{
+    const quests = await axios.post('/api/getQuest',{testId})
+    return quests
+}
