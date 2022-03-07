@@ -3,7 +3,8 @@ import axios from "axios"
 export const createTest = (e)=>{
     e.preventDefault()
     return async (info,navigate,setError)=>{
-        const data = await axios.post('/api/add/test',{...info})
+        const token = localStorage.getItem("User")
+        const data = await axios.post('/api/add/test',{...info,token})
         if(data.data.error){
             setError(data.data.error)
         }else{

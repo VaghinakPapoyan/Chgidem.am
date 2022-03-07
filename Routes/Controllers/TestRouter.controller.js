@@ -1,20 +1,26 @@
 import { validationResult } from "express-validator";
 import { Test } from "../../Models/Test.js";
+import jwt from 'jsonwebtoken';
+
 
 export let newTest = {}
 export async function Add(req,res){
     try{
-        const { title,about } = req.body
+        const { title,about,token } = req.body
         const errors = await validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(200).json({ error: errors.array()[0].msg });
         }
 
-        newTest =  new Test({title,text:about})
+        const id =   jwt.verify(token,process.env.secret)
+        newTest =  new Test({userId:id.userId,title,text:about})
+        console.log(newTest)
         newTest.save()
+
         return res.json({
             message: newTest._id
         })
+
     }catch(e){
         res.json({
             error:e

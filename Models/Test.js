@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const TestScheme  = new Schema({
+    userId:String,
     title: String,
     text:String,
     ansvers:[

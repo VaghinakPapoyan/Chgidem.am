@@ -17,6 +17,7 @@ export function Quests(){
             id
         })
     }
+
    useEffect(()=>{
     if(quests.length == 0){
         setDisplay(false)
@@ -24,8 +25,7 @@ export function Quests(){
         setDisplay(true)
     }
 
-})
-   console.log(display)
+    })
 
     return (
        <TestsComponent displayI={display?"block":"none"}>

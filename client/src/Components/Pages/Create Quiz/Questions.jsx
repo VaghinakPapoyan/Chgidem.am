@@ -64,11 +64,16 @@ const Form = styled.form`
     opacity:0.8;
     margin:10px 0px;
  `
+ const Line = styled.div`
+    width:100%;
+    display:flex;
+    align-items:center;
+ `
 export default function Questions() {
     const [info,setInfo] = useState({
         title:'',
         quest:'',
-        ansvers:[{ansver:''},{ansver:''},{ansver:''}],
+        ansvers:[{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
         trueAnsver:''
     })
     const dispatch = useDispatch()
@@ -76,13 +81,27 @@ export default function Questions() {
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
     }
+    
     const ChangeAnsver = (e) =>{
         let newAnsver = info.ansvers
         return (i) => {
-            newAnsver[i] = {ansver:e.target.value}
+            newAnsver[i] = {ansver:e.target.value,checked:newAnsver[i].checked}
             setInfo({...info,ansvers:newAnsver})
         }
     }
+
+    const ChangeValue = (e)=>{
+        let newAnsver = info.ansvers
+
+        for(let i = 0;i<newAnsver.length;i++ ){
+            newAnsver[i].checked = false
+        }
+        return (i)=>{
+            newAnsver[i] = {ansver:newAnsver[i].ansver,checked:e.target.checked}
+            return setInfo({...info,ansvers:newAnsver})
+        }
+    }
+    
     const AddQuest = (e)=>{
         e.preventDefault()
         if(info.title.length<4){
@@ -123,11 +142,12 @@ export default function Questions() {
                       <TitleForm>Add Questions</TitleForm>
                       <Input mb='10px' placeholder='Enter quest title' value={info.title} name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter quest' value={info.quest} name='quest' onChange={(e)=>HandClick(e)}/>
-                      <Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/>
-                      <Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/>
-                      <Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/>
-                      <Input mb='10px' placeholder='Enter true Ansver ' name='trueAnsver'  value={info.trueAnsver}  onChange={(e)=>HandClick(e)}/>
-                    <Error>{error}</Error>
+                        <Line><Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/> <input type="radio" onClick={(e)=>ChangeValue(e)(0)} name='d' /></Line>
+                        <Line>   <Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/><input type="radio" onClick={(e)=>ChangeValue(e)(1)}  name='d'/></Line>
+                      <Line><Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/> <input type="radio" onClick={(e)=>ChangeValue(e)(2)}  name='d'/></Line>
+                      <Line><Input mb='10px' placeholder='Enter ansver 4'  value={info.ansvers[3].ansver}  onChange={(e)=>ChangeAnsver(e)(3)}/> <input type="radio" onClick={(e)=>ChangeValue(e)(3)}  name='d'/></Line>
+                       
+                        <Error>{error}</Error>
                       <ButtonForm>Create</ButtonForm>
                    </Form>
                 </FormsDiv>
