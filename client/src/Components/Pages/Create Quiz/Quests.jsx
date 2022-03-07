@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { createTest, questAdd } from "../../../hooks/useTest";
+import {  questAdd } from "../../../hooks/useTest";
 import { Container } from "../../../styles/styles";
 import { MyButton, SubTitle, TestComponent } from "../Auth/components/Test";
 import { NewTitle, TestsComponent } from "../Auth/components/Tests";
@@ -42,7 +42,7 @@ export function Quests(){
     }
 
    useEffect(()=>{
-    if(quests.length == 0){
+    if(quests.length === 0){
         setDisplay(false)
     }else{
         setDisplay(true)
@@ -60,12 +60,12 @@ export function Quests(){
                     <TestComponent text key={Math.random()}>
                         <SubTitle mb text>Title : {e.title}</SubTitle>
                         <SubTitle mb text>quest : {e.quest}</SubTitle>
-                        {e.ansvers[0].ansver==''?null:<SubTitle mb text>asnver 1:   {e.ansvers[0].ansver}</SubTitle>}
-                        {e.ansvers[1].ansver==''?null:<SubTitle mb text>asnver 2:   {e.ansvers[1].ansver}</SubTitle>}
-                        {e.ansvers[2].ansver==''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
-                        {e.ansvers[3].ansver==''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
+                        {e.ansvers[0].ansver===''?null:<SubTitle mb text>asnver 1:   {e.ansvers[0].ansver}</SubTitle>}
+                        {e.ansvers[1].ansver===''?null:<SubTitle mb text>asnver 2:   {e.ansvers[1].ansver}</SubTitle>}
+                        {e.ansvers[2].ansver===''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
+                        {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
                         <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
-                        <MyButton to='/questions' onClick={()=>clickQuest(quests.findIndex(i=>i==e))}>Delete Quest</MyButton>
+                        <MyButton to='/questions' onClick={()=>clickQuest(quests.findIndex(i=>i===e))}>Delete Quest</MyButton>
                     </TestComponent>
                 )
             })}
