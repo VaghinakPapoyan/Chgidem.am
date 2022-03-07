@@ -115,10 +115,10 @@ export default function Questions() {
         e.preventDefault()
         if(info.title.length<4){
             setErrors('title minimum length was 4')
-        }else if(info.quest.length<8){
-            setErrors('quest minimum length was 8')
-        }else if(info.writed<2){
-            setErrors('minimum ansvers was 2')
+        }else if(info.quest.length<4){
+            setErrors('quest minimum length was 4')
+        }else if(info.writed<4){
+            setErrors('please writes oll ansvers')
         }else{
             dispatch({
                 type:'addquest',
