@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { Add, GetAll } from "./Controllers/TestRouter.controller.js";
+import { Add, GetAll, GetTest } from "./Controllers/TestRouter.controller.js";
 
 const TestRouter = Router()
 
@@ -13,5 +13,7 @@ TestRouter.post(
     Add)
 
 TestRouter.post('/getTest',GetAll)
+
+TestRouter.post('/get/myTests',GetTest)
 
 export default TestRouter

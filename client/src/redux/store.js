@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 
 
-export const store = createStore((state={token:'',quests:[],user:{
+export const store = createStore((state={token:'',MyTest:[],quests:[],user:{
     username:'',
     email:''
 }},action)=>{
@@ -18,8 +18,9 @@ export const store = createStore((state={token:'',quests:[],user:{
         case "refreshQuest":
             return {...state,quests:[]}
         case "deletequest":
-           
             return {...state,quests:state.quests.filter(quest=>state.quests.findIndex(i=>i==quest)!==action.id)}
+        case "putTests":
+            return {...state,MyTest:action.tests}
         default:
             return state
       

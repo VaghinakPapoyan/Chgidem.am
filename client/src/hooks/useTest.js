@@ -1,4 +1,5 @@
 import axios from "axios"
+import { GetTests } from "../Components/loading"
 
 export const createTest = (e)=>{
     e.preventDefault()
@@ -21,5 +22,6 @@ export const questAdd =  async(quests,dispatch,navigate) => {
     dispatch({
         type:'refreshQuest'
     })
-   navigate('#')
+    GetTests(dispatch)
+   navigate('/quizes')
 }
