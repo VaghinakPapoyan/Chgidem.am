@@ -10,7 +10,10 @@ function App() {
   const dispatch = useDispatch()
   let [bool, setBool] = useState(false);
   useEffect(()=>{
-    loading(dispatch,token).then(res=>{setBool(res)})
+    if(token !== null){
+      loading(dispatch,token).then(res=>{setBool(res)})
+    }    
+    setBool(false)
   },[token])
   const router = route(bool)
 
