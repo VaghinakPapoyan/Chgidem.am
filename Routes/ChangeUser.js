@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
+import file from "../middlewares/file.js";
 import { ChangeUser, ChangeUserImage } from "./Controllers/ChangeUser.js";
 
 const ChangeUserRouter = Router()
@@ -15,6 +16,7 @@ ChangeUserRouter.put(
 
 ChangeUserRouter.post(
     '/change-user-image',
+    file.single("avatar"),
     ChangeUserImage
 )
 

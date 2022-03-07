@@ -270,6 +270,7 @@ export default  function Header({auth, page}) {
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
+    console.log(user);
     const dispatch = useDispatch()
     const navigate = useNavigate()
     if(auth)
@@ -298,7 +299,7 @@ export default  function Header({auth, page}) {
                 <Buttons>
                     <User active={menuActive} to="#" onClick={() => setMenuDropdownActive(state => !state)}>
                         <p>{user.username}</p>
-                        <img src={userImg} alt="User"/>
+                        <img src={user.avatar ? user.avatar : userImg} alt="User"/>
                         <UserDropdown active={menuDropdownActive}>
                             <UserDropdownLink to="/edit-profile">
                                 Edit Profile

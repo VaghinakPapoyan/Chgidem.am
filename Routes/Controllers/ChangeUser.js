@@ -1,6 +1,8 @@
 import { User } from "../../Models/User.js";
 import jwt from 'jsonwebtoken';
 import { validationResult } from "express-validator";
+import fs from "fs"
+import path from "path"
 
 export async function ChangeUser(req,res){
     try
@@ -12,7 +14,7 @@ export async function ChangeUser(req,res){
 
         const { username, nickname, token } = req.body
 
-        const userid = jwt.verify(token, process.env.secret)
+        const userid = await jwt.verify(token, process.env.secret)
 
         const thisUser = await User.findOne({ _id: userid.userId })
 
@@ -36,11 +38,15 @@ export async function ChangeUser(req,res){
 export async function ChangeUserImage(req,res){
     try
     {
-        const { image } = req.body
+        if(req.file)
+        {
+            const { token } = req.body;
+            const userid = await jwt.verify(token, process.env.secret)
+            await User.updateOne({ _id: userid.userId }, { $set: { avatar: req.file.path.split("\\")[req.file.path.split("\\").length - 1] } })
+            return res.json({ path: req.file.path, message: 'Image updated.' })
+        }
 
-        console.log(image);
-
-        return res.status(200).json( { ok: true, message: 'Image updated.' } )
+        return res.status(200).json( { ok: true, message: 'Image is not updated.' } )
     }
     catch(e)
     {

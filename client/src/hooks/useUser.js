@@ -124,21 +124,15 @@ export const updateData = e =>
 
 export const ChangeImg =  e => 
 {
-    return async setMessage => 
+    return async (setMessage, setAvatar) => 
     {
         try
         {
-            const bodyFormData = new FormData();
-            bodyFormData.append('image', e.target.value); 
-            const res = await axios.post("/api/change-user-image", bodyFormData, { headers: {'Content-Type': 'multipart/form-data' }})
-            if(res.data.ok)
-            {
-                setMessage("Img Changed.")
-            }
-            else
-            {
-                setMessage("Img is not changed")
-            }
+            const data = new FormData();
+            data.append("avatar", e.target.files[0])
+            data.append("token", localStorage.getItem("User"))
+            const res = await axios.post("/api/change-user-image", data, {headers: { "content-type": "mulpipart/form-data" }})
+            setMessage(res.data.message)
         }
         catch(e)
         {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
@@ -89,24 +89,32 @@ const FileInput = styled.input`
     width: 100%;
     height: 100%;
 `
+const ImgMessage = styled(Message)`
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 5px);
+`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 const camera = process.env.PUBLIC_URL + "images/camera.png";
 
 export default function EditProfile() {
-    const { username, nickname } = useSelector(state => state.user)
+    const { username, nickname, avatar } = useSelector(state => state.user)
     const [error, setError] = useState(null)
     const [message, setMessage] = useState(null)
+    const [messageImg, setMessageImg] = useState(null)
     const [form, setForm] = useState(
     {
         nickname: nickname,
         username: username,
         token: localStorage.getItem("User")
     })
-    const changeForm = e => 
+    const changeForm = useCallback(e => 
     {
         setForm({ ...form, [e.target.name]: e.target.value })
-    }
+    }, [form])
     return (
         <Container>
             <Header auth page="edit-profile"/>
@@ -127,8 +135,9 @@ export default function EditProfile() {
                 </UserInfo>
                 <UserImgDiv>
                     <Camera src={camera} />
-                    <UserImg src={userImg} />
-                    <FileInput type="file" onChange={e => ChangeImg(e)(setMessage)}/>
+                    <UserImg src={avatar ? avatar : userImg} />
+                    <FileInput type="file" onChange={e => ChangeImg(e)(setMessageImg)}/>
+                    <ImgMessage>{messageImg}</ImgMessage>
                 </UserImgDiv>
             </EditProfileComponent>
         </Container>
