@@ -11,6 +11,7 @@ const Home = styled.div`
 const Flex = styled.div`
     display:flex;
     margin-top:40px;
+    min-height:80vh;
 `
 export default function  TestSee(){
     const [info,setInfo] = useState({
@@ -22,7 +23,7 @@ export default function  TestSee(){
             <Container>
                 <Header auth/>
                 <Flex>
-                    <TestMap changeId = {(id,text)=>setInfo({testId:id,text})}></TestMap>
+                    <TestMap changeId = {(id,text)=>setInfo({testId:id,text})} id={info.testId}></TestMap>
                     <TestInfo testInfo={info}></TestInfo>
                 </Flex>
             </Container>
