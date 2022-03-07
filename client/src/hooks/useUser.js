@@ -121,3 +121,28 @@ export const updateData = e =>
     }
    
 }
+
+export const ChangeImg =  e => 
+{
+    return async setMessage => 
+    {
+        try
+        {
+            const bodyFormData = new FormData();
+            bodyFormData.append('image', e.target.value); 
+            const res = await axios.post("/api/change-user-image", bodyFormData, { headers: {'Content-Type': 'multipart/form-data' }})
+            if(res.data.ok)
+            {
+                setMessage("Img Changed.")
+            }
+            else
+            {
+                setMessage("Img is not changed")
+            }
+        }
+        catch(e)
+        {
+            console.log(e);
+        }
+    }
+}
