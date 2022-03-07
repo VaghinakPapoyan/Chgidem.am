@@ -14,8 +14,9 @@ export async function loading(dispatch,token){
         dispatch({
           type:'changeUser',
           user:{
-            username:info.username,
-            email:info.email
+            username: info.username,
+            email: info.email,
+            nickname: info.nickname
           }
         })
     }

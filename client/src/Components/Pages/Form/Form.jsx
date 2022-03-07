@@ -65,7 +65,7 @@ const ValidationInput = styled(Input)`
 export const InputDiv = styled.div` 
 
 `
-const Error = styled.div` 
+export const Error = styled.div` 
     font-weight: 600;
     margin-top: 25px;
     color: ${({theme}) => theme.colors.thirdColor};

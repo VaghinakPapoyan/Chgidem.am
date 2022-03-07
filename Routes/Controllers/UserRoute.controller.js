@@ -34,7 +34,7 @@ export async function dataCheck(req,res){
     //create user
     const HashPassword = await bcrypt.hash( password, 7 )
 
-    user = await new User({ username, email, password: HashPassword })
+    user = await new User({ username, email, password: HashPassword, nickname: "" })
     
     verificationCode = String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10));
 
@@ -119,7 +119,7 @@ export async function getUser(req,res){
         const { token } = req.params;
         const userid = await jwt.verify(token,process.env.secret)
         const data = await User.findOne({_id:userid.userId})
-        return res.json({username:data.username,email:data.email})
+        return res.json({username:data.username,email:data.email,nickname:data.nickname})
     }catch(e)
     {
         res.json({ error: e })

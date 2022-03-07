@@ -94,3 +94,30 @@ export const logout = (dispatch,navigate) =>
     })
     navigate('/')
 }
+
+export const updateData = e => 
+{
+    e.preventDefault();
+    return async (form, setError, setMessage) => 
+    {
+        try
+        {
+            const res = await axios.put('/api/change-user-data', {...form})
+            if(res.data.ok)
+            {
+                setError(null)
+                setMessage(res.data.message)
+            }
+            else if(res.status === 200)
+            {
+                setMessage(null)
+                setError(res.data.error)
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+   
+}
