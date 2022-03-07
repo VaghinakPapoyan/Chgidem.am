@@ -69,12 +69,15 @@ const Form = styled.form`
     display:flex;
     align-items:center;
  `
+ const InputChekc = styled.input`
+    margin-left:-20px;
+    margin-top:-10px;
+ `
 export default function Questions() {
     const [info,setInfo] = useState({
         title:'',
         quest:'',
-        ansvers:[{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
-        trueAnsver:''
+        ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}]
     })
     const dispatch = useDispatch()
     const [error,setErrors] = useState('')
@@ -114,10 +117,6 @@ export default function Questions() {
             setErrors('minimum ansvers was 2')
         }else if(info.ansvers[0].ansver == '' && info.ansvers[2].ansver===''){
             setErrors('minimum ansvers was 2')
-        }else if(info.trueAnsver===''){
-            setErrors("True Ansver was not been empty")
-        }else if(info.trueAnsver!==info.ansvers[0].ansver && info.trueAnsver!==info.ansvers[1].ansver && info.trueAnsver!==info.ansvers[2].ansver){
-            setErrors("True Ansver was not true")
         }else{
             dispatch({
                 type:'addquest',
@@ -126,7 +125,7 @@ export default function Questions() {
             setInfo({
                 title:'',
                 quest:'',
-                ansvers:[{ansver:''},{ansver:''},{ansver:''}],
+                ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
                 trueAnsver:''
             })
             setErrors('')
@@ -142,10 +141,10 @@ export default function Questions() {
                       <TitleForm>Add Questions</TitleForm>
                       <Input mb='10px' placeholder='Enter quest title' value={info.title} name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter quest' value={info.quest} name='quest' onChange={(e)=>HandClick(e)}/>
-                        <Line><Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/> <input type="radio" onClick={(e)=>ChangeValue(e)(0)} name='d' /></Line>
-                        <Line>   <Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/><input type="radio" onClick={(e)=>ChangeValue(e)(1)}  name='d'/></Line>
-                      <Line><Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/> <input type="radio" onClick={(e)=>ChangeValue(e)(2)}  name='d'/></Line>
-                      <Line><Input mb='10px' placeholder='Enter ansver 4'  value={info.ansvers[3].ansver}  onChange={(e)=>ChangeAnsver(e)(3)}/> <input type="radio" onClick={(e)=>ChangeValue(e)(3)}  name='d'/></Line>
+                        <Line><Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/> <InputChekc defaultChecked type="radio" onClick={(e)=>ChangeValue(e)(0)} name='d' /></Line>
+                        <Line>   <Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/><InputChekc type="radio" onClick={(e)=>ChangeValue(e)(1)}  name='d'/></Line>
+                      <Line><Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/> <InputChekc type="radio" onClick={(e)=>ChangeValue(e)(2)}  name='d'/></Line>
+                      <Line><Input mb='10px' placeholder='Enter ansver 4'  value={info.ansvers[3].ansver}  onChange={(e)=>ChangeAnsver(e)(3)}/> <InputChekc type="radio" onClick={(e)=>ChangeValue(e)(3)}  name='d'/></Line>
                        
                         <Error>{error}</Error>
                       <ButtonForm>Create</ButtonForm>
