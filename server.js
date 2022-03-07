@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import UserRoute from "./Routes/UserRoute.js";
 import TestRouter from "./Routes/TestRouter.js";
 import QuestRouter from "./Routes/QuestRouter.js";
+import ChangeUserRouter from "./Routes/ChangeUser.js";
 
 dotenv.config();
 const app = express();
@@ -13,7 +14,7 @@ app.use(express.json({ extended: true }))
 app.use('/api', UserRoute)
 app.use('/api', TestRouter)
 app.use('/api', QuestRouter)
-
+app.use('/api', ChangeUserRouter)
 async function server()
 {
     try
