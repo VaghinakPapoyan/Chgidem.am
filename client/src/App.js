@@ -11,7 +11,7 @@ function App() {
   let [bool, setBool] = useState(false);
   useEffect(()=>{
     loading(dispatch,token).then(res=>{setBool(res)})
-  },[token, dispatch])
+  },[token])
   const router = route(bool)
 
   return (

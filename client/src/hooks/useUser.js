@@ -83,7 +83,7 @@ export const logout = (dispatch,navigate) =>
     localStorage.removeItem("User")
     dispatch({
         type:'changeToken',
-        token:''
+        token:null
     })
     dispatch({
         type:'changeUser',
