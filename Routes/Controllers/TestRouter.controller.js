@@ -45,3 +45,11 @@ export async function GetTest(req,res){
     const result  = await Test.find({userId})
     return res.json(result)
 }
+
+export async function DeleteTest(req,res){
+    const {testId} = req.body
+    await Test.findByIdAndDelete(testId)
+    res.json({
+        ok:true
+    })
+}

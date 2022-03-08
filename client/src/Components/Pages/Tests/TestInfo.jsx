@@ -7,6 +7,10 @@ import { GetQuests } from "../../../hooks/useTest"
 import { Container } from "../../../styles/styles";
 import {  SubTitle, TestComponent } from "../Auth/components/Test";
 import { NewTitle, TestsComponent } from "../Auth/components/Tests";
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import { GetTests } from "../../loading"
+import { useDispatch } from "react-redux"
 
 const Info = styled.div`
     margin-left:20px;
@@ -46,6 +50,7 @@ const QueryButton  = styled.button`
     font-size:14px;
     transition:0.3s;
     margin-top:5px;
+    cursor:pointer;
     ${props=>
     props.query
     ?
@@ -71,17 +76,31 @@ const QueryButton  = styled.button`
         `
     };
 `
- function TestInfo({testInfo}){
+ function TestInfo({testInfo,changeId}){
     const [quests,setQuests] = useState([])
+    const dispatch = useDispatch()
+
     useEffect(()=>{
         GetQuests(testInfo.testId).then(res=>setQuests(res.data.quests))
     },[testInfo])
-    if(testInfo.testId===''){
+
+    if( testInfo.testId==='' || testInfo.testId === null ){
         return(
         <Info>
             <Text>please select test or <Link to='/create-quiz'>create Test now</Link></Text>
         </Info>
         )
+    }
+
+    const DeletQuest = async (questId) =>{
+        await axios.post('/api/delete/quest',{questId})
+        changeId('','')
+    }
+
+    const DeleteTest = async (testId) =>{
+        await axios.post('/api/delete/test',{testId})
+        changeId('','')
+        GetTests(dispatch)
     }
     return(
         <Info>
@@ -99,13 +118,13 @@ const QueryButton  = styled.button`
                         {e.ansvers[2].ansver===''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
                         {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
                         <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
-                       <Infos> <QueryButton query>Change</QueryButton><QueryButton >Delete</QueryButton></Infos>
+                       <Infos> <QueryButton query>Change</QueryButton><QueryButton onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
                     </TestComponent>
                 )
             })}
         </Container>
-        <Infos mb text>  <ButtonAdd >Add Quest</ButtonAdd></Infos>
-       </TestsComponent>
+                    <Infos mb text>  <ButtonAdd >Add Quest</ButtonAdd><ButtonAdd onClick={()=>DeleteTest(testInfo.testId)}>Delete Test</ButtonAdd></Infos>
+        </TestsComponent>
         </Info>
     )
 }

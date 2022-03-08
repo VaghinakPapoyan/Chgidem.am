@@ -24,7 +24,7 @@ export default function  TestSee(){
                 <Header auth/>
                 <Flex>
                     <TestMap changeId = {(id,text)=>setInfo({testId:id,text})} id={info.testId}></TestMap>
-                    <TestInfo testInfo={info}></TestInfo>
+                    <TestInfo testInfo={info}  changeId = {(id,text)=>setInfo({testId:id,text})}></TestInfo>
                 </Flex>
             </Container>
         </Home>

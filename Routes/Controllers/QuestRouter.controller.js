@@ -29,3 +29,12 @@ export async function GetQuests(req,res){
         quests
     })
 }
+
+
+export async function DeleteQuest(req,res){
+    const {questId} = req.body
+    await Questions.findByIdAndDelete(questId)
+    res.json({
+        ok:true
+    })
+}
