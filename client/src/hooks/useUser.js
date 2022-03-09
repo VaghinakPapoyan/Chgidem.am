@@ -98,10 +98,11 @@ export const logout = (dispatch,navigate) =>
 export const updateData = e => 
 {
     e.preventDefault();
-    return async (form, setError, setMessage) => 
+    return async (form, setError, setMessage, setLoading) => 
     {
         try
         {
+            setLoading(true)
             const res = await axios.put('/api/change-user-data', {...form})
             if(res.data.ok)
             {
@@ -113,6 +114,7 @@ export const updateData = e =>
                 setMessage(null)
                 setError(res.data.error)
             }
+            setLoading(false)
         }
         catch(err)
         {

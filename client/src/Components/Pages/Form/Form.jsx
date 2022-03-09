@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
 import { sendForm, sendLogin, registration } from '../../../hooks/useUser'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 export const Title = styled.h2`
@@ -50,12 +50,8 @@ const ThisButton = styled.button`
     overflow: hidden;
     text-align: center;
     background-color: ${({ theme }) => theme.colors.secondColor};
-    margin-right: 15px;
     position: relative;
     font-weight: 600;
-    margin-top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
     cursor: pointer;
     color: ${({ theme }) => theme.colors.secondTextColor};
 `
@@ -69,6 +65,19 @@ export const Error = styled.div`
     font-weight: 600;
     margin-top: 25px;
     color: ${({theme}) => theme.colors.thirdColor};
+`
+const SignupFooter = styled.div`
+    display: flex;
+    margin-top: 25px;
+    justify-content: center;
+    align-items: center;
+`
+const Forget = styled(Link)`
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.mainTextColor};
+    outline: none !important;
+    margin-left: 10px;
+    border: none;
 `
 
 export default function Form({login}) 
@@ -148,7 +157,10 @@ export default function Form({login})
                         <Input autoComplete="off" type='password'  name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
                     <Error>{ error }</Error>
-                    <ThisButton>Sign up</ThisButton>
+                    <SignupFooter>
+                        <ThisButton>Sign up</ThisButton>
+                        <Forget>forget password?</Forget>
+                    </SignupFooter>
                 </FormComponent>
             </Container>
         )
