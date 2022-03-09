@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 
 function App() {
   const token = useSelector(state=>state.token)
+  const user = useSelector(state=>state.user)
   const dispatch = useDispatch()
   let [bool, setBool] = useState(false);
   useEffect(()=>{

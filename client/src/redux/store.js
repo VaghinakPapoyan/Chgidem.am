@@ -7,7 +7,11 @@ export const store = createStore((state={token:'',MyTest:[],quests:[],user:{
 }},action)=>{
     switch(action.type){
         case "changeToken":
-            localStorage.setItem('User',action.token)
+            if(action.token){
+                localStorage.setItem('User',action.token)
+            }else{
+                localStorage.removeItem('User')
+            }
             return {...state,token:action.token}
         case "changeUser":
             return {...state,user:action.user}
