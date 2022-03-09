@@ -286,7 +286,7 @@ const userImg = process.env.PUBLIC_URL + "images/user.png";
                             <NavigateText active={page === "create-quiz" ? "true" : "false"} to="/create-quiz">Create Quiz</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText active={page === "about" ? "true" : "false"} to="#">About us</NavigateText>
+                            <NavigateText active={page === "tests" ? "true" : "false"} to="#">Tests</NavigateText>
                         </HeaderNavigate>
                     </HeaderNavigation>
                 </Left>
