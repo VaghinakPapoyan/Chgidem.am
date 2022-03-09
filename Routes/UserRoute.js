@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { login, registration, dataCheck, getUser } from "./Controllers/UserRoute.controller.js";
+import { login, registration, dataCheck, getUser, forgetPassword } from "./Controllers/UserRoute.controller.js";
 
 const UserRoute = Router()
 
@@ -26,6 +26,13 @@ UserRoute.post(
         check('password','minimum length of password was 8').isLength(8)
     ],
     login
+)
+UserRoute.post(
+    '/forget-password',
+    [
+        check('email','Email is incorrect').isEmail(),
+    ],
+    forgetPassword
 )
 
 UserRoute.get('/getUser/:token',getUser )

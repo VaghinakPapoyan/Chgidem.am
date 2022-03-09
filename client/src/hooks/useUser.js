@@ -144,3 +144,28 @@ export const ChangeImg =  e =>
         }
     }
 }
+
+export const changePassword = e => 
+{
+    return async (email, setNext, setError) => 
+    {
+        try
+        {
+            const res = await axios.post('/api/forget-password', {email})
+            if(res.data.ok)
+            {
+                setNext(true);
+                setError("")
+            }
+            else if(res.status === 200)
+            {
+                setError(res.data.error)
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+   
+}

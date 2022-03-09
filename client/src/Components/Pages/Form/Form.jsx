@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
-import { sendForm, sendLogin, registration } from '../../../hooks/useUser'
+import { sendForm, sendLogin, registration, changePassword } from '../../../hooks/useUser'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -74,13 +74,14 @@ const SignupFooter = styled.div`
 `
 const Forget = styled(Link)`
     background-color: transparent;
+    text-decoration: none;
     color: ${({ theme }) => theme.colors.mainTextColor};
     outline: none !important;
-    margin-left: 10px;
+    margin-left: 20px;
     border: none;
 `
 
-export default function Form({login}) 
+export default function Form({login,changePassword}) 
 {
     const [form, setForm] = useState(
     {
@@ -102,9 +103,18 @@ export default function Form({login})
     const Submit = e => 
     {
         if(next)
-            registration(e)(code, setError,dispatch,navigate)
+            registration(e)(code, setError, dispatch, navigate)
         else
             sendForm(e)(form, setError, setNext)
+    }
+    const forgetSubmit = e => 
+    {
+        e.preventDefault();
+        console.log("asdfkjslad;f");
+        if(next)
+            registration(e)(code, setError, dispatch, navigate)
+        else
+            changePassword(e)(form.email, setError, setNext)
     }
     if(!login)
     {
@@ -136,7 +146,37 @@ export default function Form({login})
                         : null 
                     }
                     <Error>{ error }</Error>
-                    <ThisButton>Sign in</ThisButton>
+                    <SignupFooter>
+                        <ThisButton>Sign in</ThisButton>
+                    </SignupFooter>
+                </FormComponent>
+            </Container>
+        )
+    }
+    else if(changePassword)
+    {
+        return (
+            <Container>
+                <Header />
+                <FormComponent onSubmit={e => forgetSubmit(e)}>
+                    <Title>Forget Password</Title>
+                    <InputDiv>
+                        <Label htmlFor='email'>Email</Label>
+                        <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
+                    </InputDiv>
+                    { 
+                        next 
+                        ?
+                        <InputDiv>
+                            <Label htmlFor='validataion-code'>We send code in your email</Label>
+                            <ValidationInput autoComplete="off" onChange={e => setCode(e.target.value)} value={code} type="password" name="validataion-code" id='validataion-code' placeholder='Write your validation code.' />
+                        </InputDiv> 
+                        : null 
+                    }
+                    <Error>{ error }</Error>
+                    <SignupFooter>
+                        <ThisButton>Send Code</ThisButton>
+                    </SignupFooter>
                 </FormComponent>
             </Container>
         )
@@ -149,7 +189,7 @@ export default function Form({login})
                 <FormComponent onSubmit={e=>sendLogin(e)(form,setError,navigate,dispatch)}>
                     <Title>Log In</Title>
                     <InputDiv>
-                        <Label htmlFor='email'>Email or username</Label>
+                        <Label htmlFor='email'>Email</Label>
                         <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
                     </InputDiv>
                     <InputDiv>
@@ -159,7 +199,7 @@ export default function Form({login})
                     <Error>{ error }</Error>
                     <SignupFooter>
                         <ThisButton>Sign up</ThisButton>
-                        <Forget>forget password?</Forget>
+                        <Forget to="/account/forget-password">forget password?</Forget>
                     </SignupFooter>
                 </FormComponent>
             </Container>

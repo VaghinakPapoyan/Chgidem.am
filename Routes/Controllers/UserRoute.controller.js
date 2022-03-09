@@ -113,6 +113,29 @@ export async function login(req,res){
     }
 }
 
+export async function forgetPassword(req,res){
+    try
+    {
+        const {email} = req.body
+
+        // validation
+        const errors =  validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(200).json({ error: errors.array()[0].msg });
+        }
+    
+        verificationCode = String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10));
+
+        await sendMail("Chgidem.am", email, "Verification Code", String(verificationCode), String(verificationCode))
+
+        return res.status(200).json( { ok: true, message: 'Data is correct' } )
+    }
+    catch(e)
+    {
+        return res.json( { error:e } );
+    }
+}
+
 export async function getUser(req,res){
     try
     {
@@ -125,3 +148,4 @@ export async function getUser(req,res){
         res.json({ error: e })
     }
 }
+

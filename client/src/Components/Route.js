@@ -19,6 +19,7 @@ export default function route(isAuth){
                 <Route path='/' element={<Home/>} />
                 <Route path="/account/registration" element={<Form />}/>
                 <Route path="/account/log-in" element={<Form login />}/>
+                <Route path="/account/forget-password" element={<Form login changePassword />}/>
             </Routes>
         )
     }
