@@ -270,7 +270,6 @@ const userImg = process.env.PUBLIC_URL + "images/user.png";
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
-    console.log(user);
     const dispatch = useDispatch()
     const navigate = useNavigate()
     if(auth)

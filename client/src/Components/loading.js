@@ -8,6 +8,7 @@ export async function loading(dispatch,token){
       if(localtoken !==null)
       {
         const data = await axios.get(`/api/getUser/${localtoken}`)
+        console.log(data);
         if(data?.data?.error?.message === "jwt expired")
         {
           logout();
@@ -19,7 +20,7 @@ export async function loading(dispatch,token){
           user:{
             username: info.username,
             email: info.email,
-            avatar: process.env.PUBLIC_URL + "/uploads/" + info.avatar,
+            avatar: info.avatar,
             nickname: info.nickname
           }
         })
