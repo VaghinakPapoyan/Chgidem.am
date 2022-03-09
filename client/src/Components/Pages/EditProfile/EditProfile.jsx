@@ -145,7 +145,7 @@ export default function EditProfile() {
         <Container>
             <Header auth page="edit-profile"/>
             <EditProfileComponent>
-                <UserInfo onSubmit={e => updateData(e)(form, setError, setMessage)}>
+                <UserInfo onSubmit={e => updateData(e)(form, setError, setMessage, setLoading)}>
                     <MyTitle>My Profile</MyTitle>
                     <InputDiv>
                         <MyLabel htmlFor='username'>Username</MyLabel>
@@ -155,7 +155,7 @@ export default function EditProfile() {
                         <MyLabel htmlFor='username'>Nickname</MyLabel>
                         <Input onChange={changeForm} name="nickname" autoComplete="off" id='nickname' placeholder='Write your last nickame.' defaultValue={nickname}/>
                     </InputDiv>
-                    <Message>{message}</Message>
+                    <Message>{loading ? <Load /> : message}</Message>
                     <NewError>{error}</NewError>
                     <MyButton>Change</MyButton>
                 </UserInfo>
