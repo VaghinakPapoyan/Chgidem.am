@@ -118,8 +118,8 @@ export async function getUser(req,res){
     {
         const { token } = req.params;
         const userid = await jwt.verify(token,process.env.secret)
-        const data = await User.findOne({_id:userid.userId})
-        return res.json({username:data.username,email:data.email,nickname:data.nickname,avatar:data.avatar})
+        const data = await User.findOne({_id: userid.userId})
+        return res.json({username:data.username,email:data.email,nickname:data.nickname,avatar: data.avatar})
     }catch(e)
     {
         res.json({ error: e })

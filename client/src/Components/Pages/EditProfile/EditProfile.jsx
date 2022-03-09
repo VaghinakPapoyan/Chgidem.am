@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React, { useCallback, useState } from 'react'
+import styled, {keyframes} from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
 import { Input, Label, InputDiv, Title, Error } from '../Form/Form'
@@ -94,7 +94,32 @@ const ImgMessage = styled(Message)`
     position: absolute;
     left: 50%;
     top: 100%;
+    font-size: 1.2rem;
+    white-space: nowrap;
     transform: translate(-50%, 5px);
+`
+const rotate = keyframes`
+ 0% { transform: rotate(0deg); }
+ 100% { transform: rotate(360deg); }
+`
+const Load = styled.div`
+    width: 25px;
+    height: 25px;
+    border: 3px solid ${({ theme }) => theme.colors.secondColor};
+    border-radius: 50%;
+    position: relative;
+    animation: ${rotate} 1.5s linear infinite;
+    &:before
+    {
+        content: "";
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        left: 50%;
+        top: 0px;
+        transform: translateX(-50%) translateY(-4.5px);
+        background-color: ${({ theme }) => theme.colors.mainColor};
+    }
 `
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
@@ -102,6 +127,7 @@ const camera = process.env.PUBLIC_URL + "images/camera.png";
 
 export default function EditProfile() {
     const { username, nickname, avatar } = useSelector(state => state.user)
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [message, setMessage] = useState(null)
     const [messageImg, setMessageImg] = useState(null)
@@ -136,8 +162,8 @@ export default function EditProfile() {
                 <UserImgDiv>
                     <Camera src={camera} />
                     <UserImg src={avatar ? avatar : userImg} />
-                    <FileInput type="file" onChange={e => ChangeImg(e)(setMessageImg)}/>
-                    <ImgMessage>{messageImg}</ImgMessage>
+                    <FileInput type="file" onChange={e => ChangeImg(e)(setMessageImg, setLoading)}/>
+                    <ImgMessage>{loading ? <Load /> : messageImg}</ImgMessage>
                 </UserImgDiv>
             </EditProfileComponent>
         </Container>

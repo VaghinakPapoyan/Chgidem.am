@@ -124,14 +124,16 @@ export const updateData = e =>
 
 export const ChangeImg =  e => 
 {
-    return async (setMessage, setAvatar) => 
+    return async (setMessage, setLoading) => 
     {
         try
         {
+            setLoading(true);
             const data = new FormData();
             data.append("avatar", e.target.files[0])
             data.append("token", localStorage.getItem("User"))
             const res = await axios.post("/api/change-user-image", data, {headers: { "content-type": "mulpipart/form-data" }})
+            setLoading(false);
             setMessage(res.data.message)
         }
         catch(e)
