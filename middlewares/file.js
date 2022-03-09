@@ -1,15 +1,6 @@
 import multer from "multer";
 
-const storage = multer.diskStorage({
-    destination(req, file, cb)
-    {
-        cb(null, "./client/public/uploads")
-    },
-    filename(req, file, cb)
-    {
-        cb(null, Date.now() + "-" + file.originalname)
-    }
-})
+const storage = multer.diskStorage({})
 
 const types = ["image/png", "image/jpeg", "image/jpg"];
 
