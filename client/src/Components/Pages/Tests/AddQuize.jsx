@@ -1,12 +1,14 @@
+
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import {  questAdd } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
-import { Quests } from './Quests'
-
+import { Quests } from '../Create Quiz/Quests'
+import TestInfo from './TestInfo'
 
 const Input = styled.input`
     display:block;
@@ -26,7 +28,7 @@ const Form = styled.form`
     text-align:center;
     margin-bottom:30px;
  `
-export  const TitleForm = styled.div`
+ const TitleForm = styled.div`
     text-align: center;
     font-size: 32px;
     font-weight: 600;
@@ -73,7 +75,9 @@ export  const TitleForm = styled.div`
     margin-left:-20px;
     margin-top:-15px;
  `
-export default function Questions() {
+export default function AddQuize() {
+    const params = useParams();
+    const prodId = params.id;
     const [info,setInfo] = useState({
         title:'',
         quest:'',
@@ -152,7 +156,7 @@ export default function Questions() {
                    </Form>
                 </FormsDiv>
             </Container>
-            <Quests/>
+            <Quests isAdd={true} testId={prodId}/>
         </>
     )
 }

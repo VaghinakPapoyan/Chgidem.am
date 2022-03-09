@@ -17,19 +17,28 @@ export const createTest = (e)=>{
 }
 
 
-export const questAdd =  async(quests,dispatch,navigate) => {
-    await axios.post('/api/add/quest',{quests})
-    dispatch({
-        type:'refreshQuest'
-    })
-    GetTests(dispatch)
-   navigate('/quizes')
+export const questAdd =  async(quests,dispatch,navigate,testId) => {
+    if(testId){
+        await axios.post('/api/join/quest',{quests,testId})
+        dispatch({
+            type:'refreshQuest'
+        })
+        GetTests(dispatch)
+       navigate('/quizes')
+    }else{
+        await axios.post('/api/add/quest',{quests})
+        dispatch({
+            type:'refreshQuest'
+        })
+        GetTests(dispatch)
+       navigate('/quizes')
+    }
+   
 }
 
 
 export  const GetQuests = async (testId) =>{
     const quests = await axios.post('/api/getQuest',{testId})
-    console.log(testId)
     return quests
 }
 

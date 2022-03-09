@@ -28,7 +28,7 @@ const ButtonAdd = styled.button`
 const Info = styled.div`
    
 `
-export function Quests(){
+export function Quests({isAdd,testId}){
     const quests = useSelector(state=>state.quests)
     const [display,setDisplay] = useState(false)
     const dispatch = useDispatch()
@@ -70,7 +70,7 @@ export function Quests(){
                 )
             })}
         </Container>
-        <Info mb text> {quests.length >=2 ? <ButtonAdd onClick={()=>{questAdd(quests,dispatch,navigate)}}>Add Test</ButtonAdd>:<NewTitle >Minimum quests was 2</NewTitle>}</Info>
+        <Info mb text> {quests.length >=2  || isAdd ? <ButtonAdd onClick={()=>{questAdd(quests,dispatch,navigate,testId)}}>Add Test</ButtonAdd>:<NewTitle >Minimum quests was 2</NewTitle>}</Info>
        </TestsComponent>
     )
 }

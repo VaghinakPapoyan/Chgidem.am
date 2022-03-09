@@ -23,13 +23,14 @@ const Text = styled.p`
     font-weight:600;
     margin-bottom:20px;
 `
-const ButtonAdd = styled.button`
+const ButtonAdd = styled(Link)`
     padding:10px 15px;
     font-size: 1rem;
     border-radius: 6px;
     font-weight: 600;
     margin-top: 15px;
     background:inherit;
+    text-decoration:none;
     color:${({ theme }) => theme.colors.mainColor};
     border: 1px solid ${({ theme }) => theme.colors.mainColor};
     cursor:pointer;
@@ -38,19 +39,20 @@ const ButtonAdd = styled.button`
         background:${({ theme }) => theme.colors.mainColor};
         color:${({ theme }) => theme.colors.secondColor};
     }
+    margin-right:${props=>props.mr?'10px':'0px'};
 `
 const Infos = styled.div`
     display:flex;
 `
 
-const QueryButton  = styled.button`
+const QueryButton  = styled(Link)`
     padding:10px 15px;
     border-radius:3px;
     background:inherit;
     font-size:14px;
     transition:0.3s;
     margin-top:5px;
-    cursor:pointer;
+    text-decoration:none;
     ${props=>
     props.query
     ?
@@ -118,12 +120,12 @@ const QueryButton  = styled.button`
                         {e.ansvers[2].ansver===''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
                         {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
                         <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
-                       <Infos> <QueryButton query>Change</QueryButton><QueryButton onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
+                       <Infos> <QueryButton  to='#' query>Change</QueryButton><QueryButton to='#' onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
                     </TestComponent>
                 )
             })}
         </Container>
-                    <Infos mb text>  <ButtonAdd >Add Quest</ButtonAdd><ButtonAdd onClick={()=>DeleteTest(testInfo.testId)}>Delete Test</ButtonAdd></Infos>
+                    <Infos mb text>  <ButtonAdd to={`/AddQuize/${testInfo.testId}`} mr>Add Quest</ButtonAdd><ButtonAdd to='#' onClick={()=>DeleteTest(testInfo.testId)}>Delete Test</ButtonAdd></Infos>
         </TestsComponent>
         </Info>
     )

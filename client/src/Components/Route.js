@@ -6,6 +6,7 @@ import Questions from "./Pages/Create Quiz/Questions";
 import EditProfile from "./Pages/EditProfile/EditProfile";
 import Form from "./Pages/Form/Form";
 import { Home } from "./Pages/noAuth/Home";
+import AddQuize from "./Pages/Tests/AddQuize";
 import TestSee from "./Pages/Tests/TestSee";
 
 
@@ -26,6 +27,7 @@ export default function route(isAuth){
             <Route path="/questions" element={<Questions />}/>
             <Route path="/edit-profile" element={<EditProfile />}/>
             <Route path="/Quizes" element={<TestSee />}/>
+            <Route path="/AddQuize/:id" element={<AddQuize />}/>
         </Routes>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux'
@@ -266,7 +266,7 @@ const UserDropdownLink = styled(Link)`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 
-export default  function Header({auth, page}) {
+ function Header({auth, page}) {
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
@@ -331,3 +331,5 @@ export default  function Header({auth, page}) {
         )
     }
 }
+
+export default memo(Header)
