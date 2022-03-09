@@ -1,9 +1,10 @@
-
+import { Container } from '../../../styles/styles'
+import Header from '../../Main-Components/Header'
 
 export default function Global(){
     return (
-        <div>
-            asinc
-        </div>
+        <Container>
+            <Header auth page='tests'/>
+        </Container>
     )
 }
