@@ -54,3 +54,19 @@ export async function DeleteQuest(req,res){
         ok:true
     })
 }
+
+export async function UpdateOne(req,res){
+    const {questId,title,quest,ansvers,trueAnsver} = req.body
+    await Questions.findByIdAndUpdate(questId,{title,quest,ansvers,trueAnsver})
+    res.status(200).json({
+        ok:true
+    })
+}
+
+export async function GetQuest(req,res){
+    const {questId} = req.body
+    const quest = await Questions.findById(questId)
+    res.status(200).json({
+        quest
+    })
+}

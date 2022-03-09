@@ -120,7 +120,7 @@ const QueryButton  = styled(Link)`
                         {e.ansvers[2].ansver===''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
                         {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
                         <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
-                       <Infos> <QueryButton  to='#' query>Change</QueryButton><QueryButton to='#' onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
+                       <Infos> <QueryButton  to={`change/${e._id}`} query>Change</QueryButton><QueryButton to='#' onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
                     </TestComponent>
                 )
             })}

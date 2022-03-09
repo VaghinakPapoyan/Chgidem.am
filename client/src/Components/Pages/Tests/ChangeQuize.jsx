@@ -1,11 +1,11 @@
-import React from 'react'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
-import {  questAdd } from '../../../hooks/useTest'
-import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
-import { Quests } from './Quests'
+import { useState } from "react";
+import { useParams,Link } from "react-router-dom";
+import { Container } from "../../../styles/styles";
+import Header from "../../Main-Components/Header";
+import styled from "styled-components";
+import { useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const Input = styled.input`
@@ -73,17 +73,22 @@ export  const TitleForm = styled.div`
     margin-left:-20px;
     margin-top:-15px;
  `
- 
-export default function Questions() {
+export function ChangeQuize(){
+    const params = useParams()
+    const questId = params.id
     const [info,setInfo] = useState({
         title:'',
         quest:'',
         ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
         trueAnsver:1
     })
-    const dispatch = useDispatch()
-    const [error,setErrors] = useState('')
+    const [ errors,setErrors] = useState()
+    const navigate = useNavigate()
     
+    useEffect( async () => {
+        await axios.post('/api/getOne',{questId}).then(res=>setInfo({...res.data.quest}))
+    },[] )
+
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
     }
@@ -111,6 +116,12 @@ export default function Questions() {
             return setInfo({...info,ansvers:newAnsver}),setInfo({...info,trueAnsver : i+1})
         }
     }
+    
+    const UpdateForm = async () =>{
+        await axios.post('/api/updateOne',{questId,...info})
+        navigate('/Quizes')
+    }
+
     const AddQuest = (e)=>{
         e.preventDefault()
         if(info.title.length<4){
@@ -120,24 +131,14 @@ export default function Questions() {
         }else if(info.ansvers[0].ansver === '' || info.ansvers[1].ansver === '' || info.ansvers[2].ansver === '' || info.ansvers[3].ansver === '' ){
             setErrors('please writes oll ansvers')
         }else{
-            dispatch({
-                type:'addquest',
-                quest:info,
-            })
-            setInfo({
-                title:'',
-                quest:'',
-                ansvers:[{ansver:'',checked:true},{ansver:'',checked:false},{ansver:'',checked:false},{ansver:'',checked:false}],
-                trueAnsver:info.trueAnsver
-            })
             setErrors('')
+            UpdateForm()
         }
      
     }
-    return (
-        <>
-            <Container>
-                <Header page="create-quiz" auth />
+    return(
+       <Container>
+           <Header auth/>
                 <FormsDiv>
                   <Form onSubmit={(e)=>AddQuest(e)}>
                       <TitleForm>Add Questions</TitleForm>
@@ -148,12 +149,10 @@ export default function Questions() {
                       <Line><Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/> <InputChekc type="radio" onClick={(e)=>ChangeValue(e)(2)}  name='d'/></Line>
                       <Line><Input mb='10px' placeholder='Enter ansver 4'  value={info.ansvers[3].ansver}  onChange={(e)=>ChangeAnsver(e)(3)}/> <InputChekc type="radio" onClick={(e)=>ChangeValue(e)(3)}  name='d'/></Line>
                        
-                        <Error>{error}</Error>
-                      <ButtonForm>Create</ButtonForm>
+                        <Error>{errors}</Error>
+                      <ButtonForm>Update</ButtonForm>
                    </Form>
                 </FormsDiv>
-            </Container>
-            <Quests/>
-        </>
+       </Container>
     )
 }

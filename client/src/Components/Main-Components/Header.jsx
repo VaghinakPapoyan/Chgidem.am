@@ -332,4 +332,9 @@ const userImg = process.env.PUBLIC_URL + "images/user.png";
     }
 }
 
-export default memo(Header)
+export default memo(Header,(prevProps, nextProps)=>{
+    if(prevProps === nextProps){
+        return false
+    }
+    return false
+  })

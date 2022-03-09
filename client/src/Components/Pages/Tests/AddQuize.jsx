@@ -97,7 +97,7 @@ export default function AddQuize() {
         return (i) => {
             newAnsver[i] = {ansver:e.target.value,checked:newAnsver[i].checked}
             if(newAnsver[i].checked === true){
-                setInfo({...info,trueAnsver:newAnsver[i].ansver})
+                setInfo({...info,trueAnsver:i+1})
             }
             setInfo({...info,ansvers:newAnsver})
         }
@@ -111,7 +111,7 @@ export default function AddQuize() {
         }
         return (i)=>{
             newAnsver[i] = {ansver:newAnsver[i].ansver,checked:e.target.checked}
-            return setInfo({...info,ansvers:newAnsver}),setInfo({...info,trueAnsver : i})
+            return setInfo({...info,ansvers:newAnsver}),setInfo({...info,trueAnsver : i+1})
         }
     }
     const AddQuest = (e)=>{
