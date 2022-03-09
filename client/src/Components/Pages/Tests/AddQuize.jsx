@@ -143,7 +143,7 @@ export default function AddQuize() {
                 <Header page="create-quiz" auth />
                 <FormsDiv>
                   <Form onSubmit={(e)=>AddQuest(e)}>
-                      <TitleForm>Add Questions</TitleForm>
+                      <TitleForm>Add Quest</TitleForm>
                       <Input mb='10px' placeholder='Enter quest title' value={info.title} name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter quest' value={info.quest} name='quest' onChange={(e)=>HandClick(e)}/>
                         <Line><Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/> <InputChekc defaultChecked type="radio" onClick={(e)=>ChangeValue(e)(0)} name='d' /></Line>
