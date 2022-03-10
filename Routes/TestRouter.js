@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { Add, DeleteTest, GetAll, GetChecked, GetTest, NumberTests, Start } from "./Controllers/TestRouter.controller.js";
+import { Add, DeleteTest, GetAll, GetChecked, GetTest, NumberTests, Search, Start } from "./Controllers/TestRouter.controller.js";
 
 const TestRouter = Router()
 
@@ -23,6 +23,9 @@ TestRouter.post('/get/start',Start)
 TestRouter.post('/get/checked',GetChecked)
 
 TestRouter.post('/delete/test',DeleteTest)
+
+TestRouter.post('/get/search',Search)
+
 
 
 export default TestRouter

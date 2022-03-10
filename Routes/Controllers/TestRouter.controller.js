@@ -82,3 +82,26 @@ export async function GetChecked(req,res){
         tests
     })
 }
+
+export async function Search(req,res){
+    const {searchText} = req.body
+    const arraySearch = searchText.split('')
+    const tests = await Test.find()
+    const result=[]
+    for(let i = 0;i<tests.length;i++){
+        let match = 0;
+        for(let z = 0;z<arraySearch.length;z++){
+            if(arraySearch[z] !== ' ' &&  tests[i].title.includes(arraySearch[z])){
+                match++
+            }
+        }
+        if(match === arraySearch.length){
+            match = 0;
+            result.push(tests[i])
+        }
+        match = 0
+    }
+    res.json({
+        result
+    })
+}

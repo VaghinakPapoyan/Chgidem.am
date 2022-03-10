@@ -28,7 +28,6 @@ export default function TestsButtons({setData,length}){
         const data = await axios.post('/api/get/checked',{e})
         setData(data.data.tests)
     }
-
     return(
         <TestsFlex mt>
             {length.map((e)=>{
