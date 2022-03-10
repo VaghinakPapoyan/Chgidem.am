@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import styled from "styled-components"
 import { Container } from "../../../styles/styles"
-import Header from "../../Main-Components/Header"
 import TestInfo from "./TestInfo"
 import { TestMap } from "./TestMap"
 
@@ -21,7 +20,6 @@ export default function  TestSee(){
     return(
         <Home>
             <Container>
-                <Header auth/>
                 <Flex>
                     <TestMap changeId = {(id,text)=>setInfo({testId:id,text})} id={info.testId}></TestMap>
                     <TestInfo testInfo={info}  changeId = {(id,text)=>setInfo({testId:id,text})}></TestInfo>
