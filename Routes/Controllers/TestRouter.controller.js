@@ -84,14 +84,16 @@ export async function GetChecked(req,res){
 }
 
 export async function Search(req,res){
-    const {searchText} = req.body
+    const {textSearch} = req.body
+        let searchText = textSearch.toLowerCase()
     const arraySearch = searchText.split('')
     const tests = await Test.find()
     const result=[]
     for(let i = 0;i<tests.length;i++){
         let match = 0;
+        const title = tests[i].title.toLowerCase()
         for(let z = 0;z<arraySearch.length;z++){
-            if(arraySearch[z] !== ' ' &&  tests[i].title.includes(arraySearch[z])){
+            if(arraySearch[z] !== ' ' && title.includes(arraySearch[z])){
                 match++
             }
         }

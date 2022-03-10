@@ -76,7 +76,7 @@ export default function Global(){
     },[] )
 
     const SearchForm = async () =>{
-        const data = await axios.post('/api/get/search',{searchText})
+        const data = await axios.post('/api/get/search',{textSearch:searchText})
         setTests(data.data.result)
         setLength([])
     }
