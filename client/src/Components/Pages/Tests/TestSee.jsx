@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
 import styled from "styled-components"
 import { Container } from "../../../styles/styles"
 import TestInfo from "./TestInfo"

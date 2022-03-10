@@ -84,9 +84,12 @@ export function ChangeQuize(){
     const [ errors,setErrors] = useState()
     const navigate = useNavigate()
     
-    useEffect( async () => {
-        await axios.post('/api/getOne',{questId}).then(res=>setInfo({...res.data.quest}))
-    },[] )
+    useEffect( () => {
+        async function Fetch(){
+            await axios.post('/api/getOne',{questId}).then(res=>setInfo({...res.data.quest}))
+        }
+        Fetch()
+    },[questId] )
 
     const HandClick = (e) =>{
         setInfo({...info,[e.target.name]:e.target.value})
@@ -112,7 +115,7 @@ export function ChangeQuize(){
         }
         return (i)=>{
             newAnsver[i] = {ansver:newAnsver[i].ansver,checked:e.target.checked}
-            return setInfo({...info,ansvers:newAnsver}),setInfo({...info,trueAnsver : i+1})
+            return setInfo({...info,ansvers:newAnsver,trueAnsver : i+1})
         }
     }
     

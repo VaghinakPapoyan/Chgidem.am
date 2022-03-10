@@ -13,7 +13,7 @@ const Test = styled.div`
     margin-bottom:${props=>props.mb?props.mb:'0px'};
     padding:10px 0px 10px 10px;
     transition:0.3s;
-    ${props=>props.active == 'active' ? ` border-left: 5px solid #FFCD28;`:`border-left: 5px solid #1D263A;`}
+    ${props=>props.active === 'active' ? ` border-left: 5px solid #FFCD28;`:`border-left: 5px solid #1D263A;`}
     border-radius:5px;
 `
 const Title = styled.div`
