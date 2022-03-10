@@ -6,6 +6,7 @@ import sendMail from "../../moduls/sendMail.js"
 
 let user = {};
 let verificationCode = null;
+let thisEmail = "";
 
 export async function dataCheck(req,res){
   try
@@ -53,7 +54,6 @@ export async function registration(req,res){
   {
     const { code } = req.body
 
-
     //validation
     if (code !== verificationCode) {
       return res.status(200).json({ error: "Code is incorrect" });
@@ -62,7 +62,7 @@ export async function registration(req,res){
     await user.save();
 
     const token = await jwt.sign( { userId:user._id},process.env.secret,{  expiresIn: '10d', } )
-
+    verificationCode = null;
     return res.status(200).json( { ok: true, message: 'User Created',token } )
   }
   catch(e)
@@ -124,8 +124,16 @@ export async function forgetPassword(req,res){
           return res.status(200).json({ error: errors.array()[0].msg });
         }
     
+        const candidate = await User.findOne({ email })
+
+        if(!candidate)
+        {
+            return res.status(200).json({ error: "Dont get user with email: " + email });
+        }
         verificationCode = String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10)) + String(Math.floor(Math.random() * 10));
 
+        thisEmail = email;
+        
         await sendMail("Chgidem.am", email, "Verification Code", String(verificationCode), String(verificationCode))
 
         return res.status(200).json( { ok: true, message: 'Data is correct' } )
@@ -135,6 +143,56 @@ export async function forgetPassword(req,res){
         return res.json( { error:e } );
     }
 }
+
+export async function changePassword(req,res){
+    try
+    {
+        const {password} = req.body
+
+        // validation
+        const errors =  validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(200).json({ error: errors.array()[0].msg });
+        }
+
+        if(password !== req.body.changePassword)
+        {
+          return res.status(200).json({ error: "confirm password is not similar" });
+        }
+    
+        const HashPassword = await bcrypt.hash( password, 7 )
+
+        user.password = HashPassword;
+        await user.save();
+        verificationCode = null;
+        return res.status(200).json( { ok: true, message: 'User Changed' } )
+    }
+    catch(e)
+    {
+        return res.json( { error:e } );
+    }
+}
+
+
+export async function goToChange(req,res){
+    try
+    {
+      const { code } = req.body
+  
+      //validation
+      if (code !== verificationCode) {
+        return res.status(200).json({ error: "Code is incorrect" });
+      }
+  
+      user = await User.findOne({ email: thisEmail })
+      
+      return res.status(200).json( { ok: true, message: 'Code is correct' } )
+    }
+    catch(e)
+    {
+        return res.json( { error:e } )
+    }
+  }
 
 export async function getUser(req,res){
     try

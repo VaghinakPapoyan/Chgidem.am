@@ -1,5 +1,6 @@
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
+import Header from "./Main-Components/Header.jsx";
 import { AuthHome } from "./Pages/Auth/AuthHome";
 import CreateQuiz from "./Pages/Create Quiz/CreateQuiz";
 import Questions from "./Pages/Create Quiz/Questions";
@@ -16,15 +17,18 @@ export default function route(isAuth){
     if(!isAuth){
         return(
             <Routes>
+                <Header />
                 <Route path='/' element={<Home/>} />
                 <Route path="/account/registration" element={<Form />}/>
                 <Route path="/account/log-in" element={<Form login />}/>
-                <Route path="/account/forget-password" element={<Form login changePassword />}/>
+                <Route path="/account/forget-password" element={<Form login forget />}/>
+                <Route path="/account/change-password" element={<Form login cp />}/>
             </Routes>
         )
     }
     return(
         <Routes>
+            <Header />
             <Route path="/" element={<AuthHome setState/>}/>
             <Route path="/create-quiz" element={<CreateQuiz />}/>
             <Route path="/questions" element={<Questions />}/>

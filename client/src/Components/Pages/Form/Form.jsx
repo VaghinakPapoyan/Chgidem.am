@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
 import Header from '../../Main-Components/Header'
-import { sendForm, sendLogin, registration, changePassword } from '../../../hooks/useUser'
+import { sendForm, sendLogin, registration, forgetPassword, changePassword, goToChange } from '../../../hooks/useUser'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -64,6 +64,7 @@ export const InputDiv = styled.div`
 export const Error = styled.div` 
     font-weight: 600;
     margin-top: 25px;
+    white-space: nowrap;
     color: ${({theme}) => theme.colors.thirdColor};
 `
 const SignupFooter = styled.div`
@@ -80,19 +81,19 @@ const Forget = styled(Link)`
     margin-left: 20px;
     border: none;
 `
-
-export default function Form({login,changePassword}) 
+export default function Form({login, forget, cp}) 
 {
     const [form, setForm] = useState(
     {
         email: "",
         username: "",
-        password: ""
+        password: "",
+        changePassword: ""
     })
-    
     const [error, setError] = useState("")
-    const [code, setCode] = useState(0);
+    const [code, setCode] = useState("");
     const [next, setNext] = useState(false)
+    const [canChangePassword, setCanChangePassword] = useState(false)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -103,18 +104,16 @@ export default function Form({login,changePassword})
     const Submit = e => 
     {
         if(next)
-            registration(e)(code, setError, dispatch, navigate)
+            registration(e)(code, setError, dispatch, navigate, setForm)
         else
             sendForm(e)(form, setError, setNext)
     }
     const forgetSubmit = e => 
     {
-        e.preventDefault();
-        console.log("asdfkjslad;f");
         if(next)
-            registration(e)(code, setError, dispatch, navigate)
+            goToChange(e)(code, setError, navigate, setForm, setCanChangePassword)
         else
-            changePassword(e)(form.email, setError, setNext)
+            forgetPassword(e)(form.email, setError, setNext)
     }
     if(!login)
     {
@@ -126,22 +125,22 @@ export default function Form({login,changePassword})
                     <Title>Registration</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email</Label>
-                        <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email.'/>
+                        <Input value={form.email || ""} autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email.'/>
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='username'>Username</Label>
-                        <Input autoComplete="off" name="username" onChange={e => changeForm(e)} id='username' placeholder='Write your username.' />
+                        <Input value={form.username || ""} autoComplete="off" name="username" onChange={e => changeForm(e)} id='username' placeholder='Write your username.' />
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input autoComplete="off" type="password" name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input value={form.password || ""} autoComplete="off" type="password" name="password" onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
                     { 
                         next 
                         ?
                         <InputDiv>
                             <Label htmlFor='validataion-code'>We send code in your email</Label>
-                            <ValidationInput autoComplete="off" onChange={e => setCode(e.target.value)} value={code} type="password" name="validataion-code" id='validataion-code' placeholder='Write your validation code.' />
+                            <ValidationInput value={code || ""} autoComplete="off" onChange={e => setCode(e.target.value)} type="password" name="validataion-code" id='validataion-code' placeholder='Write your validation code.' />
                         </InputDiv> 
                         : null 
                     }
@@ -153,7 +152,7 @@ export default function Form({login,changePassword})
             </Container>
         )
     }
-    else if(changePassword)
+    else if(forget)
     {
         return (
             <Container>
@@ -162,7 +161,7 @@ export default function Form({login,changePassword})
                     <Title>Forget Password</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email</Label>
-                        <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
+                        <Input value={form.email || ""} autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
                     </InputDiv>
                     { 
                         next 
@@ -181,20 +180,43 @@ export default function Form({login,changePassword})
             </Container>
         )
     }
+    else if(cp && canChangePassword)
+    {
+        return (
+            <Container>
+                <Header />
+                <FormComponent onSubmit={e => changePassword(e)(form, setError, navigate, setForm, setNext, setCode)}>
+                    <Title>Change Password</Title>
+                    <InputDiv>
+                        <Label htmlFor='password'>New password</Label>
+                        <Input autoComplete="off" value={form.password || ""} type="password" name="password" onChange={e => changeForm(e)} id='password' placeholder='Write new password.' />
+                    </InputDiv>
+                    <InputDiv>
+                        <Label htmlFor='changePassword'>Confirm password</Label>
+                        <Input autoComplete="off" value={form.changePassword || ""} type="password" name="changePassword" onChange={e => changeForm(e)} id='changePassword' placeholder='Confirm password.' />
+                    </InputDiv>
+                    <Error>{ error }</Error>
+                    <SignupFooter>
+                        <ThisButton>Send Code</ThisButton>
+                    </SignupFooter>
+                </FormComponent>
+            </Container>
+        )
+    }
     else
     {
         return (
             <Container>
                 <Header />
-                <FormComponent onSubmit={e=>sendLogin(e)(form,setError,navigate,dispatch)}>
+                <FormComponent onSubmit={e=>sendLogin(e)(form,setError,navigate,dispatch,setForm)}>
                     <Title>Log In</Title>
                     <InputDiv>
                         <Label htmlFor='email'>Email</Label>
-                        <Input autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
+                        <Input value={form.email} autoComplete="on" name="email" onChange={e => changeForm(e)} id='email' placeholder='Write your email or username.'/>
                     </InputDiv>
                     <InputDiv>
                         <Label htmlFor='password'>Password</Label>
-                        <Input autoComplete="off" type='password'  name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
+                        <Input value={form.password} autoComplete="off" type='password'  name="password"  onChange={e => changeForm(e)} id='password' placeholder='Write your password.' />
                     </InputDiv>
                     <Error>{ error }</Error>
                     <SignupFooter>

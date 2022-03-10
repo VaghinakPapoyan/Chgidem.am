@@ -35,7 +35,7 @@ export const sendLogin = e => {
                 setError("")
                 dispatch({
                     type:'changeToken',
-                    token:res.data.token
+                    token: res.data.token
                 })
                 navigate('/')
 
@@ -51,7 +51,7 @@ export const sendLogin = e => {
 export const registration = e => 
 {
     e.preventDefault();
-    return async (code, setError,dispatch,navigate) => 
+    return async (code, setError,dispatch,navigate, setForm) => 
     {
         try
         {
@@ -59,11 +59,11 @@ export const registration = e =>
             console.log(res);
             if(res.data.ok)
             {
-                console.log("sad");
                 dispatch({
                     type:'changeToken',
                     token:res.data.token
                 })
+                setForm({ email: "", username: "", password: "", changePassword: "" });
                 navigate('/')
             }
             else if(res.status === 200)
@@ -78,7 +78,7 @@ export const registration = e =>
     }
 }
 
-export const logout = (dispatch,navigate) => 
+export const logout = (dispatch,navigate, setForm) => 
 {
     localStorage.removeItem("User")
     dispatch({
@@ -145,17 +145,76 @@ export const ChangeImg =  e =>
     }
 }
 
-export const changePassword = e => 
+export const forgetPassword = e => 
 {
-    return async (email, setNext, setError) => 
+    return async (email, setError, setNext) => 
     {
         try
         {
+            e.preventDefault();
             const res = await axios.post('/api/forget-password', {email})
-            if(res.data.ok)
+            if(res?.data?.ok === true)
             {
+                console.log("true");
                 setNext(true);
                 setError("")
+            }
+            else if(res.status === 200)
+            {
+                setError(res.data.error)
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+   
+}
+
+export const changePassword = e => 
+{
+    return async (form, setError, navigate, setForm, setNext, setCode) => 
+    {
+        try
+        {
+            e.preventDefault();
+            const res = await axios.post('/api/change-password', {...form})
+            if(res?.data?.ok === true)
+            {
+                setForm({ email: "", username: "", password: "", changePassword: "" });
+                setError("")
+                setNext("")
+                setCode("")
+                navigate("/account/log-in")
+            }
+            else if(res.status === 200)
+            {
+                setError(res.data.error)
+            }
+        }
+        catch(err)
+        {
+            console.log(err);
+        }
+    }
+   
+}
+
+export const goToChange = e => 
+{
+    return async (code, setError, navigate, setForm, setCanChangePassword) => 
+    {
+        try
+        {
+            e.preventDefault();
+            const res = await axios.post('/api/go-to-change', { code })
+            if(res?.data?.ok === true)
+            {
+                setError("")
+                setForm({ email: "", username: "", password: "", changePassword: "" });
+                setCanChangePassword(true)
+                navigate("/account/change-password")
             }
             else if(res.status === 200)
             {
