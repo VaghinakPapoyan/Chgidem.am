@@ -4,11 +4,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import {  questAdd } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
 import { Quests } from '../Create Quiz/Quests'
-import TestInfo from './TestInfo'
 
 const Input = styled.input`
     display:block;
@@ -140,7 +137,6 @@ export default function AddQuize() {
     return (
         <>
             <Container>
-                <Header page="create-quiz" auth />
                 <FormsDiv>
                   <Form onSubmit={(e)=>AddQuest(e)}>
                       <TitleForm>Add Quest</TitleForm>

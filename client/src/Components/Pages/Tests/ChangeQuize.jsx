@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container } from "../../../styles/styles";
-import Header from "../../Main-Components/Header";
 import styled from "styled-components";
 import { useEffect } from "react";
 import axios from "axios";
@@ -138,7 +137,6 @@ export function ChangeQuize(){
     }
     return(
        <Container>
-           <Header auth/>
                 <FormsDiv>
                   <Form onSubmit={(e)=>AddQuest(e)}>
                       <Input mb='10px' placeholder='Enter quest title' value={info.title} name='title' onChange={(e)=>HandClick(e)}/>
