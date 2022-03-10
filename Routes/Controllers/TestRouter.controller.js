@@ -53,3 +53,32 @@ export async function DeleteTest(req,res){
         ok:true
     })
 }
+
+export async function NumberTests(req,res){
+    const tests = await Test.find()
+    const number = Math.ceil(tests.length/8)
+    const length = []
+    for(let i = 0;i<number;i++){
+        length.push(i+1)
+    }
+    res.json({
+        length
+    })
+}
+
+export async function Start(req,res){
+    const tests = await Test.find().limit(8)
+    res.json({
+        tests
+    })
+}
+
+export async function GetChecked(req,res){
+    const {e} = req.body;
+    const data = await Test.find().limit(e*8)
+    const number = e-1
+    const tests = data.slice(number*8)
+    res.json({
+        tests
+    })
+}
