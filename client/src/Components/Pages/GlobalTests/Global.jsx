@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
 import { MyButton, SubTitle, TestComponent } from "../Auth/components/Test";
 import TestsButtons from './TestsButtons';
 

@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
-import Header from "./Main-Components/Header.jsx";
+import { Container } from "../styles/styles";
+import Header from "./Main-Components/Header";
 import { AuthHome } from "./Pages/Auth/AuthHome";
 import CreateQuiz from "./Pages/Create Quiz/CreateQuiz";
 import Questions from "./Pages/Create Quiz/Questions";
@@ -16,27 +17,35 @@ import TestSee from "./Pages/Tests/TestSee";
 export default function route(isAuth){
     if(!isAuth){
         return(
-            <Routes>
-                <Header />
-                <Route path='/' element={<Home/>} />
-                <Route path="/account/registration" element={<Form />}/>
-                <Route path="/account/log-in" element={<Form login />}/>
-                <Route path="/account/forget-password" element={<Form login forget />}/>
-                <Route path="/account/change-password" element={<Form login cp />}/>
-            </Routes>
+            <>
+                <Container>
+                    <Header />
+                </Container>
+                <Routes>
+                    <Route path='/' element={<Home/>} />
+                    <Route path="/account/registration" element={<Form />}/>
+                    <Route path="/account/log-in" element={<Form login />}/>
+                    <Route path="/account/forget-password" element={<Form login forget />}/>
+                    <Route path="/account/change-password" element={<Form login cp />}/>
+                </Routes>
+            </>
         )
     }
     return(
-        <Routes>
-            <Header />
-            <Route path="/" element={<AuthHome setState/>}/>
-            <Route path="/create-quiz" element={<CreateQuiz />}/>
-            <Route path="/questions" element={<Questions />}/>
-            <Route path="/edit-profile" element={<EditProfile />}/>
-            <Route path="/Tests" element={<Global />}/>
-            <Route path="/Quizes" element={<TestSee />}/>
-            <Route path="/AddQuize/:id" element={<AddQuize />}/>
-            <Route path="/Quizes/change/:id" element={<ChangeQuize />}/>
-        </Routes>
+        <>
+            <Container>
+                <Header auth />
+            </Container>
+            <Routes>
+                <Route path="/" element={<AuthHome setState/>}/>
+                <Route path="/create-quiz" element={<CreateQuiz />}/>
+                <Route path="/questions" element={<Questions />}/>
+                <Route path="/edit-profile" element={<EditProfile />}/>
+                <Route path="/Tests" element={<Global />}/>
+                <Route path="/Quizes" element={<TestSee />}/>
+                <Route path="/AddQuize/:id" element={<AddQuize />}/>
+                <Route path="/Quizes/change/:id" element={<ChangeQuize />}/>
+            </Routes>
+        </>
     )
 }

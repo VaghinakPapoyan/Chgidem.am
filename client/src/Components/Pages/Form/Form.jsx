@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
 import { sendForm, sendLogin, registration, forgetPassword, changePassword, goToChange } from '../../../hooks/useUser'
 import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -119,7 +118,6 @@ export default function Form({login, forget, cp})
     {
         return (
             <Container>
-                <Header />
                 <FormComponent 
                     onSubmit={e => Submit(e)}>
                     <Title>Registration</Title>
@@ -156,7 +154,6 @@ export default function Form({login, forget, cp})
     {
         return (
             <Container>
-                <Header />
                 <FormComponent onSubmit={e => forgetSubmit(e)}>
                     <Title>Forget Password</Title>
                     <InputDiv>
@@ -184,7 +181,6 @@ export default function Form({login, forget, cp})
     {
         return (
             <Container>
-                <Header />
                 <FormComponent onSubmit={e => changePassword(e)(form, setError, navigate, setForm, setNext, setCode)}>
                     <Title>Change Password</Title>
                     <InputDiv>
@@ -207,7 +203,6 @@ export default function Form({login, forget, cp})
     {
         return (
             <Container>
-                <Header />
                 <FormComponent onSubmit={e=>sendLogin(e)(form,setError,navigate,dispatch,setForm)}>
                     <Title>Log In</Title>
                     <InputDiv>

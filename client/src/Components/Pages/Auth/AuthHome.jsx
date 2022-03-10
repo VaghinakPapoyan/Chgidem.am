@@ -1,4 +1,3 @@
-import Header from "../../Main-Components/Header";
 import { Container } from "../../../styles/styles.js"
 import Tests from "./components/Tests";
 
@@ -8,7 +7,6 @@ export function AuthHome(){
     return(
         <>
             <HomeContainer>
-                <Header auth page="home" />
             </HomeContainer>
             <Tests />
         </>

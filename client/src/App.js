@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { loading } from "./Components/loading";
 import route from "./Components/Route";
 import { useEffect, useState } from "react"
+import Header from "./Components/Main-Components/Header";
 
 function App() {
   const token = useSelector(state=>state.token)

@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { createTest } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
-
 
 const Input = styled.input`
     display:block;
@@ -76,7 +74,6 @@ export default function CreateQuiz() {
     return (
         <div>
             <Container>
-                <Header page="create-quiz" auth />
                 <FormsDiv>
                   <Form  onSubmit={(e)=>createTest(e)(info,navigate,setError)}>
                       <TitleForm>Creating Test</TitleForm>

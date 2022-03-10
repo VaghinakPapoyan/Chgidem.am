@@ -2,9 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import {  questAdd } from '../../../hooks/useTest'
 import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
 import { Quests } from './Quests'
 
 
@@ -137,14 +135,13 @@ export default function Questions() {
     return (
         <>
             <Container>
-                <Header page="create-quiz" auth />
                 <FormsDiv>
                   <Form onSubmit={(e)=>AddQuest(e)}>
                       <TitleForm>Add Questions</TitleForm>
                       <Input mb='10px' placeholder='Enter quest title' value={info.title} name='title' onChange={(e)=>HandClick(e)}/>
                       <Input mb='10px' placeholder='Enter quest' value={info.quest} name='quest' onChange={(e)=>HandClick(e)}/>
                         <Line><Input mb='10px' placeholder='Enter ansver 1' value={info.ansvers[0].ansver}   onChange={(e)=>ChangeAnsver(e)(0)}/> <InputChekc defaultChecked type="radio" onClick={(e)=>ChangeValue(e)(0)} name='d' /></Line>
-                        <Line>   <Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/><InputChekc type="radio" onClick={(e)=>ChangeValue(e)(1)}  name='d'/></Line>
+                        <Line><Input mb='10px' placeholder='Enter ansver 2'  value={info.ansvers[1].ansver}  onChange={(e)=>ChangeAnsver(e)(1)}/><InputChekc type="radio" onClick={(e)=>ChangeValue(e)(1)}  name='d'/></Line>
                       <Line><Input mb='10px' placeholder='Enter ansver 3'  value={info.ansvers[2].ansver}  onChange={(e)=>ChangeAnsver(e)(2)}/> <InputChekc type="radio" onClick={(e)=>ChangeValue(e)(2)}  name='d'/></Line>
                       <Line><Input mb='10px' placeholder='Enter ansver 4'  value={info.ansvers[3].ansver}  onChange={(e)=>ChangeAnsver(e)(3)}/> <InputChekc type="radio" onClick={(e)=>ChangeValue(e)(3)}  name='d'/></Line>
                        

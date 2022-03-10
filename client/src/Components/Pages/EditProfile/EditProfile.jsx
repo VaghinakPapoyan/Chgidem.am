@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import styled, {keyframes} from 'styled-components'
 import { Container } from '../../../styles/styles'
-import Header from '../../Main-Components/Header'
 import { Input, Label, InputDiv, Title, Error } from '../Form/Form'
 import { ButtonForm } from '../Create Quiz/CreateQuiz'
 import { useSelector } from "react-redux"
@@ -143,7 +142,6 @@ export default function EditProfile() {
     }, [form])
     return (
         <Container>
-            <Header auth page="edit-profile"/>
             <EditProfileComponent>
                 <UserInfo onSubmit={e => updateData(e)(form, setError, setMessage, setLoading)}>
                     <MyTitle>My Profile</MyTitle>
