@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { login, registration, dataCheck, getUser, forgetPassword } from "./Controllers/UserRoute.controller.js";
+import { login, registration, dataCheck, getUser, forgetPassword, changePassword, goToChange } from "./Controllers/UserRoute.controller.js";
 
 const UserRoute = Router()
 
@@ -33,6 +33,19 @@ UserRoute.post(
         check('email','Email is incorrect').isEmail(),
     ],
     forgetPassword
+)
+
+UserRoute.post(
+    '/change-password',
+    [
+        check('password','minimum length of password was 8').isLength(8)
+    ],
+    changePassword
+)
+
+UserRoute.post(
+    '/go-to-change',
+    goToChange
 )
 
 UserRoute.get('/getUser/:token',getUser )
