@@ -67,7 +67,7 @@ export async function NumberTests(req,res){
 }
 
 export async function Start(req,res){
-    const tests = await Test.find().limit(8)
+    const tests = await Test.find().limit(8).sort({_id:-1})
     res.json({
         tests
     })
