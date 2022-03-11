@@ -7,6 +7,16 @@ const Tests = styled.div`
     padding-right:40px;
     border-right: 2px solid ${({ theme }) => theme.colors.mainTextColor};
     border-radius:0px;
+    @media (max-width: 992px) {
+        padding:0px;
+        padding-bottom:20px;
+        max-width:100%;
+        border:none;
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        border-bottom: 2px solid ${({ theme }) => theme.colors.mainTextColor};
+    }
 `
 const Test = styled.div`
     cursor:pointer;
@@ -15,12 +25,22 @@ const Test = styled.div`
     transition:0.3s;
     ${props=>props.active === 'active' ? ` border-left: 5px solid #FFCD28;`:`border-left: 5px solid #1D263A;`}
     border-radius:5px;
+    @media (max-width: 992px) {
+        padding:10px 0px 15px 10px;
+        border-radius:20px;
+        border:none;
+        margin-right:20px;
+        ${props=>props.active === 'active' ? ` border-bottom: 5px solid #FFCD28;`:`border-bottom: 5px solid #1D263A;`}
+    }
 `
 const Title = styled.div`
     font-weight:600;
     font-size:16px;
     margin-bottom:${props=>props.mb?props.mb:'0px'};
     color: ${({ theme }) => theme.colors.mainTextColor};
+    display:block;
+    width:100%;
+    text-align:center;
 `
 const Ansvers = styled.div`
     display:flex;

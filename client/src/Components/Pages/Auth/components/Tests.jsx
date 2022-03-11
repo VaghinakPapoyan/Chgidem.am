@@ -20,6 +20,11 @@ export const TestsComponent = styled.div`
 export const NewTitle = styled(TitleComponent)`
   padding-top: 45px;
   padding-bottom: 25px;
+  border:none;
+  @media (max-width: 992px){
+    font-size: 25px;
+  }
+
 `
 
 export default function Tests() {

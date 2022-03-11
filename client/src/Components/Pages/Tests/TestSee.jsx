@@ -10,6 +10,9 @@ const Flex = styled.div`
     display:flex;
     margin-top:40px;
     min-height:80vh;
+    @media (max-width: 992px) {
+        flex-direction: column;
+    }
 `
 export default function  TestSee(){
     const [info,setInfo] = useState({

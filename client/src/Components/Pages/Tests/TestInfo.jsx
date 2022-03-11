@@ -15,6 +15,9 @@ const Info = styled.div`
     margin-left:20px;
     padding-top:20px;
     width:100%;
+    @media (max-width: 992px){
+        margin-left:0px;
+    }
 `
 const Text = styled.p`
     margin-bottom:10px;
