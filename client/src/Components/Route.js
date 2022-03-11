@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Container } from "../styles/styles";
 import Header from "./Main-Components/Header";
+import Answer from "./Pages/answer/Answer";
 import { AuthHome } from "./Pages/Auth/AuthHome";
 import CreateQuiz from "./Pages/Create Quiz/CreateQuiz";
 import Questions from "./Pages/Create Quiz/Questions";
@@ -45,6 +46,7 @@ export default function route(isAuth){
                 <Route path="/Quizes" element={<TestSee />}/>
                 <Route path="/AddQuize/:id" element={<AddQuize />}/>
                 <Route path="/Quizes/change/:id" element={<ChangeQuize />}/>
+                <Route path="/answer:id" element={<Answer />}/>
             </Routes>
         </>
     )

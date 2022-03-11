@@ -92,10 +92,10 @@ export default function Global(){
                 {tests.map((e)=>{
                     return (
                         <Test  text key={e._id}>
-                            <Text  mb text>Title : {e.title}</Text>
-                            <Text  mb text>Text :  {e.text}</Text>
-                            <Text  mb text>Ansvers: {e.ansvers.length}</Text>
-                            <ButtonTest  to='/questions' >Answer</ButtonTest>
+                            <Text mb text>Title : {e.title}</Text>
+                            <Text mb text>Text :  {e.text}</Text>
+                            <Text mb text>Ansvers: {e.ansvers.length}</Text>
+                            <ButtonTest to={"/answer:" + e._id}>Answer</ButtonTest>
                         </Test>
                     )
                 })}
