@@ -48,5 +48,5 @@ UserRoute.post(
     goToChange
 )
 
-UserRoute.get('/getUser/:token',getUser )
+UserRoute.get('/getUser/:token', getUser)
 export default UserRoute

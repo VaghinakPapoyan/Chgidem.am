@@ -95,7 +95,7 @@ export default function Global(){
                             <Text mb text>Title : {e.title}</Text>
                             <Text mb text>Text :  {e.text}</Text>
                             <Text mb text>Ansvers: {e.ansvers.length}</Text>
-                            <ButtonTest to={"/answer:" + e._id}>Answer</ButtonTest>
+                            <ButtonTest to={"/answer/" + e._id}>Answer</ButtonTest>
                         </Test>
                     )
                 })}

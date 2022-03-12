@@ -38,7 +38,7 @@ export default function route(isAuth){
                 <Header auth />
             </Container>
             <Routes>
-                <Route path="/" element={<AuthHome setState/>}/>
+                <Route index path="/" element={<AuthHome setState/>}/>
                 <Route path="/create-quiz" element={<CreateQuiz />}/>
                 <Route path="/questions" element={<Questions />}/>
                 <Route path="/edit-profile" element={<EditProfile />}/>
@@ -46,7 +46,7 @@ export default function route(isAuth){
                 <Route path="/Quizes" element={<TestSee />}/>
                 <Route path="/AddQuize/:id" element={<AddQuize />}/>
                 <Route path="/Quizes/change/:id" element={<ChangeQuize />}/>
-                <Route path="/answer:id" element={<Answer />}/>
+                <Route path="/answer/:id" element={<Answer />}/>
             </Routes>
         </>
     )

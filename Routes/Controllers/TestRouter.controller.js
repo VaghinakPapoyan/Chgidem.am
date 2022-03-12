@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 import { Test } from "../../Models/Test.js";
 import jwt from 'jsonwebtoken';
+import { Questions } from "../../Models/Questions.js";
 
 
 export let newTest = {}
@@ -106,4 +107,12 @@ export async function Search(req,res){
     res.json({
         result
     })
+}
+
+export async function getTest(req,res){
+    const { id } = req.params;
+    const test = await Test.findOne({ _id: id })
+    console.log(id);
+    const quests = await Questions.find({ testId: id })
+    res.json({ test, quests })
 }
