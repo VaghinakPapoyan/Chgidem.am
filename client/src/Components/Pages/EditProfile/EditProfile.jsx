@@ -101,7 +101,7 @@ const rotate = keyframes`
  0% { transform: rotate(0deg); }
  100% { transform: rotate(360deg); }
 `
-const Load = styled.div`
+export const Load = styled.div`
     width: 25px;
     height: 25px;
     border: 3px solid ${({ theme }) => theme.colors.secondColor};
