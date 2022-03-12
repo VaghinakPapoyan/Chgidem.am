@@ -24,7 +24,7 @@ export const store = createStore((state={token:'',MyTest:[],quests:[],user:{
         case "refreshQuest":
             return {...state,quests:[]}
         case "deletequest":
-            return {...state,quests:state.quests.filter(quest=>state.quests.findIndex(i=>i==quest)!==action.id)}
+            return {...state,quests:state.quests.filter(quest=>state.quests.findIndex(i=>i===quest)!==action.id)}
         case "putTests":
             return {...state,MyTest:action.tests}
         default:

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { loading } from "./Components/loading";
 import route from "./Components/Route";
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 function App() {
   const token = useSelector(state=>state.token)
