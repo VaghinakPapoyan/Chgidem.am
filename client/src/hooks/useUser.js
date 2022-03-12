@@ -1,4 +1,5 @@
 import axios from "axios"
+import { loading } from "../Components/loading";
 
 export const sendForm = e => 
 {
@@ -37,8 +38,8 @@ export const sendLogin = e => {
                     type:'changeToken',
                     token: res.data.token
                 })
+                loading(dispatch)
                 navigate('/')
-
             }else if(res.data.error){
                 setError(res.data.error)
             }
@@ -64,6 +65,7 @@ export const registration = e =>
                     token:res.data.token
                 })
                 setForm({ email: "", username: "", password: "", changePassword: "" });
+                loading(dispatch)
                 navigate('/')
             }
             else if(res.status === 200)

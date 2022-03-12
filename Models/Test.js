@@ -5,8 +5,12 @@ const TestScheme  = new Schema({
     userId:String,
     title: String,
     text:String,
-    ansvers:[
-        {userId:String,score:String}
+    ansvers:
+    [
+        { 
+            userId: String, 
+            score: String 
+        }
     ]
 })
 

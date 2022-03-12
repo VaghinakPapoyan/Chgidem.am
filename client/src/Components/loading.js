@@ -2,7 +2,7 @@ import axios from "axios";
 import { logout } from "../hooks/useUser";
 
 
-export async function loading(dispatch,token){
+export async function loading(dispatch){
       const localtoken = localStorage.getItem('User')
       if(localtoken)
       {
@@ -12,7 +12,6 @@ export async function loading(dispatch,token){
           logout();
         }
         const info = data.data
-        GetTests(dispatch)
         dispatch({
           type:'changeUser',
           user:{
@@ -25,9 +24,9 @@ export async function loading(dispatch,token){
         dispatch({
           type:'changeToken',
           token:localtoken
-      })
-    }
-    return !!token
+        })
+        GetTests(dispatch)
+      }
 }
 
 export async function GetTests(dispatch){

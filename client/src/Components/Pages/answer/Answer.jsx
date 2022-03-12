@@ -31,12 +31,12 @@ const AnsverOne = styled.p`
     {
         border-top-right-radius: 50px;
         border-bottom-right-radius: 50px;
-        border-left: 5px solid ${({ theme }) => theme.colors.thirdTextColor};
+        border-left: 5px solid ${({ theme }) => theme.colors.thirdColor};
     }
     &:last-child
     {
         border-top-left-radius: 50px;
-        border-right: 5px solid ${({ theme }) => theme.colors.thirdTextColor};
+        border-right: 5px solid ${({ theme }) => theme.colors.thirdColor};
         border-bottom-left-radius: 50px;
         margin-left: 50px;
     }
@@ -132,7 +132,7 @@ const ResultTitle = styled(TitleText)`
     font-size: 22px;
     text-align: center;
 `
-const Results = styled.p`
+const Results = styled.div`
     margin-top: 45px;
 ` 
 const ResultSubTitle = styled.p` 

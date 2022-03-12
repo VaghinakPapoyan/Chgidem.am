@@ -2,8 +2,10 @@ import { createStore } from "redux";
 
 
 export const store = createStore((state={token:'',MyTest:[],quests:[],user:{
-    username:'',
-    email:''
+    username: "",
+    email: "",
+    avatar: "",
+    nickname: ""
 }},action)=>{
     switch(action.type){
         case "changeToken":
