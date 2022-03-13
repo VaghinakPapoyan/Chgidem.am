@@ -41,7 +41,7 @@ const ButtonAdd = styled(Link)`
         background:${({ theme }) => theme.colors.mainColor};
         color:${({ theme }) => theme.colors.secondColor};
     }
-    margin-right:${props=>props.mr?'10px':'0px'};
+    margin-right:${props=>props.mr==='true'?'10px':'0px'};
 `
 const Infos = styled.div`
     display:flex;
@@ -56,7 +56,7 @@ const QueryButton  = styled(Link)`
     margin-top:5px;
     text-decoration:none;
     ${props=>
-    props.query
+    props.query==='true'
     ?
         `
             background:${ props.theme.colors.mainTextColor};
@@ -122,12 +122,12 @@ const QueryButton  = styled(Link)`
                         {e.ansvers[2].ansver===''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
                         {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
                         <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
-                       <Infos> <QueryButton  to={`change/${e._id}`} query>Change</QueryButton><QueryButton to='#' onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
+                       <Infos> <QueryButton  to={`change/${e._id}`} query='true' >Change</QueryButton><QueryButton to='#' onClick={()=>DeletQuest(e._id)}>Delete</QueryButton></Infos>
                     </TestComponent>
                 )
             })}
         </Container>
-                    <Infos mb text>  <ButtonAdd to={`/AddQuize/${testInfo.testId}`} mr>Add Quest</ButtonAdd><ButtonAdd to='#' onClick={()=>DeleteTest(testInfo.testId)}>Delete Test</ButtonAdd></Infos>
+                    <Infos mb text>  <ButtonAdd to={`/AddQuize/${testInfo.testId}`} mr='true'>Add Quest</ButtonAdd><ButtonAdd to='#' onClick={()=>DeleteTest(testInfo.testId)}>Delete Test</ButtonAdd></Infos>
         </TestsComponent>
         </Info>
     )

@@ -21,7 +21,6 @@ export async function dataCheck(req,res){
 
     //search data
     let data = await User.findOne({username})
-    console.log(data);
     if( data ){
         return res.status(200).json( { error:'This name already taken' } )
     }

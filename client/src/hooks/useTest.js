@@ -9,7 +9,6 @@ export const createTest = (e)=>{
         if(data.data.error){
             setError(data.data.error)
         }else{
-            console.log('a')
             setError('')
             navigate('/questions')
         }

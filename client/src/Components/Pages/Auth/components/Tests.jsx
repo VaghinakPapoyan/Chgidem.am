@@ -42,7 +42,7 @@ export default function Tests() {
         <NewTitle>Most Popular Quiz</NewTitle>
         <Container>
             {tests.map((e)=>{
-              return <Test title={e.title} subTitle={e.text} testId={e._id}></Test>
+              return <Test title={e.title} subTitle={e.text} testId={e._id} key={e._id}></Test>
             })}
         </Container>
     </TestsComponent>

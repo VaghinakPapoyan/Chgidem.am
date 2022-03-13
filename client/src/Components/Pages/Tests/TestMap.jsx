@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import styled from "styled-components"
 
 const Tests = styled.div`
-    max-width:20%;
+    max-width:30%;
     margin-right:10px;
     padding-right:40px;
     border-right: 2px solid ${({ theme }) => theme.colors.mainTextColor};
@@ -25,7 +25,9 @@ const Test = styled.div`
     transition:0.3s;
     ${props=>props.active === 'active' ? ` border-left: 5px solid #FFCD28;`:`border-left: 5px solid #1D263A;`}
     border-radius:5px;
+    min-width:200px;
     @media (max-width: 992px) {
+        min-width:150px;
         padding:10px 0px 15px 10px;
         border-radius:20px;
         border:none;
