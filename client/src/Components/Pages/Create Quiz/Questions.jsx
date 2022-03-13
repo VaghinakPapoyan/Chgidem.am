@@ -111,9 +111,7 @@ export default function Questions() {
     }
     const AddQuest = (e)=>{
         e.preventDefault()
-        if(info.title.length<4){
-            setErrors('title minimum length was 4')
-        }else if(info.quest.length<4){
+        if(info.quest.length<4){
             setErrors('quest minimum length was 4')
         }else if(info.ansvers[0].ansver === '' || info.ansvers[1].ansver === '' || info.ansvers[2].ansver === '' || info.ansvers[3].ansver === '' ){
             setErrors('please writes oll ansvers')
