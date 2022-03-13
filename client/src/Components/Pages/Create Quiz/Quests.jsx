@@ -28,6 +28,15 @@ const ButtonAdd = styled.button`
 const Info = styled.div`
    
 `
+const MyTestsComponent = styled(TestsComponent)`
+    & > div{
+        padding-bottom:0px  !important;
+    }
+`
+const MyTitle = styled(NewTitle)`
+    font-size:16px !important;
+    padding:20px 0px !important;
+`
 export function Quests({isAdd,testId}){
     const quests = useSelector(state=>state.quests)
     const [display,setDisplay] = useState(false)
@@ -52,7 +61,7 @@ export function Quests({isAdd,testId}){
 
     
     return (
-       <TestsComponent displayI={display?"block":"none"}>
+       <MyTestsComponent displayI={display?"block":"none"}>
            <NewTitle>Quests for this test was {quests.length}</NewTitle>
             <Container>
             {quests.map((e)=>{
@@ -70,7 +79,7 @@ export function Quests({isAdd,testId}){
                 )
             })}
         </Container>
-        <Info mb text> {quests.length >=2  || isAdd ? <ButtonAdd onClick={()=>{questAdd(quests,dispatch,navigate,testId)}}>Add Test</ButtonAdd>:<NewTitle >Minimum quests was 2</NewTitle>}</Info>
-       </TestsComponent>
+        <Info mb text> {quests.length >=2  || isAdd ? <ButtonAdd onClick={()=>{questAdd(quests,dispatch,navigate,testId)}}>Add Test</ButtonAdd>:<MyTitle>Minimum quests was 2</MyTitle>}</Info>
+       </MyTestsComponent>
     )
 }
