@@ -58,7 +58,6 @@ function TestAnsvers( { testId } ){
                 ?
                 <div></div>
                 :
-                <Container>
                     <Table>
                         <Title>
                             Answers
@@ -80,7 +79,6 @@ function TestAnsvers( { testId } ){
                             )   
                         })}  
                     </Table>
-                </Container>
                 // <div>
                 //     {ansvers.map( (e) => {
                 //         return(

@@ -9,6 +9,7 @@ import {  SubTitle, TestComponent } from "../Auth/components/Test";
 import { NewTitle, TestsComponent } from "../Auth/components/Tests";
 import axios from "axios"
 import { useDispatch } from "react-redux"
+import TestAnsvers from "./TestAnsvers"
 
 const Info = styled.div`
     margin-left:20px;
@@ -132,6 +133,7 @@ const QueryButton  = styled(Link)`
         </Container>
                     <Infos mb text>  <ButtonAdd to={`/AddQuize/${testInfo.testId}`} mr='true'>Add Quest</ButtonAdd><ButtonAdd to='#' onClick={()=>DeleteTest(testInfo.testId)}>Delete Test</ButtonAdd></Infos>
         </TestsComponent>
+        <TestAnsvers testId={testInfo.testId}/>
         </Info>
     )
 }

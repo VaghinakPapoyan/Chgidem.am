@@ -35,7 +35,6 @@ export default function  TestSee(){
                     <TestMap changeId = {(id,text)=>setInfo({testId:id,text})} id={info.testId}></TestMap>
                     <TestInfo testInfo={info}  changeId = {(id,text)=>setInfo({testId:id,text})}></TestInfo>
                 </Flex>
-                <TestAnsvers testId={info.testId}/>
             </Container>
         </Home>
     )
