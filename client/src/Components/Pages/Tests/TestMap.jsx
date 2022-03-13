@@ -32,7 +32,7 @@ const Test = styled.div`
         border-radius:10px;
         border:none;
         margin-right:20px;
-        ${props=>props.active === 'active' ?`border-bottom:10px solid ${ props.theme.colors.secondColor}`:`border-bottom:${ props.theme.colors.thirdColor }`};
+        ${props=>props.active === 'active' ?`border-bottom:10px solid ${ props.theme.colors.secondColor}`:`border-bottom: 10px solid ${ props.theme.colors.thirdColor }`};
     }
 `
 const Title = styled.div`
