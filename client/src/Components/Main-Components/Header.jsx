@@ -299,6 +299,7 @@ const ChangeDarkMode = styled.div`
         transform: translateY(-50%);
         border-radius: 50%;
         background-color: ${({ theme }) => theme.colors.secondColor};
+        ${({ active }) => active ? " left: 100%; transform: translateY(-50%) translateX(-100%) translateX(-3px); " : null}
     }
 `
 

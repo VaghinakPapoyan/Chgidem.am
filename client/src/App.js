@@ -31,7 +31,7 @@ function App() {
     ?
     {
       mainColor: "#1D263A",
-      secondColor: "white",
+      secondColor: "#eee",
       thirdColor: "#FFCD28",
       mainTextColor: "white",
       secondTextColor: "#1D263A",

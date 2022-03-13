@@ -22,6 +22,7 @@ const Text = styled.p`
     margin-bottom:10px;
     font-size:18px;
     font-weight:600;
+    color: ${({ theme }) => theme.colors.mainTextColor};
     margin-bottom:20px;
 `
 const ButtonAdd = styled(Link)`
@@ -45,7 +46,10 @@ const ButtonAdd = styled(Link)`
 const Infos = styled.div`
     display:flex;
 `
-
+const ThisLink = styled(Link)` 
+    color: ${({ theme }) => theme.colors.thirdColor};
+    text-decoration: none;
+`
 const QueryButton  = styled(Link)`
     padding:10px 15px;
     border-radius:3px;
@@ -90,7 +94,7 @@ const QueryButton  = styled(Link)`
     if( testInfo.testId==='' || testInfo.testId === null ){
         return(
         <Info>
-            <Text>please select test or <Link to='/create-quiz'>create Test now</Link></Text>
+            <Text>please select test or <ThisLink to='/create-quiz'>create Test now</ThisLink></Text>
         </Info>
         )
     }
@@ -111,9 +115,9 @@ const QueryButton  = styled(Link)`
         <TestsComponent br>
            <NewTitle>Quests for this test was {quests.length}</NewTitle>
             <Container>
-            {quests.map((e)=>{
+            {quests.map((e, index)=>{
                 return (
-                    <TestComponent text key={Math.random()}>
+                    <TestComponent text key={index}>
                         <SubTitle mb text>Title : {e.title}</SubTitle>
                         <SubTitle mb text>quest : {e.quest}</SubTitle>
                         {e.ansvers[0].ansver===''?null:<SubTitle mb text>asnver 1:   {e.ansvers[0].ansver}</SubTitle>}

@@ -23,7 +23,7 @@ const Test = styled.div`
     margin-bottom:${props=>props.mb?props.mb:'0px'};
     padding:10px 0px 10px 10px;
     transition:0.3s;
-    ${props=>props.active === 'active' ? ` border-left: 5px solid #FFCD28;`:`border-left: 5px solid #1D263A;`}
+    ${props=>props.active === 'active' ? ` border-left: 5px solid ${props.theme.colors.thirdColor};`:`border-left: 5px solid ${props.theme.colors.secondColor};`}
     border-radius:5px;
     min-width:200px;
     @media (max-width: 992px) {
@@ -42,7 +42,6 @@ const Title = styled.div`
     color: ${({ theme }) => theme.colors.mainTextColor};
     display:block;
     width:100%;
-    text-align:center;
 `
 const Ansvers = styled.div`
     display:flex;
