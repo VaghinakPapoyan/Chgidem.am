@@ -109,11 +109,11 @@ const HeaderNavigation = styled.ul `
         overflow: hidden;
         transition: 0.4s;
         max-height: 0;
-        background-color: #f7f7f7;
+        background-color: ${({ theme }) => theme.colors.mainColor};
         border-radius: 4px;
-        -webkit-box-shadow: 0px 8px 13px -2px rgba(210, 210, 210, 0.26);
-        -moz-box-shadow: 0px 8px 13px -2px rgba(210, 210, 210, 0.26);
-        box-shadow: 0px 8px 13px -2px rgba(210, 210, 210, 0.26);
+        -webkit-box-shadow: 0px 8px 18px -2px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 8px 18px -2px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 8px 18px -2px rgba(0, 0, 0, 0.15);
         width: 100%;
         flex-direction: column;
         transition: 0.4s;
@@ -291,13 +291,14 @@ const ChangeDarkMode = styled.div`
     &:before
     {
         content: "";
-        height: 12px;
-        width: 12px;
+        height: 11px;
+        width: 11px;
         position: absolute;
-        left: 3px;
+        left: 4px;
         top: 50%;
         transform: translateY(-50%);
         border-radius: 50%;
+        transition: 0.4s;
         background-color: ${({ theme }) => theme.colors.secondColor};
         ${({ active }) => active ? " left: 100%; transform: translateY(-50%) translateX(-100%) translateX(-3px); " : null}
     }
@@ -309,6 +310,7 @@ const userImg = "/images/user.png";
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
+    const darkmode = useSelector(state=>state.darkMode) 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { pathname } = useLocation();
@@ -354,7 +356,7 @@ const userImg = "/images/user.png";
                                 Your Quizes
                             </UserDropdownLink>
                             <UserDropdownElementFlex onClick={() => changeTheme()}>
-                                Dark mode <ChangeDarkMode />
+                                Dark mode <ChangeDarkMode active={!!darkmode} />
                             </UserDropdownElementFlex>
                             <UserDropdownElement onClick={()=>logout(dispatch,navigate)}>
                                 Logout

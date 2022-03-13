@@ -14,6 +14,7 @@ export const TestComponent = styled.div`
     min-width: 230px;
     border-radius: 16px;
     margin: 0px 1%;
+    overflow: hidden;
     margin-top: 20px;
     @media (max-width: 790px) 
     {

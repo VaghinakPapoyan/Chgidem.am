@@ -9,6 +9,14 @@ import { Load } from '../EditProfile/EditProfile'
 const ThisAnswerTitle = styled.div` 
     width: 100%;
     padding: 60px 0px;
+    @media( max-width: 768px )
+    {
+        padding: 50px 0px;
+    }
+    @media( max-width: 560px )
+    {
+        padding: 35px 0px;
+    }
 `
 const AnsverOne = styled.p`
     background-color: ${({ theme }) => theme.colors.mainColor};
@@ -42,6 +50,26 @@ const AnsverOne = styled.p`
         margin-left: 50px;
     }
     ${({ active }) => active ? "background-color: #32a852 !important; color: white;" : null}
+    @media( max-width: 768px )
+    {
+        margin-top: 20px;
+        &:last-child
+        {
+            margin-left: 25px;
+        }
+        width: 50%;
+    }
+    @media( max-width: 560px )
+    {
+        margin-top: 10px;
+        &:last-child
+        {
+            padding-top: 10px;
+            padding-bottom: 5px;
+            margin-left: 10px;
+        }
+        width: 50%;
+    }
 ` 
 const Answers = styled.div` 
     display: flex;
@@ -54,12 +82,24 @@ const ThisAnswer = styled.div`
     text-align: start;
     border-radius: 16px;
     background-color: ${({ theme }) => theme.colors.secondColor};
+    @media( max-width: 768px )
+    {
+        padding: 30px;
+    }
 `
 const ThisTitle = styled.h2` 
     font-size: 38px;
     font-weight: 600;
     color: ${({ theme }) => theme.colors.mainTextColor};
     text-align: center;
+    @media (max-width: 768px) 
+    {
+        font-size: 1.9rem !important;
+    }
+    @media (max-width: 552px) 
+    {
+        font-size: 1.5rem !important;
+    }
 `
 const ThisText = styled.h4` 
     font-size: 18px;
@@ -69,12 +109,30 @@ const ThisText = styled.h4`
     margin-top: 20px;
     color: ${({ theme }) => theme.colors.mainTextColor};
     text-align: center;
+    @media (max-width: 768px) 
+    {
+        margin-top: 15px;
+        font-size: 1rem !important;
+    }
+    @media (max-width: 552px) 
+    {
+        margin-top: 10px;
+        font-size: 0.9rem !important;
+    }
 `
 const Title = styled.div` 
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
+    @media( max-width: 768px )
+    {
+        margin-bottom: 20px;
+    }
+    @media( max-width: 560px )
+    {
+        margin-bottom: 10px;
+    }
 `
 const TitleText = styled.h4` 
     color: ${({ theme }) => theme.colors.secondTextColor};
@@ -104,6 +162,14 @@ const ThisButton = styled.button`
     margin-top: 30px;
     font-size: 16px;
     text-align: left;
+    @media( max-width: 768px )
+    {
+        margin-top: 20px;
+    }
+    @media( max-width: 560px )
+    {
+        margin-top: 10px;
+    }
     &:before
     {
         content: "";
@@ -146,6 +212,10 @@ const ResultTitleText = styled.h4`
     font-size: 18px;
     font-weight: 400;
     color: ${({ theme }) => theme.colors.secondTextColor};
+    @media( max-width: 768px )
+    {
+        font-size: 16px;
+    }
 `
 const Result = styled.div` 
     font-size: 18px;
@@ -166,7 +236,7 @@ const TrueAnswer = styled.div`
     padding: 7px 15px;
     font-size: 14px;
     display: inline-block;
-
+    color: ${({ theme }) => theme.colors.mainTextColor};
 `
 const FalseAnswer = styled(TrueAnswer)` 
     background-color: #ff4242;
