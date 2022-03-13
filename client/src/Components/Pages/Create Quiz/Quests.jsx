@@ -28,6 +28,13 @@ const ButtonAdd = styled.button`
 const Info = styled.div`
    
 `
+const ThisSubTitle = styled(SubTitle)`
+    margin-top: 5px;
+    margin-bottom: 10px;
+`
+const ThisSubTitleBold = styled.span`
+    font-weight: 600;
+`
 const MyTestsComponent = styled(TestsComponent)`
     & > div{
         padding-bottom:0px  !important;
@@ -56,7 +63,6 @@ export function Quests({isAdd,testId}){
     }else{
         setDisplay(true)
     }
-
     })
 
     
@@ -67,13 +73,13 @@ export function Quests({isAdd,testId}){
             {quests.map((e)=>{
                 return (
                     <TestComponent text key={Math.random()}>
-                        <SubTitle mb text>Title : {e.title}</SubTitle>
-                        <SubTitle mb text>quest : {e.quest}</SubTitle>
-                        {e.ansvers[0].ansver===''?null:<SubTitle mb text>asnver 1:   {e.ansvers[0].ansver}</SubTitle>}
-                        {e.ansvers[1].ansver===''?null:<SubTitle mb text>asnver 2:   {e.ansvers[1].ansver}</SubTitle>}
-                        {e.ansvers[2].ansver===''?null:<SubTitle mb text>asnver 3:   {e.ansvers[2].ansver}</SubTitle>}
-                        {e.ansvers[3].ansver===''?null:<SubTitle mb text>asnver 4:   {e.ansvers[3].ansver}</SubTitle>}
-                        <SubTitle mb text>TrueAnsver:{e.trueAnsver}</SubTitle>
+                        <ThisSubTitle mb text><ThisSubTitleBold>Title:</ThisSubTitleBold> {e.title}</ThisSubTitle>
+                        <ThisSubTitle mb text><ThisSubTitleBold>Quest:</ThisSubTitleBold> {e.quest}</ThisSubTitle>
+                        {e.ansvers[0].ansver===''?null:<ThisSubTitle mb text><ThisSubTitleBold>Asnwer 1:</ThisSubTitleBold> {e.ansvers[0].ansver}</ThisSubTitle>}
+                        {e.ansvers[1].ansver===''?null:<ThisSubTitle mb text><ThisSubTitleBold>Asnwer 2:</ThisSubTitleBold> {e.ansvers[1].ansver}</ThisSubTitle>}
+                        {e.ansvers[2].ansver===''?null:<ThisSubTitle mb text><ThisSubTitleBold>Asnwer 3:</ThisSubTitleBold> {e.ansvers[2].ansver}</ThisSubTitle>}
+                        {e.ansvers[3].ansver===''?null:<ThisSubTitle mb text><ThisSubTitleBold>Asnwer 4:</ThisSubTitleBold> {e.ansvers[3].ansver}</ThisSubTitle>}
+                        <ThisSubTitle mb text><ThisSubTitleBold>True ansver:</ThisSubTitleBold> {e.trueAnsver}</ThisSubTitle>
                         <MyButton to='/questions' onClick={()=>clickQuest(quests.findIndex(i=>i===e))}>Delete Quest</MyButton>
         </TestComponent>
                 )
