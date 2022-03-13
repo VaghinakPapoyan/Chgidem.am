@@ -2,6 +2,7 @@ import { validationResult } from "express-validator";
 import { Test } from "../../Models/Test.js";
 import jwt from 'jsonwebtoken';
 import { Questions } from "../../Models/Questions.js";
+import {User} from "../../Models/User.js";
 
 
 export let newTest = {}
@@ -118,8 +119,8 @@ export async function getTest(req,res){
 
 export async function changeAnsver(req,res){
     const { testId, answers, token, score } = req.body
-    console.log(score)
     const {userId} =   jwt.verify( token,process.env.secret )
+    const user = await User.findById(userId)
     const test = await Test.findById( testId )
     let ansvers = test.ansvers
     let isAnsver;
@@ -128,7 +129,7 @@ export async function changeAnsver(req,res){
             isAnsver = {index:i}
         }
     }
-    let newAnsver = { userId:userId, quests:[...answers], score }
+    let newAnsver = { userId:userId, quests:[...answers], score, userName:user.username }
     if( isAnsver ){
         delete ansvers[isAnsver.index] 
         ansvers.splice(isAnsver.index,1)
@@ -146,5 +147,12 @@ export async function Top ( req,res ){
     const returnTests = tests.splice(0,8)
     res.json({
         tests:returnTests
+    })
+}
+
+export async function GetAnsvers( req,res ){
+    const test = await Test.findById(req.body.testId)
+    res.json({
+        ansvers:test.ansvers
     })
 }

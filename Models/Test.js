@@ -10,7 +10,8 @@ const TestScheme  = new Schema({
         { 
             userId: String,
             quests:Array,
-            score:String
+            score:Number,
+            userName:String
         }
     ]
 })
