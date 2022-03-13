@@ -112,13 +112,13 @@ export async function Search(req,res){
 export async function getTest(req,res){
     const { id } = req.params;
     const test = await Test.findOne({ _id: id })
-    console.log(id);
     const quests = await Questions.find({ testId: id })
     res.json({ test, quests })
 }
 
 export async function changeAnsver(req,res){
-    const { testId, answers, token } = req.body
+    const { testId, answers, token, score } = req.body
+    console.log(score)
     const {userId} =   jwt.verify( token,process.env.secret )
     const test = await Test.findById( testId )
     let ansvers = test.ansvers
@@ -128,7 +128,7 @@ export async function changeAnsver(req,res){
             isAnsver = {index:i}
         }
     }
-    let newAnsver = { userId:userId, quests:[...answers] }
+    let newAnsver = { userId:userId, quests:[...answers], score }
     if( isAnsver ){
         delete ansvers[isAnsver.index] 
         ansvers.splice(isAnsver.index,1)

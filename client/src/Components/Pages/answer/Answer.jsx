@@ -246,9 +246,10 @@ export default function Answer() {
     }
     const gameOver = async () => 
     {
+        setScore(await answers.filter(answer => answer.isTrue === true).length)
         const testId = test.test._id
-        await axios.post('/api/set/answers',{testId,answers,token:token})
-        setScore(answers.filter(answer => answer.isTrue === true).length)
+        console.log(score)
+        await axios.post('/api/set/answers',{ testId, answers, token:token, score:score })
     }
     useEffect(() => 
     {
