@@ -122,7 +122,17 @@ export async function changeAnsver(req,res){
     const {userId} =   jwt.verify( token,process.env.secret )
     const test = await Test.findById( testId )
     let ansvers = test.ansvers
+    let isAnsver;
+    for( let i = 0; i < ansvers.length;i++ ){
+        if(ansvers[i].userId === userId){
+            isAnsver = {index:i}
+        }
+    }
     let newAnsver = { userId:userId, quests:[...answers] }
+    if( isAnsver ){
+        delete ansvers[isAnsver.index] 
+        ansvers.splice(isAnsver.index,1)
+    }
     ansvers.push( newAnsver )
     await Test.findByIdAndUpdate( testId,{ansvers} )
 
