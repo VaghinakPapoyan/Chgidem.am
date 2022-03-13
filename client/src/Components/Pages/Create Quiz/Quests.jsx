@@ -28,11 +28,11 @@ const ButtonAdd = styled.button`
 const Info = styled.div`
    
 `
-const ThisSubTitle = styled(SubTitle)`
+export const ThisSubTitle = styled(SubTitle)`
     margin-top: 5px;
     margin-bottom: 10px;
 `
-const ThisSubTitleBold = styled.span`
+export const ThisSubTitleBold = styled.span`
     font-weight: 600;
 `
 const MyTestsComponent = styled(TestsComponent)`

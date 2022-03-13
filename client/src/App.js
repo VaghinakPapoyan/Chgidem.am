@@ -69,6 +69,7 @@ function App() {
     }
     ::placeholder
     {
+      font-weight: 300;
       color: ${theme.colors.mainTextColor};
     }
   `
