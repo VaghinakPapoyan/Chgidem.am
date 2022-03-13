@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GetTests } from "../hooks/useTest";
 import { logout } from "../hooks/useUser";
 
 
@@ -27,13 +28,4 @@ export async function loading(dispatch){
         })
         GetTests(dispatch)
       }
-}
-
-export async function GetTests(dispatch){
-  const localtoken = localStorage.getItem('User')
-  const MyTests = await axios.post('api/get/myTests',{localtoken})
-  dispatch({
-    type:'putTests',
-    tests:MyTests.data
-  })
 }

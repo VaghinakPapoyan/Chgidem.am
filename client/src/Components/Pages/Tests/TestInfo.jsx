@@ -3,12 +3,11 @@ import { useEffect } from "react"
 import { memo } from "react"
 import styled from "styled-components"
 import {Link} from "react-router-dom"
-import { GetQuests } from "../../../hooks/useTest"
+import { GetQuests, GetTests } from "../../../hooks/useTest"
 import { Container } from "../../../styles/styles";
 import {  SubTitle, TestComponent } from "../Auth/components/Test";
 import { NewTitle, TestsComponent } from "../Auth/components/Tests";
 import axios from "axios"
-import { GetTests } from "../../loading"
 import { useDispatch } from "react-redux"
 
 const Info = styled.div`

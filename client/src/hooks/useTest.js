@@ -1,5 +1,4 @@
 import axios from "axios"
-import { GetTests } from "../Components/loading"
 
 export const createTest = (e)=>{
     e.preventDefault()
@@ -16,6 +15,14 @@ export const createTest = (e)=>{
 }
 
 
+export async function GetTests(dispatch){
+    const localtoken = localStorage.getItem('User')
+    const MyTests = await axios.post('api/get/myTests',{localtoken})
+    dispatch({
+      type:'putTests',
+      tests:MyTests.data
+    })
+  }
 export const questAdd =  async(quests,dispatch,navigate,testId) => {
     if(testId){
         await axios.post('/api/join/quest',{quests,testId})

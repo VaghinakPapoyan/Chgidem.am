@@ -246,7 +246,7 @@ export default function Answer() {
     }
     const gameOver = async () => 
     {
-        setScore(await answers.filter(answer => answer.isTrue === true).length)
+        setScore(answers.filter(answer => answer.isTrue === true).length)
         const testId = test.test._id
         console.log(score)
         await axios.post('/api/set/answers',{ testId, answers, token:token, score:score })
@@ -261,6 +261,7 @@ export default function Answer() {
     {
         if(Number(answers.length) === Number(test?.quests.length))
         {
+            console.log(answers)
             gameOver();
         }
     }, [answers])
