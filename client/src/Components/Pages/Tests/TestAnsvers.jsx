@@ -11,22 +11,23 @@ const Tr = styled.div`
     background:${({ theme })=>theme.colors.mainTextColor};
     margin-bottom:20px;
     border-radius:20px;
+    cursor:${props=>props.title?'':'pointer'};
 `
 const Table = styled.div`
     margin-top:50px;
     width:100%;
 `
 const Pol = styled.div`
-    min-width:30%;
-    color:${({ theme })=>theme.colors.mainColor};
+    min-width:37.5%;
     font-size:18px;
     font-weight:600;
+    color:${({ theme })=>theme.colors.mainColor};
 `
 const MinPol = styled.div`
     color:${({ theme })=>theme.colors.mainColor};
     font-size:18px;
     font-weight:600;
-    min-width:20%;
+    min-width:${props=>props.id?'10%':'15%'};
 `
 const Title = styled.div`
     text-align:center;
@@ -62,16 +63,16 @@ function TestAnsvers( { testId } ){
                         <Title>
                             Answers
                         </Title>
-                        <Tr>
-                            <MinPol>#</MinPol>
-                            <Pol>Name</Pol>
-                            <Pol>NickName</Pol>
-                            <MinPol>Score</MinPol>
+                        <Tr title>
+                            <MinPol id >#</MinPol>
+                            <Pol >Name</Pol>
+                            <Pol >NickName</Pol>
+                            <MinPol >Score</MinPol>
                         </Tr>
                          {ansvers.map( (e) => {
                             return(
                                 <Tr key={e._id}>
-                                    <MinPol>{ansvers.indexOf(e)+1}</MinPol>
+                                    <MinPol id>{ansvers.indexOf(e)+1}</MinPol>
                                     <Pol>{e.userName}</Pol>
                                     <Pol>{e.nickName ? e.nickName : '-'}</Pol>
                                     <MinPol>{e.score}</MinPol>
@@ -79,19 +80,6 @@ function TestAnsvers( { testId } ){
                             )   
                         })}  
                     </Table>
-                // <div>
-                //     {ansvers.map( (e) => {
-                //         return(
-                //             <div key={e._id}>
-                //                 {e.userName}
-                //                 <br />
-                //                 score:{e.score}
-                //             </div>
-                //         )   
-                //     })}  
-                // </div>
-                
-
             }
         </div>
     )
