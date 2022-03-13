@@ -116,3 +116,17 @@ export async function getTest(req,res){
     const quests = await Questions.find({ testId: id })
     res.json({ test, quests })
 }
+
+export async function changeAnsver(req,res){
+    const { testId, answers, token } = req.body
+    const {userId} =   jwt.verify( token,process.env.secret )
+    const test = await Test.findById( testId )
+    let ansvers = test.ansvers
+    let newAnsver = { userId:userId, quests:[...answers] }
+    ansvers.push( newAnsver )
+    await Test.findByIdAndUpdate( testId,{ansvers} )
+
+    res.json({
+        ok:true
+    })
+}

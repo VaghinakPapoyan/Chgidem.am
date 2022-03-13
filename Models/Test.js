@@ -8,8 +8,8 @@ const TestScheme  = new Schema({
     ansvers:
     [
         { 
-            userId: String, 
-            score: String 
+            userId: String,
+            quests:Array
         }
     ]
 })

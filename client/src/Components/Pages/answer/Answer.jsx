@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Container } from '../../../styles/styles'
@@ -234,6 +235,7 @@ export default function Answer() {
     const [ loading, setLoading ] = useState(true);
     const [ score, setScore ] = useState(0)
     const [ trueAnswer, setTrueAnswer ] = useState(null);
+    const token = useSelector(state=>state.token)
     const reply = answerTrue => 
     {
         if(trueAnswer !== null)
@@ -242,8 +244,10 @@ export default function Answer() {
             setTrueAnswer(null)
         }
     }
-    const gameOver = () => 
+    const gameOver = async () => 
     {
+        const testId = test.test._id
+        await axios.post('/api/set/answers',{testId,answers,token:token})
         setScore(answers.filter(answer => answer.isTrue === true).length)
     }
     useEffect(() => 
