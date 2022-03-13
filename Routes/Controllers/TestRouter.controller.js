@@ -129,7 +129,7 @@ export async function changeAnsver(req,res){
             isAnsver = {index:i}
         }
     }
-    let newAnsver = { userId:userId, quests:[...answers], score, userName:user.username }
+    let newAnsver = { userId:userId, quests:[...answers], score, userName:user.username,nickName:user.nickname }
     if( isAnsver ){
         delete ansvers[isAnsver.index] 
         ansvers.splice(isAnsver.index,1)

@@ -11,7 +11,8 @@ const TestScheme  = new Schema({
             userId: String,
             quests:Array,
             score:Number,
-            userName:String
+            userName:String,
+            nickName:String
         }
     ]
 })
