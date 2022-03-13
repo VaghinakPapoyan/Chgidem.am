@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../../styles/styles'
 import { MyButton, SubTitle, TestComponent } from "../Auth/components/Test";
+import { ThisSubTitleBold, ThisSubTitle } from '../Create Quiz/Quests';
 import TestsButtons from './TestsButtons';
 
 
@@ -17,8 +18,10 @@ export const TestsFlex = styled.div`
 const Test = styled(TestComponent)`
     background:${({ theme }) => theme.colors.mainTextColor};
 `
-const Text = styled(SubTitle)`
-    color:${({ theme }) => theme.colors.mainColor};
+const Text = styled(ThisSubTitle)`
+    color:${({ theme }) => theme.colors.secondTextColor} !important;
+    margin-top: 5px;
+    margin-bottom: 10px;
 `
 const ButtonTest = styled(MyButton)`
     background:${({ theme }) => theme.colors.mainColor};
@@ -91,10 +94,10 @@ export default function Global(){
                 {tests.length === 0 ? "not found" : " " }
                 {tests.map((e)=>{
                     return (
-                        <Test  text key={e._id}>
-                            <Text mb text>Title : {e.title}</Text>
-                            <Text mb text>Text :  {e.text}</Text>
-                            <Text mb text>Ansvers: {e.ansvers.length}</Text>
+                        <Test text key={e._id}>
+                            <Text mb text><ThisSubTitleBold>Title: </ThisSubTitleBold>{e.title}</Text>
+                            <Text mb text><ThisSubTitleBold>Text:  </ThisSubTitleBold>{e.text}</Text>
+                            <Text mb text><ThisSubTitleBold>Answers: </ThisSubTitleBold>{e.ansvers.length}</Text>
                             <ButtonTest to={"/answer/" + e._id}>Answer</ButtonTest>
                         </Test>
                     )

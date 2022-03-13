@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 const changeTheme = "changeTheme";
 
-export const store = createStore((state={token:'',MyTest:[], darkMode: localStorage.getItem("dark mode") || false,quests:[],user:{
+export const store = createStore((state={token:'',MyTest:[], darkMode: !!localStorage.getItem("dark mode") || false,quests:[],user:{
     username: "",
     email: "",
     avatar: "",
@@ -27,6 +27,7 @@ export const store = createStore((state={token:'',MyTest:[], darkMode: localStor
         case "deletequest":
             return {...state,quests:state.quests.filter(quest=>state.quests.findIndex(i=>i===quest)!==action.id)}
         case changeTheme:
+            localStorage.setItem("dark mode", !state.darkMode)
             return {...state, darkMode: !state.darkMode}
         case "putTests":
             return {...state,MyTest:action.tests}

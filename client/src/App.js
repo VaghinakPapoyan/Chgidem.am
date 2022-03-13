@@ -18,17 +18,11 @@ function App() {
     }    
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem("dark mode", dark)
-  }, [dark])
-
   const router = route(!!user.username)
   
   const theme = 
   {
-    colors: 
-    dark
-    ?
+    colors: dark ? 
     {
       mainColor: "#1D263A",
       secondColor: "#e3e3e3",
