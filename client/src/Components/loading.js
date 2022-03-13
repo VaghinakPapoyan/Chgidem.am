@@ -1,5 +1,4 @@
 import axios from "axios";
-import { GetTests } from "../hooks/useTest";
 import { logout } from "../hooks/useUser";
 
 
@@ -26,6 +25,5 @@ export async function loading(dispatch){
           type:'changeToken',
           token:localtoken
         })
-        GetTests(dispatch)
       }
 }
