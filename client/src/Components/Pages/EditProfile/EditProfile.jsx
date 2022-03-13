@@ -12,6 +12,10 @@ const EditProfileComponent = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    @media(max-width: 532px)
+    {
+        flex-direction: column-reverse;
+    }
 `
 const UserImgDiv = styled.div`
     width: 25%;
@@ -40,6 +44,18 @@ const UserImgDiv = styled.div`
         height: 100%;
         background-color: rgba(0,0,0, 0.6);
     }
+    @media(max-width: 1050px)
+    {
+        width: 37.5%;
+    }
+    @media(max-width: 668px)
+    {
+        width: 45%;
+    }
+    @media(max-width: 532px)
+    {
+        width: 85%;
+    }
 `
 const UserImg = styled.img `
     display: block;
@@ -49,11 +65,29 @@ const UserImg = styled.img `
 const UserInfo = styled.form `
     width: 30%;
     margin-right: 5%;
+    @media(max-width: 1050px)
+    {
+        width: 60%;
+    }
+    @media(max-width: 668px)
+    {
+        width: 50%;
+    }
+    @media(max-width: 532px)
+    {
+        margin-top: 35px;
+        text-align: center;
+        width: 85%;
+    }
 `
 const MyTitle = styled(Title)`
     text-align: left;
     margin-bottom: 30px;
     margin-top: 0;
+    @media(max-width: 532px)
+    {
+        text-align: center;
+    }
 `
 const MyLabel = styled(Label)`  
     margin-top: 15px;

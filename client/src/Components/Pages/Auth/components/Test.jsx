@@ -40,7 +40,7 @@ export const SubTitle = styled.p`
     color: ${({ theme }) => theme.colors.mainTextColor};
 `
 export const MyButton = styled(Button)` 
-    color: white ;
+    color: ${({ theme }) => theme.colors.secondTextColor};
     position: relative;
     margin-top: 15px;
     display: inline-block;

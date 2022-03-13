@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { logout } from '../../hooks/useUser.js'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { changeThemeAction } from '../../redux/store.js'
 
 const HeaderComponent = styled.div`
     display: flex;
@@ -103,6 +104,7 @@ const HeaderNavigation = styled.ul `
         left: 50%;
         margin: 0;
         top: 100%;
+        z-index: 10;
         transform: translate(-50%, 0);
         overflow: hidden;
         transition: 0.4s;
@@ -231,6 +233,7 @@ const UserDropdown = styled.div`
     top: 0;
     opacity: 0;
     transition: 0.4s;
+    z-index: 10;
     transform: translate(-50%, 15px);
     width: 100%;
     border-radius: 6px;
@@ -263,17 +266,58 @@ const UserDropdownLink = styled(Link)`
         margin-top: 0;
     }
 `
+const UserDropdownElementFlex = styled.div` 
+    color: ${({ theme }) => theme.colors.secondTextColor};
+    font-size: 0.75rem !important;
+    text-align: center;
+    font-weight: 600;
+    padding: 12px 0;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.mainColor};
+    &:first-child
+    {
+        margin-top: 0;
+    }
+    display: flex;
+    justify-content: center;
+    align-content: center;
+`
+const ChangeDarkMode = styled.div` 
+    width: 40px;
+    margin-left: 10px;
+    height: 15px;
+    background-color: ${({ theme }) => theme.colors.mainColor};
+    border-radius: 35px;
+    position: relative;
+    &:before
+    {
+        content: "";
+        height: 12px;
+        width: 12px;
+        position: absolute;
+        left: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        background-color: ${({ theme }) => theme.colors.secondColor};
+    }
+`
 
-const userImg = process.env.PUBLIC_URL + "images/user.png";
+const userImg = "/images/user.png";
 
  function Header({auth}) {
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { pathname } = useLocation();
     const lastPath = pathname.split('/')[pathname.split('/').length - 1]
+
+    const changeTheme = () => 
+    {
+        dispatch(changeThemeAction());
+    }
+
     if(auth)
     {
         return (
@@ -308,6 +352,9 @@ const userImg = process.env.PUBLIC_URL + "images/user.png";
                             <UserDropdownLink to='/quizes'>
                                 Your Quizes
                             </UserDropdownLink>
+                            <UserDropdownElementFlex onClick={() => changeTheme()}>
+                                Dark mode <ChangeDarkMode />
+                            </UserDropdownElementFlex>
                             <UserDropdownElement onClick={()=>logout(dispatch,navigate)}>
                                 Logout
                             </UserDropdownElement>

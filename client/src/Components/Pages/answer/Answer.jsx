@@ -227,7 +227,6 @@ const Loading = styled(Load)`
     transform: translate(-50%, -50%);
 `
 
-
 export default function Answer() {
     const { id } = useParams()
     const [ test, setTest ] = useState();
@@ -246,14 +245,13 @@ export default function Answer() {
     }
     const gameOver = async () => 
     {
-        setScore(answers.filter(answer => answer.isTrue === true).length)
+        setScore(await answers.filter(answer => answer.isTrue === true).length)
         const testId = test.test._id
         await axios.post('/api/set/answers',{ testId, answers, token:token, score:answers.filter(answer => answer.isTrue === true).length })
     }
     useEffect(() => 
     {
         setLoading(true)
-        
         axios.get("/api/get-test/" + id).then(res => {setTest(res.data); setLoading(false)})
     }, [])
     useEffect(() => 

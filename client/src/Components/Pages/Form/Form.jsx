@@ -24,6 +24,7 @@ export const Input = styled.input`
     display: block;
     color: ${({ theme }) => theme.colors.mainTextColor};
     width: 100%;
+    background-color: transparent;
     border: none;
     font-size: 0.9rem;
     outline: none !important;

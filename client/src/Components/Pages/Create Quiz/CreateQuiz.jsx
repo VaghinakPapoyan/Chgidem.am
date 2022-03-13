@@ -47,6 +47,7 @@ const Form = styled.form`
     border: 1px solid ${({ theme }) => theme.colors.secondColor};
     cursor:pointer;
     transition:0.3s;
+    color: ${({ theme }) => theme.colors.mainTextColor};
     &:hover{
         background:${({ theme }) => theme.colors.secondColor};
         color:${({ theme }) => theme.colors.mainColor};
