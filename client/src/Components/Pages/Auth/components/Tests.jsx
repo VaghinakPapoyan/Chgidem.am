@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../../../styles/styles'
 import Test from './Test'
@@ -32,18 +33,17 @@ export const NewTitle = styled(TitleComponent)`
 `
 
 export default function Tests() {
+  const [tests,setTests] = useState([])
+  useEffect(()=>{
+    axios.post('/api/top').then(res=>setTests(res.data.tests))
+  },[])
   return (
     <TestsComponent>
         <NewTitle>Most Popular Quiz</NewTitle>
         <Container>
-            <Test title="React Question" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Question about armenia" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Best Question" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Fast fizik Text" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Test your soft skills" subTitle="Simply dummy text of the printing and type settings."></Test>
-            <Test title="Programer Test" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Testing your mathemathiks" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
-            <Test title="Question About Biology" subTitle="Lorem Ipsum is simply dummy text of the printing and."></Test>
+            {tests.map((e)=>{
+              return <Test title={e.title} subTitle={e.text} testId={e._id}></Test>
+            })}
         </Container>
     </TestsComponent>
   )

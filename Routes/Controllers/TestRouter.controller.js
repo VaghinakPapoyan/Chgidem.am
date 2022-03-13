@@ -140,3 +140,11 @@ export async function changeAnsver(req,res){
         ok:true
     })
 }
+
+export async function Top ( req,res ){
+    const tests = await Test.find().sort({ansvers:-1})
+    const returnTests = tests.splice(0,8)
+    res.json({
+        tests:returnTests
+    })
+}

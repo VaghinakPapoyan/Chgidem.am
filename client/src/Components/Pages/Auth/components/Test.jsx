@@ -56,12 +56,12 @@ export const MyButton = styled(Button)`
         }
     }
 `
-export default function Test({ title, subTitle }) {
+export default function Test({ title, subTitle, testId }) {
   return (
     <TestComponent>
         <Title>{ title }</Title>
         <SubTitle>{ subTitle }</SubTitle>
-        <MyButton to="#">Start Test</MyButton>
+        <MyButton to={`/answer/${testId}`}>Start Test</MyButton>
     </TestComponent>
   )
 }
