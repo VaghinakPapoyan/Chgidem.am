@@ -21,10 +21,14 @@ export const NewTitle = styled(TitleComponent)`
   padding-top: 45px;
   padding-bottom: 25px;
   border:none;
-  @media (max-width: 992px){
-    font-size: 25px;
+  @media (max-width: 768px) 
+  {
+      font-size: 1.9rem !important;
   }
-
+  @media (max-width: 552px) 
+  {
+      font-size: 1.5rem !important;
+  }
 `
 
 export default function Tests() {

@@ -15,6 +15,14 @@ export const TestComponent = styled.div`
     border-radius: 16px;
     margin: 0px 1%;
     margin-top: 20px;
+    @media (max-width: 790px) 
+    {
+        width: 45%;
+    }
+    @media (max-width: 552px) 
+    {
+        width: 90%;
+    }
 `
 export const Title = styled.h4`
     font-size: 1.35rem;
@@ -40,6 +48,13 @@ export const MyButton = styled(Button)`
     font-size: 14px;
     font-weight: 600;
     transform: translateX(-50%);
+    @media (max-width: 425px) 
+    {
+        &:last-child
+        {
+            display: inline-block;
+        }
+    }
 `
 export default function Test({ title, subTitle }) {
   return (
