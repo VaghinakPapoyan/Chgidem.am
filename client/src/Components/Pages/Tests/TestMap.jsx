@@ -28,11 +28,11 @@ const Test = styled.div`
     min-width:200px;
     @media (max-width: 992px) {
         min-width:150px;
-        padding:10px 0px 15px 10px;
-        border-radius:20px;
+        padding:10px;
+        border-radius:10px;
         border:none;
         margin-right:20px;
-        ${props=>props.active === 'active' ? ` border-bottom: 5px solid #FFCD28;`:`border-bottom: 5px solid #1D263A;`}
+        ${props=>props.active === 'active' ?`border-bottom:10px solid ${ props.theme.colors.secondColor}`:`border-bottom:${ props.theme.colors.thirdColor }`};
     }
 `
 const Title = styled.div`
