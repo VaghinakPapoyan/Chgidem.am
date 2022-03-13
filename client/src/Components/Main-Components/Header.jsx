@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import styled from 'styled-components'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { logout } from '../../hooks/useUser.js'
 import { useDispatch } from 'react-redux'
@@ -266,12 +266,14 @@ const UserDropdownLink = styled(Link)`
 
 const userImg = process.env.PUBLIC_URL + "images/user.png";
 
- function Header({auth, page}) {
+ function Header({auth}) {
     const [ menuActive, setMenuActive ] = useState(false)
     const [ menuDropdownActive, setMenuDropdownActive ] = useState(false)
     const user = useSelector(state=>state.user) 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { pathname } = useLocation();
+    const lastPath = pathname.split('/')[pathname.split('/').length - 1]
     if(auth)
     {
         return (
@@ -280,13 +282,13 @@ const userImg = process.env.PUBLIC_URL + "images/user.png";
                     <Logo>Ch<SpanLogo>gidem.</SpanLogo></Logo>
                     <HeaderNavigation active={menuActive}>
                         <HeaderNavigate>
-                            <NavigateText active={page === "home" ? "true" : "false"} to="/">Home</NavigateText>
+                            <NavigateText active={lastPath === "" ? "true" : "false"} to="/">Home</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText active={page === "create-quiz" ? "true" : "false"} to="/create-quiz">Create Quiz</NavigateText>
+                            <NavigateText active={lastPath === "create-quiz" ? "true" : "false"} to="/create-quiz">Create Quiz</NavigateText>
                         </HeaderNavigate>
                         <HeaderNavigate>
-                            <NavigateText active={page === "tests" ? "true" : "false"} to="/Tests">Tests</NavigateText>
+                            <NavigateText active={lastPath === "Tests" ? "true" : "false"} to="/Tests">Tests</NavigateText>
                         </HeaderNavigate>
                     </HeaderNavigation>
                 </Left>
