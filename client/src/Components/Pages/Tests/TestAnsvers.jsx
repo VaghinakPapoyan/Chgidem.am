@@ -77,7 +77,7 @@ function TestAnsvers( { testId } ){
                         </Tr>
                          {ansvers.map( (e) => {
                             return(
-                                <Tr key={e._id} onClick={()=>navigateInfo(e._id, e.userId)}>
+                                <Tr key={e._id} onClick={()=>navigateInfo(e.userId)}>
                                     <MinPol id='true'>{ansvers.indexOf(e)+1}</MinPol>
                                     <Pol>{e.userName}</Pol>
                                     <Pol>{e.nickName ? e.nickName : '-'}</Pol>
