@@ -9,19 +9,20 @@ export function AnswerInfo(){
     const params = useParams()
     const [answers, setAnswers] = useState([])
     const [score, setScore] = useState([])
+    const [username, setUsername] = useState([])
     const [questions, setQuestions] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(() => 
     {
         setLoading(true)
-        axios.get(`/api/get-answers/${params.id}/${params.userId}`).then(res => { setAnswers(res?.data?.answers); setQuestions(res?.data?.questions); setScore(res?.data?.score)})
+        axios.get(`/api/get-answers/${params.id}/${params.userId}`).then(res => { setAnswers(res?.data?.answers); setQuestions(res?.data?.questions); setScore(res?.data?.score); setUsername(res?.data?.username)})
         setLoading(false)
     }, [])
     return(
         <Container>
             <ThisAnswer>
             <ResultTitle>
-                You have answered correct to <ColorYellow>{score}</ColorYellow> questions out of <ColorYellow>{answers.length}</ColorYellow>
+                {username} answered correct to <ColorYellow>{score}</ColorYellow> questions out of <ColorYellow>{answers.length}</ColorYellow>
             </ResultTitle>
             <ResultSubTitle>
                 The <ColorYellow>{ Math.floor(score / answers.length * 100) }%</ColorYellow> of your answers is correct

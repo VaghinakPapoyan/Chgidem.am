@@ -170,14 +170,15 @@ export async function getUserTests( req,res ){
         return answer.userId === userId
     })
 
-    const questions = await Questions.find({ testId })
+    const { username } = await User.findOne( { _id: userId } );
 
-    console.log(answers);
+    const questions = await Questions.find({ testId })
 
     res.json({
         answers: answers.quests,
         questions,
-        score: answers.score
+        score: answers.score,
+        username 
     })
 }
 
