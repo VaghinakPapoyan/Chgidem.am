@@ -1,7 +1,7 @@
 import axios from "axios";
 import { memo, useEffect, useState } from "react";
-import { Container } from "../../../styles/styles";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Tr = styled.div`
     width:100%;
@@ -11,7 +11,7 @@ const Tr = styled.div`
     background:${({ theme })=>theme.colors.mainTextColor};
     margin-bottom:20px;
     border-radius:20px;
-    cursor:${props=>props.title?'':'pointer'};
+    cursor:${props=>props.title==='true'?'':'pointer'};
 `
 const Table = styled.div`
     margin-top:50px;
@@ -27,7 +27,7 @@ const MinPol = styled.div`
     color:${({ theme })=>theme.colors.mainColor};
     font-size:18px;
     font-weight:600;
-    min-width:${props=>props.id?'10%':'15%'};
+    min-width:${props=>props.id==='true'?'10%':'15%'};
 `
 const Title = styled.div`
     text-align:center;
@@ -40,6 +40,7 @@ function TestAnsvers( { testId } ){
 
     const [ansvers,setAnsvers] = useState([])
     const [loading,setLoading] = useState(true)
+    const navigate = useNavigate()
     useEffect(()=>{
         async function Fetch(){
             await axios.post('/api/get/ansvers',{testId})
@@ -52,6 +53,10 @@ function TestAnsvers( { testId } ){
             Fetch()
         }
     },[testId])   
+
+    const navigateInfo = (id,userId) => {
+        navigate(`/answer/info/${id}/${userId}`)
+    }
     return(
         <div>
             {
@@ -63,16 +68,16 @@ function TestAnsvers( { testId } ){
                         <Title>
                             Answers
                         </Title>
-                        <Tr title>
-                            <MinPol id >#</MinPol>
+                        <Tr title='true'>
+                            <MinPol id='true' >#</MinPol>
                             <Pol >Name</Pol>
                             <Pol >NickName</Pol>
                             <MinPol >Score</MinPol>
                         </Tr>
                          {ansvers.map( (e) => {
                             return(
-                                <Tr key={e._id}>
-                                    <MinPol id>{ansvers.indexOf(e)+1}</MinPol>
+                                <Tr key={e._id} onClick={()=>navigateInfo(e._id, e.userId)}>
+                                    <MinPol id='true'>{ansvers.indexOf(e)+1}</MinPol>
                                     <Pol>{e.userName}</Pol>
                                     <Pol>{e.nickName ? e.nickName : '-'}</Pol>
                                     <MinPol>{e.score}</MinPol>

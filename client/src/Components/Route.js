@@ -11,6 +11,7 @@ import Form from "./Pages/Form/Form";
 import Global from "./Pages/GlobalTests/Global";
 import { Home } from "./Pages/noAuth/Home";
 import AddQuize from "./Pages/Tests/AddQuize";
+import { AnswerInfo } from "./Pages/Tests/AnswerInfo";
 import { ChangeQuize } from "./Pages/Tests/ChangeQuize";
 import TestSee from "./Pages/Tests/TestSee";
 
@@ -47,6 +48,7 @@ export default function route(isAuth){
                 <Route path="/AddQuize/:id" element={<AddQuize />}/>
                 <Route path="/Quizes/change/:id" element={<ChangeQuize />}/>
                 <Route path="/answer/:id" element={<Answer />}/>
+                <Route path="/answer/info/:id/:userId" element={<AnswerInfo />}/>
             </Routes>
         </>
     )
