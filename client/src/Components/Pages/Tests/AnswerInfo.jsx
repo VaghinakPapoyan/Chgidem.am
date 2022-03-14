@@ -25,7 +25,7 @@ export function AnswerInfo(){
                 {username} answered correct to <ColorYellow>{score}</ColorYellow> questions out of <ColorYellow>{answers.length}</ColorYellow>
             </ResultTitle>
             <ResultSubTitle>
-                The <ColorYellow>{ Math.floor(score / answers.length * 100) }%</ColorYellow> of your answers is correct
+                The <ColorYellow>{ Math.floor(score / answers.length * 100) }%</ColorYellow> of {username}'s answers is correct
             </ResultSubTitle>
             {
                 loading
