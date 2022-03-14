@@ -296,7 +296,11 @@ const Loading = styled(Load)`
     top: 50%;
     transform: translate(-50%, -50%);
 `
-
+const Error = styled.div`
+    margin-top:20px;    
+    color: ${({ theme }) => theme.colors.secondTextColor};
+    font-size:18px;
+`
 export default function Answer() {
     const { id } = useParams()
     const [ test, setTest ] = useState();
@@ -304,6 +308,7 @@ export default function Answer() {
     const [ loading, setLoading ] = useState(true);
     const [ score, setScore ] = useState(0)
     const [ trueAnswer, setTrueAnswer ] = useState(null);
+    const [error,setError] = useState('')
     const token = useSelector(state=>state.token)
     const reply = answerTrue => 
     {
@@ -318,6 +323,11 @@ export default function Answer() {
         setScore(await answers.filter(answer => answer.isTrue === true).length)
         const testId = test.test._id
         await axios.post('/api/set/answers',{ testId, answers, token:token, score:answers.filter(answer => answer.isTrue === true).length })
+        .then(res=>{
+            if(res.data.ok === false){
+                setError(res.data.message)
+            }
+        })
     }
     useEffect(() => 
     {
@@ -395,6 +405,7 @@ export default function Answer() {
                                 </Results>
                                 <NewThisButton to="/Tests">Get another test</NewThisButton>
                                 <NewThisButton to="/">Go home</NewThisButton>
+                                <Error>{error}</Error>
                             </>
                         }
                     </ThisAnswer>

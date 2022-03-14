@@ -131,8 +131,10 @@ export async function changeAnsver(req,res){
     }
     let newAnsver = { userId:userId, quests:[...answers], score, userName:user.username,nickName:user.nickname }
     if( isAnsver ){
-        delete ansvers[isAnsver.index] 
-        ansvers.splice(isAnsver.index,1)
+       return res.json({
+           ok:false,
+           message:"you arleady ansver this test your score was not update"
+       })
     }
     ansvers.push( newAnsver )
     await Test.findByIdAndUpdate( testId,{ansvers} )
