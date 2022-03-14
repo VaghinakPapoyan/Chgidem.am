@@ -63,6 +63,9 @@ const SearchButton = styled.button`
         background:${({ theme }) => theme.colors.mainTextColor};
     }
 `
+const NotFound = styled.div`
+    color:${({ theme }) => theme.colors.mainTextColor};
+`
 export default function Global(){
     const [length,setLength] = useState([])
     const [tests,setTests] = useState([])
@@ -79,9 +82,11 @@ export default function Global(){
     },[] )
 
     const SearchForm = async () =>{
-        const data = await axios.post('/api/get/search',{textSearch:searchText})
-        setTests(data.data.result)
-        setLength([])
+        if(searchText !== ''){
+            const data = await axios.post('/api/get/search',{textSearch:searchText})
+            setTests(data.data.result)
+            setLength([])
+        }
     }
 
     return (
@@ -91,7 +96,7 @@ export default function Global(){
                 <SearchButton onClick={SearchForm}>Search</SearchButton>
             </Form>
             <TestsFlex>
-                {tests.length === 0 ? "not found" : " " }
+                <NotFound>{tests.length === 0 ? "not found" : " " }</NotFound>
                 {tests.map((e)=>{
                     return (
                         <Test text key={e._id}>
