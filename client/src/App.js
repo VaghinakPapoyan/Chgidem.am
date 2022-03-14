@@ -47,7 +47,6 @@ function App() {
 
   const router = route(!!user.username)
   
-  console.log(dark);
   const theme = 
   {
     colors: 
