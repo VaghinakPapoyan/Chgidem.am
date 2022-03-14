@@ -158,3 +158,19 @@ export async function GetAnsvers( req,res ){
         ansvers:test.ansvers
     })
 }
+
+export async function getUserTests( req,res ){
+    
+    const { testId, userId } = req.params;
+
+    console.log(testId, userId);
+
+    const test = await Test.findOne({ _id: testId })
+
+    console.log(test);
+    // res.json({
+    //     ansvers:test.ansvers
+    // })
+}
+
+getUserTests

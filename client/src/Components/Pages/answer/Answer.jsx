@@ -236,7 +236,7 @@ const TrueAnswer = styled.div`
     padding: 7px 15px;
     font-size: 14px;
     display: inline-block;
-    color: ${({ theme }) => theme.colors.mainTextColor};
+    color: white;
 `
 const FalseAnswer = styled(TrueAnswer)` 
     background-color: #ff4242;
@@ -259,10 +259,8 @@ const NewThisButton = styled(Link)`
     margin-top: 30px;
     font-size: 16px;
     text-align: left;
-    &:last-child
-    {
-        margin-left: 30px;
-    }
+    ${({ ms }) => ms && "margin-left: 30px;"}
+        
     &:before
     {
         content: "";
@@ -404,7 +402,7 @@ export default function Answer() {
                                     }
                                 </Results>
                                 <NewThisButton to="/Tests">Get another test</NewThisButton>
-                                <NewThisButton to="/">Go home</NewThisButton>
+                                <NewThisButton ms to="/">Go home</NewThisButton>
                                 <Error>{error}</Error>
                             </>
                         }

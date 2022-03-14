@@ -6,6 +6,33 @@ import route from "./Components/Route";
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { useEffect } from "react"
 
+
+const GlobalStyle = createGlobalStyle`
+*
+{
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif !important;
+}
+body
+{
+  background-color: ${({ theme }) => theme.colors.mainColor};
+}
+::selection 
+{
+  color: ${({ theme }) => theme.colors.secondTextColor};
+  background: ${({ theme }) => theme.colors.secondColor};
+} 
+input
+{
+  background-color: transparent;
+}
+::placeholder
+{
+  font-weight: 300;
+  color: ${({ theme }) => theme.colors.mainTextColor};
+}
+`
+
 function App() {
   const token = useSelector(state=>state.token)
   const user = useSelector(state=>state.user)
@@ -20,9 +47,12 @@ function App() {
 
   const router = route(!!user.username)
   
+  console.log(dark);
   const theme = 
   {
-    colors: dark ? 
+    colors: 
+    !!dark
+    ? 
     {
       mainColor: "#1D263A",
       secondColor: "#e3e3e3",
@@ -42,32 +72,6 @@ function App() {
     }
   }
 
-  const GlobalStyle = createGlobalStyle`
-    *
-    {
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif !important;
-    }
-    body
-    {
-      background-color: ${theme.colors.mainColor};
-    }
-    ::selection 
-    {
-      color: ${theme.colors.secondTextColor};
-      background: ${theme.colors.secondColor};
-    } 
-    input
-    {
-      background-color: transparent;
-    }
-    ::placeholder
-    {
-      font-weight: 300;
-      color: ${theme.colors.mainTextColor};
-    }
-  `
-  
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle/>
