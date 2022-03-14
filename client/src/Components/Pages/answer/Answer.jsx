@@ -76,7 +76,7 @@ const Answers = styled.div`
     justify-content: space-between;
     align-items: center;
 `
-const ThisAnswer = styled.div` 
+export const ThisAnswer = styled.div` 
     width: 100%;
     padding: 50px;
     text-align: start;
@@ -192,23 +192,23 @@ const ThisButton = styled.button`
         height: 120px;
     }
 `
-const ColorYellow = styled.span` 
+export const ColorYellow = styled.span` 
     color: ${({ theme }) => theme.colors.thirdTextColor};
 `
-const ResultTitle = styled(TitleText)` 
+export const ResultTitle = styled(TitleText)` 
     font-size: 22px;
     text-align: center;
 `
-const Results = styled.div`
+export const Results = styled.div`
     margin-top: 45px;
 ` 
-const ResultSubTitle = styled.p` 
+export const ResultSubTitle = styled.p` 
     font-size: 16px;
     text-align: center;
     margin-top: 15px;
     color: ${({ theme }) => theme.colors.secondTextColor};
 `
-const ResultTitleText = styled.h4` 
+export const ResultTitleText = styled.h4` 
     font-size: 18px;
     font-weight: 400;
     color: ${({ theme }) => theme.colors.secondTextColor};
@@ -217,7 +217,7 @@ const ResultTitleText = styled.h4`
         font-size: 16px;
     }
 `
-const Result = styled.div` 
+export const Result = styled.div` 
     font-size: 18px;
     padding-bottom: 15px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.mainColor};
@@ -225,11 +225,11 @@ const Result = styled.div`
     margin-top: 15px;
     color: ${({ theme }) => theme.colors.secondTextColor};
 `
-const ResultAnswers = styled.div` 
+export const ResultAnswers = styled.div` 
     display: flex;
     align-items: center;
 `
-const TrueAnswer = styled.div` 
+export const TrueAnswer = styled.div` 
     background-color: #32a852;
     margin-top: 13px;
     border-radius: 8px;
@@ -238,7 +238,7 @@ const TrueAnswer = styled.div`
     display: inline-block;
     color: white;
 `
-const FalseAnswer = styled(TrueAnswer)` 
+export const FalseAnswer = styled(TrueAnswer)` 
     background-color: #ff4242;
     margin-left: 15px;
 `
