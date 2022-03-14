@@ -73,8 +73,8 @@ function TestAnsvers( { testId } ){
         }
     },[testId])   
 
-    const navigateInfo = (id,userId) => {
-        navigate(`/answer/info/${id}/${userId}`)
+    const navigateInfo = (userId) => {
+        navigate(`/answer/info/${testId}/${userId}`)
     }
     
     return(
