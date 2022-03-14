@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 const changeTheme = "changeTheme";
 
-export const store = createStore((state={token:'',MyTest:[], darkMode: !!localStorage.getItem("dark mode") || false,quests:[],user:{
+export const store = createStore((state={token:'',MyTest:[], darkMode: (localStorage.getItem("dark mode") === "true"),quests:[],user:{
     username: "",
     email: "",
     avatar: "",
